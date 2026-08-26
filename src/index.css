@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #f3f6f8;
+  --color-surface: #ffffff;
+  --color-muted: #e8eef2;
+  --color-ink: #1b2430;
+  --color-ink-soft: #5b6b7c;
+  --color-cyan: #00d4c8;
+  --color-cyan-dim: #00b8ae;
+  --color-magenta: #ff2a85;
+  --color-blue: #3a6cff;
+  --color-warn: #d4a017;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-cyan) 35%, white);
+}
+
+.prix-atmosphere {
+  background:
+    radial-gradient(1100px 560px at 8% -12%, rgba(0, 212, 200, 0.2), transparent 58%),
+    radial-gradient(900px 480px at 96% 4%, rgba(58, 108, 255, 0.14), transparent 52%),
+    radial-gradient(820px 620px at 78% 108%, rgba(255, 42, 133, 0.11), transparent 56%),
+    var(--color-canvas);
+}
+
+.prix-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  outline: none;
+}
+
+.cmdk-item[data-selected="true"] {
+  background: color-mix(in srgb, var(--color-cyan) 14%, white);
+}
