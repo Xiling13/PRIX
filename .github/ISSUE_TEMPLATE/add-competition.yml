@@ -1,0 +1,37 @@
+name: Add competition
+description: Suggest a new award or update an existing entry in competitions.json
+title: 'Add competition: '
+labels: ['data']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing! Paste competition JSON below (use **Add award** in the app → **Copy JSON** for a head start).
+
+        Before submitting, please confirm:
+        - Official URL is correct
+        - Deadlines and fees match the organizer site
+        - You ran `npm run validate:data` if editing the file directly
+
+  - type: textarea
+    id: json
+    attributes:
+      label: Competition JSON
+      description: Paste a single competition object from `src/data/competitions.json`
+      render: json
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Official source URL
+      description: Link to the organizer page you used to verify this data
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes (optional)
+      description: Anything reviewers should know — e.g. early-bird tiers, eligibility quirks

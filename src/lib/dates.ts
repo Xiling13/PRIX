@@ -1,6 +1,8 @@
 import { differenceInMilliseconds, format, getYear, subYears } from 'date-fns'
+import { zhCN } from 'date-fns/locale'
 import { formatInTimeZone, fromZonedTime } from 'date-fns-tz'
 import type { Competition, Quarter } from '../types/competition'
+import type { Lang } from './i18n'
 
 export function deadlineToUtc(isoLocal: string, timezone: string): Date {
   return fromZonedTime(isoLocal, timezone)
@@ -43,23 +45,43 @@ export function isUrgent(competition: Competition, now = new Date()): boolean {
 export function formatCountdown(
   competition: Competition,
   now = new Date(),
+  closedLabel = 'Closed',
+  lang: Lang = 'en',
 ): string {
   const ms = msRemaining(competition, now)
-  if (ms <= 0) return 'Closed'
+  if (ms <= 0) return closedLabel
   const totalHours = Math.floor(ms / 3_600_000)
   const days = Math.floor(totalHours / 24)
   const hours = totalHours % 24
   const minutes = Math.floor((ms % 3_600_000) / 60_000)
-  if (days >= 1) return `${days}d ${String(hours).padStart(2, '0')}h`
-  return `${hours}h ${String(minutes).padStart(2, '0')}m`
+  if (days >= 1) {
+    return lang === 'zh'
+      ? `${days}天 ${String(hours).padStart(2, '0')}时`
+      : `${days}d ${String(hours).padStart(2, '0')}h`
+  }
+  return lang === 'zh'
+    ? `${hours}时 ${String(minutes).padStart(2, '0')}分`
+    : `${hours}h ${String(minutes).padStart(2, '0')}m`
 }
 
 export function formatDisplayDate(
   isoLocal: string,
   timezone: string,
   inTimezone = true,
+  lang: Lang = 'en',
 ): string {
   const utc = deadlineToUtc(isoLocal, timezone)
+  if (lang === 'zh') {
+    const base = inTimezone
+      ? formatInTimeZone(utc, timezone, 'yyyy年M月d日 hh:mm', { locale: zhCN })
+      : format(utc, 'yyyy年M月d日 hh:mm', { locale: zhCN })
+    const meridiem = (
+      inTimezone
+        ? formatInTimeZone(utc, timezone, 'a')
+        : format(utc, 'a')
+    ).toUpperCase()
+    return `${base} ${meridiem}`
+  }
   const day = inTimezone
     ? formatInTimeZone(utc, timezone, 'dd')
     : format(utc, 'dd')
@@ -79,15 +101,17 @@ export function formatDisplayDate(
 export function formatLocalAbsolute(
   isoLocal: string,
   timezone: string,
+  lang: Lang = 'en',
 ): string {
-  return formatDisplayDate(isoLocal, timezone, false)
+  return formatDisplayDate(isoLocal, timezone, false, lang)
 }
 
 export function formatSourceDeadline(
   isoLocal: string,
   timezone: string,
+  lang: Lang = 'en',
 ): string {
-  return formatDisplayDate(isoLocal, timezone, true)
+  return formatDisplayDate(isoLocal, timezone, true, lang)
 }
 
 export function quarterFromDate(date: Date): Quarter {

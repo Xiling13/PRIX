@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { format } from 'date-fns'
 import { Plus, Search } from 'lucide-react'
-import { CATEGORY_TABS } from '../lib/labels'
+import { CATEGORY_TABS, GITHUB_REPO_URL } from '../lib/labels'
 import { cn } from '../lib/cn'
 import { useMessages } from '../lib/i18n'
 import { useNow } from '../hooks/useNow'
 import { useAppStore } from '../store/useAppStore'
 import { Button } from './Button'
+import { GitHubIcon } from './GitHubIcon'
+import { TrackerBackupControls } from './TrackerBackupControls'
 
 function isMac() {
   return (
@@ -64,22 +66,33 @@ export function Header() {
           <p className="hidden font-mono text-sm text-ink-soft sm:block">
             {format(now, 'HH:mm:ss zzz')}
           </p>
-          <div className="flex rounded-full bg-muted p-0.5 text-xs font-medium">
-            {(['en', 'zh'] as const).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                className={cn(
-                  'cursor-pointer rounded-full px-2.5 py-0.5 leading-none transition-colors',
-                  lang === l
-                    ? 'bg-surface text-ink shadow-sm shadow-ink/10'
-                    : 'text-ink-soft hover:text-ink',
-                )}
-              >
-                {l === 'en' ? 'EN' : '汉'}
-              </button>
-            ))}
+          <div className="flex items-center gap-3">
+            <div className="flex rounded-full bg-muted p-0.5 text-xs font-medium">
+              {(['en', 'zh'] as const).map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  onClick={() => setLang(l)}
+                  className={cn(
+                    'cursor-pointer rounded-full px-2.5 py-0.5 leading-none transition-colors',
+                    lang === l
+                      ? 'bg-surface text-ink shadow-sm shadow-ink/10'
+                      : 'text-ink-soft hover:text-primary',
+                  )}
+                >
+                  {l === 'en' ? 'EN' : '汉'}
+                </button>
+              ))}
+            </div>
+            <a
+              href={GITHUB_REPO_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={m.header.github}
+              className="inline-flex size-8 items-center justify-center rounded-full text-ink-soft transition-colors hover:bg-muted hover:text-ink"
+            >
+              <GitHubIcon className="size-4" />
+            </a>
           </div>
         </div>
       </div>
@@ -119,37 +132,42 @@ export function Header() {
                   'cursor-pointer rounded-full px-3 py-1 text-xs font-medium transition-colors',
                   view === id
                     ? 'bg-surface text-ink shadow-sm shadow-ink/10'
-                    : 'text-ink-soft hover:text-ink',
+                    : 'text-ink-soft hover:text-primary',
                 )}
               >
                 {label}
               </button>
             ))}
           </div>
-          <Button variant="primary" className="px-3 py-1.5 text-xs" onClick={() => setAddOpen(true)}>
+          <Button variant="outline" className="px-3 py-1.5 text-xs" onClick={() => setAddOpen(true)}>
             <Plus className="size-3.5" aria-hidden />
             {m.addCustom}
           </Button>
         </div>
       </div>
 
-      <nav className="mt-6 mb-6 flex gap-0.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {categoryTabs.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            onClick={() => setCategoryFilter(tab.id)}
-            className={cn(
-              'shrink-0 cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
-              categoryFilter === tab.id
-                ? 'bg-muted text-primary'
-                : 'text-ink-soft hover:bg-muted/60 hover:text-ink',
-            )}
-          >
-            {m.categories[tab.id]}
-          </button>
-        ))}
-      </nav>
+      <div className="mt-6 mb-6 flex items-center gap-3">
+        <nav className="flex min-w-0 flex-1 gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {categoryTabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setCategoryFilter(tab.id)}
+              className={cn(
+                'shrink-0 cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
+                categoryFilter === tab.id
+                  ? 'bg-muted text-primary'
+                  : 'text-ink-soft hover:text-primary',
+              )}
+            >
+              {m.categories[tab.id]}
+            </button>
+          ))}
+        </nav>
+        {view === 'tracker' && (
+          <TrackerBackupControls className="shrink-0" />
+        )}
+      </div>
     </header>
   )
 }

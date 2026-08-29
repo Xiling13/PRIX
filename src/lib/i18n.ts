@@ -55,17 +55,28 @@ export interface Messages {
     judging: string
     nextCycleNote: string
     notFound: string
+    disclaimer: string
+    editCustom: string
+    deleteCustom: string
+    deleteConfirm: string
   }
   tracker: {
     empty: string
+    emptyCategory: string
+    noResults: string
     browse: string
     dropHere: string
     remove: string
     viewSpecs: string
+    export: string
+    import: string
+    importSuccess: string
+    importError: string
   }
   custom: {
     badge: string
     title: string
+    editTitle: string
     name: string
     shortName: string
     country: string
@@ -75,10 +86,18 @@ export interface Messages {
     officialUrl: string
     tags: string
     save: string
+    update: string
+    delete: string
     saved: string
+    updated: string
     copyJson: string
     copied: string
     openIssue: string
+    urlRequired: string
+    urlInvalid: string
+  }
+  header: {
+    github: string
   }
 }
 
@@ -145,9 +164,9 @@ const en: Messages = {
     statusLabel: 'Status',
     exportIcs: 'Add to calendar',
     pack: 'Submission pack',
-    official: 'Official site',
+    official: 'Official Site',
     localDeadline: 'Local deadline',
-    organizerTime: 'Organizer time',
+    organizerTime: 'Organizer deadline',
     earlyBird: 'Early bird',
     fee: 'Fee',
     eligibility: 'Eligibility',
@@ -163,17 +182,29 @@ const en: Messages = {
     judging: 'Judging',
     nextCycleNote: 'Closed — next cycle expected',
     notFound: 'Award not found.',
+    disclaimer:
+      'The above is an unofficial summary. Confirm deadlines, fees, and rights on the organizer’s official site before entering.',
+    editCustom: 'Edit award',
+    deleteCustom: 'Delete award',
+    deleteConfirm: 'Delete this custom award from this browser?',
   },
   tracker: {
     empty: 'Nothing tracked yet. Add awards from the open calls list.',
+    emptyCategory: 'No tracked awards in this category.',
+    noResults: 'No tracked awards match your search.',
     browse: 'Browse open calls',
     dropHere: 'Drop here',
     remove: 'Remove',
     viewSpecs: 'View specs',
+    export: 'Export',
+    import: 'Import',
+    importSuccess: 'Tracker backup imported.',
+    importError: 'Could not read that backup file.',
   },
   custom: {
     badge: 'Saved in this browser only',
     title: 'Add a Custom Award',
+    editTitle: 'Edit Custom Award',
     name: 'Award name',
     shortName: 'Short name',
     country: 'Country',
@@ -183,10 +214,18 @@ const en: Messages = {
     officialUrl: 'Official URL',
     tags: 'Tags, comma separated (Poster, Free)',
     save: 'Save award',
-    saved: 'Saved. Optionally contribute it to the open-source list:',
+    update: 'Update award',
+    delete: 'Delete award',
+    saved: 'Saved and added to your tracker. Optionally contribute it to the open-source list:',
+    updated: 'Updated.',
     copyJson: 'Copy JSON',
     copied: 'Copied',
     openIssue: 'Open GitHub issue',
+    urlRequired: 'Official URL is required.',
+    urlInvalid: 'Enter a valid URL (e.g. example.com or https://…).',
+  },
+  header: {
+    github: 'GitHub repository',
   },
 }
 
@@ -255,7 +294,7 @@ const zh: Messages = {
     pack: '提报资产包',
     official: '官网',
     localDeadline: '本地截稿时间',
-    organizerTime: '主办方时间',
+    organizerTime: '主办方截稿时间',
     earlyBird: '早鸟截止',
     fee: '报名费',
     eligibility: '参赛门槛',
@@ -271,17 +310,29 @@ const zh: Messages = {
     judging: '评审',
     nextCycleNote: '已截稿 — 预计下届',
     notFound: '未找到该赛事。',
+    disclaimer:
+      '以上为非官方整理摘要。参赛或缴费前，请务必以主办方官网信息为准。',
+    editCustom: '编辑赛事',
+    deleteCustom: '删除赛事',
+    deleteConfirm: '确定从本浏览器删除这条自定义赛事吗？',
   },
   tracker: {
     empty: '备赛列表还是空的，去征稿列表添加赛事吧。',
+    emptyCategory: '该分类下暂无备赛赛事。',
+    noResults: '没有匹配的备赛赛事。',
     browse: '浏览征稿赛事',
     dropHere: '拖到这里',
     remove: '移除',
     viewSpecs: '查看规格',
+    export: '导出',
+    import: '导入',
+    importSuccess: '备赛备份已导入。',
+    importError: '无法读取该备份文件。',
   },
   custom: {
     badge: '仅保存在此浏览器',
     title: '添加自定义赛事',
+    editTitle: '编辑自定义赛事',
     name: '赛事名称',
     shortName: '缩写',
     country: '国家/地区',
@@ -291,10 +342,18 @@ const zh: Messages = {
     officialUrl: '官网链接',
     tags: '标签，逗号分隔（Poster, Free）',
     save: '保存赛事',
-    saved: '已保存。可选：贡献到开源列表：',
+    update: '更新赛事',
+    delete: '删除赛事',
+    saved: '已保存，并已加入备赛列表。可选：贡献到开源列表：',
+    updated: '已更新。',
     copyJson: '复制 JSON',
     copied: '已复制',
     openIssue: '打开 GitHub Issue',
+    urlRequired: '请填写官网链接。',
+    urlInvalid: '请输入有效链接（如 example.com 或 https://…）。',
+  },
+  header: {
+    github: 'GitHub 仓库',
   },
 }
 

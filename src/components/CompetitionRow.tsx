@@ -10,6 +10,8 @@ import {
   isUrgent,
 } from '../lib/dates'
 import { useMessages } from '../lib/i18n'
+import { localizeCompetition } from '../lib/competitionLocale'
+import { toTitleCase } from '../lib/titleCase'
 import { RightsBadge } from './RightsBadge'
 import { useAppStore } from '../store/useAppStore'
 
@@ -35,12 +37,15 @@ export function CompetitionRow({
   archived?: boolean
 }) {
   const m = useMessages()
+  const lang = useAppStore((s) => s.lang)
   const urgent = isUrgent(competition, now)
   const open = isOpen(competition, now)
   const next = inferNextCycle(competition)
   const setSelectedId = useAppStore((s) => s.setSelectedId)
   const addToBoard = useAppStore((s) => s.addToBoard)
   const tracked = Boolean(useAppStore((s) => s.progress[competition.id]))
+  const localized = localizeCompetition(competition, lang)
+  const meta = (text: string) => (lang === 'en' ? toTitleCase(text) : text)
 
   return (
     <article
@@ -60,21 +65,21 @@ export function CompetitionRow({
         archived && 'opacity-50 grayscale',
       )}
     >
-      <p className="font-mono text-[11px] tracking-[0.22em] text-ink-soft uppercase lg:col-start-1 lg:row-start-1 lg:self-start lg:pl-5">
+      <p className="font-mono text-[11px] tracking-[0.16em] text-ink-soft uppercase lg:col-start-1 lg:row-start-1 lg:self-start lg:pl-5">
         {competition.shortName}
         {competition.isCustom ? ` · ${m.customTag}` : ''}
       </p>
 
-      <h2 className="text-lg font-medium leading-snug tracking-tight lg:col-start-1 lg:row-start-2 lg:self-start lg:pl-5 lg:truncate">
+      <h2 className="text-lg font-medium leading-snug tracking-tight transition-colors group-hover:text-primary lg:col-start-1 lg:row-start-2 lg:self-start lg:pl-5 lg:truncate">
         {competition.name}
       </h2>
 
       <p className="flex flex-wrap items-center text-sm text-ink-soft lg:col-start-1 lg:row-start-3 lg:self-end lg:pl-5">
-        {m.categories[competition.category]}
+        {meta(m.categories[competition.category])}
         <MetaDot tone="soft" />
-        {competition.country}
+        {meta(localized.country)}
         <MetaDot tone="soft" />
-        {m.tiers[competition.tier]}
+        {meta(m.tiers[competition.tier])}
       </p>
 
       <p className="text-sm text-ink-muted lg:col-start-2 lg:row-start-1 lg:-mt-px lg:self-start lg:whitespace-nowrap lg:tabular-nums">
@@ -82,14 +87,15 @@ export function CompetitionRow({
           ? formatLocalAbsolute(
               competition.deadlines.final,
               competition.deadlines.timezone,
+              lang,
             )
           : `${m.nextCycle} ${next.year} ${next.quarter}`}
       </p>
 
       <p className="flex flex-wrap items-center text-sm leading-snug text-ink-muted lg:col-start-2 lg:row-start-2 lg:-translate-y-[1.5px] lg:self-end">
-        {formatFee(competition, m)}
+        {meta(formatFee(competition, m))}
         <MetaDot />
-        {m.eligibility[competition.eligibility]}
+        {meta(m.eligibility[competition.eligibility])}
       </p>
 
       <RightsBadge
@@ -105,7 +111,7 @@ export function CompetitionRow({
             !open && 'text-ink-soft',
           )}
         >
-          {open ? formatCountdown(competition, now) : m.closed}
+          {open ? formatCountdown(competition, now, m.closed, lang) : m.closed}
         </p>
         <button
           type="button"

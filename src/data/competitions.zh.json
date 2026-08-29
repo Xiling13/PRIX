@@ -1,0 +1,371 @@
+{
+  "tokyo-tdc-2027": {
+    "country": "日本",
+    "summary": "以字体排印为核心的年度奖项，聚焦文字、字母与视觉语言。早鸟价已于 2026 年 8 月 15 日截止。",
+    "rightsNotes": "版权仍归创作者所有。Tokyo TDC 获授权在年鉴、展览及相关宣传中复制入选作品。",
+    "judging": {
+      "notes": "入选作品将收录于 Tokyo TDC Annual，并于次年春季展出。",
+      "judges": ["Tokyo TDC 成员", "受邀国际评审"]
+    }
+  },
+  "american-illustration-46": {
+    "country": "美国",
+    "summary": "美国插画年鉴，涵盖编辑类、广告及未发表作品。",
+    "rightsNotes": "创作者保留版权。American Illustration 在印刷/数字年鉴及相关推广中使用入选作品。",
+    "judging": {
+      "notes": "入选图像将收录于 American Illustration 年鉴。",
+      "judges": ["艺术总监", "插画编辑"]
+    }
+  },
+  "soi-illustrators-69": {
+    "country": "美国",
+    "summary": "自 1959 年以来美国首屈一指的插画年鉴。2026 年 9 月开放投稿；五件系列作品 $80。",
+    "rightsNotes": "创作者保留版权。入选作品将在展览中展出，并收录于 Illustrators Annual Book 及在线画廊。",
+    "judging": {
+      "notes": "作品须创作或发表于 2025 年 10 月至 2026 年 11 月。AI 辅助作品不符合资格。各类别设金、银奖牌；在纽约插画博物馆展出。入选作品需支付 $95 布展/出版费。",
+      "judges": ["插画师", "艺术总监", "设计师"]
+    }
+  },
+  "bologna-illustrators-2027": {
+    "country": "意大利",
+    "summary": "全球童书插画的重要入口。报名费 €25，须提交 5 件系列作品，截止日期 2026 年 10 月 26 日。",
+    "rightsNotes": "版权仍归插画师所有。BCBF 获授权将入选作品用于展览、图录及巡展。",
+    "judging": {
+      "notes": "须提交 5 件插画系列。入选作品全球巡展两年，并收录于 Illustrators Annual（5 种语言）。学生凭学校代码免费参赛。书展于 2027 年 4 月 5–8 日举行。",
+      "judges": ["国际出版人与插画师评审团"]
+    }
+  },
+  "hiii-illustration-2026": {
+    "country": "中国",
+    "summary": "中国主办的国际插画奖，设商业与个人创作赛道。",
+    "rightsNotes": "创作者保留版权。主办方可将参赛作品用于展览、出版及赛事推广。",
+    "judging": {
+      "notes": "设商业与自主创作赛道。获奖作品将展出并收录于 Hiii 年鉴。",
+      "judges": ["国际插画评审团"]
+    }
+  },
+  "ca-illustration-2027": {
+    "country": "美国",
+    "summary": "最具声望的插画年鉴之一。卓越奖奖杯由实心铝材铣制而成。",
+    "rightsNotes": "版权仍归创作者所有。CA 在年鉴（印刷及数字版）及 commarts.com 上复制获奖作品。",
+    "judging": {
+      "notes": "作品须首次发表或制作于 2026 年 1 月至 2027 年 1 月。截止后两周内可迟交，另付 $10 迟交费。获奖者收录于 CA Illustration Annual。",
+      "judges": ["国际设计师、艺术总监与插画师评审团"]
+    }
+  },
+  "ca-photography-2027": {
+    "country": "美国",
+    "summary": "CA 摄影年鉴——商业与编辑类摄影师的职业生涯里程碑。",
+    "rightsNotes": "版权仍归创作者所有。CA 在年鉴及 commarts.com 上复制获奖作品。",
+    "judging": {
+      "notes": "作品须首次发表或制作于 2026 年 3 月至 2027 年 3 月。截止后两周内可迟交，另付 $10 费用。获奖者收录于 CA Photography Annual。",
+      "judges": ["国际创意总监与摄影师评审团"]
+    }
+  },
+  "ca-design-2027": {
+    "country": "美国",
+    "summary": "CA 设计年鉴，涵盖品牌识别、包装与编辑设计。",
+    "rightsNotes": "版权仍归创作者所有。CA 在年鉴及 commarts.com 上复制获奖作品。",
+    "judging": {
+      "notes": "涵盖品牌识别、包装、编辑设计等类别。截止后两周内可迟交，另付 $10 费用。获奖者收录于 CA Design Annual。",
+      "judges": ["国际设计总监评审团"]
+    }
+  },
+  "tdc-ny-2027": {
+    "country": "美国",
+    "summary": "自 1946 年以来全球字体排印与字体设计的权威奖项。",
+    "rightsNotes": "参赛者保留版权。TDC 获授权将获奖作品用于年鉴、展览及推广。",
+    "judging": {
+      "notes": "设传播设计与字体设计竞赛。获奖者收录于 The World's Best Typography 年鉴并参与巡展。",
+      "judges": ["The One Club / TDC 国际评审团"]
+    }
+  },
+  "one-show-2027": {
+    "country": "美国",
+    "summary": "广告与设计领域最受追捧的 Pencil 奖之一，由全球创意评审团评判。",
+    "rightsNotes": "参赛者保留版权。The One Club 将参赛作品用于评审、年鉴及奖项推广。",
+    "judging": {
+      "notes": "设计与工艺类设金、银、铜 Pencil。获奖名单于纽约 Creative Week 公布。",
+      "judges": ["The One Club 国际评审团"]
+    }
+  },
+  "red-dot-bcd-2027": {
+    "country": "德国",
+    "summary": "德国主办的国际品牌与传播设计品质认证。",
+    "rightsNotes": "参赛者保留版权。Red Dot 获授权将获奖作品用于年鉴、博物馆展览及传播推广。",
+    "judging": {
+      "notes": "设 Red Dot、Best of the Best 及 Grand Prix。获奖作品在 Red Dot Design Museum 展出并收录年鉴。",
+      "judges": ["Red Dot 国际评审团"]
+    }
+  },
+  "dandad-2027": {
+    "country": "英国",
+    "summary": "Yellow Pencil——全球设计与广告工艺的标杆。2027 届赛事。",
+    "rightsNotes": "参赛者保留版权。D&AD 获授权将获奖及入围作品用于年鉴、网站、讲座及奖项推广。",
+    "judging": {
+      "notes": "2026 年 11 月下旬开放投稿。Super Earlybird 最高省 30%。每项投稿须附 Entry Validation Card 并披露 AI 使用情况。2027 年 5 月公布 Pencil 结果。",
+      "judges": ["D&AD 在职创意人评审团"]
+    }
+  },
+  "adc-106": {
+    "country": "美国",
+    "summary": "Art Directors Club 第 106 届年鉴——以工艺为先的设计、插画与摄影 Cube 奖。",
+    "rightsNotes": "版权仍归创作者所有。ADC 将获奖作品用于年鉴、展览及俱乐部宣传。",
+    "judging": {
+      "notes": "各截止档位费用递增 $60。个人项目 $75 起。Cube 与 Merit 于纽约年度典礼公布。",
+      "judges": ["ADC 成员", "受邀创意总监"]
+    }
+  },
+  "wia-2027": {
+    "country": "英国",
+    "summary": "AOI 全球插画奖及巡展——2027 届征稿于 2026 年 12 月开放。",
+    "rightsNotes": "插画师保留版权。WIA 获授权在奖项巡展中展出、出版及推广入选作品。",
+    "judging": {
+      "notes": "2026 年 12 月开放征稿。专业组与 New Talent 组共十个类别。2027 年 5 月长名单、7 月短名单、9 月公布获奖者。",
+      "judges": ["AOI 委任的国际评审团"]
+    }
+  },
+  "sony-wpa-2027": {
+    "country": "英国",
+    "summary": "第 20 届。免费全球摄影奖。图像须拍摄于 2026 年。",
+    "rightsNotes": "免费参赛。参赛者保留版权；WPO 获授权展出、出版及推广入选作品。请查阅 2027 届官方规则。",
+    "judging": {
+      "notes": "学生组于 2026 年 11 月 27 日 16:00 GMT 截止。单幅与青年组于 2027 年 1 月 5 日截止。系列组于 2027 年 1 月 12 日截止。展览于 Somerset House 举办。",
+      "judges": ["World Photography Organisation 评审团"]
+    }
+  },
+  "world-press-photo-2027": {
+    "country": "荷兰",
+    "summary": "新闻摄影的标杆赛事。免费，仅限专业人士，2027 年 1 月 18 日 13:00 CET 截止。",
+    "rightsNotes": "摄影师保留版权。WPP 获授权将获奖作品用于展览、年鉴、网站及赛事推广。",
+    "judging": {
+      "notes": "2026 年 12 月通过 Picter 开放投稿，须提供专业身份证明。4 月公布获奖者；年度照片奖 €10,000；展览巡展 60 余国。",
+      "judges": ["独立国际评审团"]
+    }
+  },
+  "wpy-63": {
+    "country": "英国",
+    "summary": "全球最具声望的自然摄影奖，于伦敦自然历史博物馆展出。",
+    "rightsNotes": "摄影师保留版权。NHM 获授权将获奖图像用于展览、图集及赛事推广。",
+    "judging": {
+      "notes": "一次报名费最多可投 25 张。18–26 岁参赛者免费。匿名两轮评审，入围者须提交 RAW 文件进行真实性核查。展览于伦敦自然历史博物馆举办。",
+      "judges": ["NHM 委任的国际评审团"]
+    }
+  },
+  "ipa-2027": {
+    "country": "美国",
+    "summary": "与 Lucie Awards 关联的大型国际摄影竞赛；国际年度摄影师奖 $10,000。",
+    "rightsNotes": "摄影师保留版权。IPA 获授权将参赛作品用于评审、年鉴、展览及推广。",
+    "judging": {
+      "notes": "专业单幅 $40 / 系列 $65；非专业及学生更优惠；早鸟 9 折。获奖者进入 Lucie Awards。费用支持 Lucie Foundation。",
+      "judges": ["国际策展人与编辑评审团"]
+    }
+  },
+  "hipa-2026": {
+    "country": "阿联酋",
+    "summary": "迪拜免费摄影奖，总奖金池 $100 万——但请仔细查阅使用条款。",
+    "rightsNotes": "HIPA 条款历史上曾授予主办方对提交图像的广泛、免版税使用权。参赛前请仔细阅读现行条款，尤其涉及商业敏感作品时。",
+    "judging": {
+      "notes": "免费参赛，总奖金池 $100 万——Grand Prize 为摄影界最高奖金之一。设年度主题及综合类别。",
+      "judges": ["HIPA 委任的国际评审团"]
+    }
+  },
+  "lensculture-critics-2026": {
+    "country": "荷兰",
+    "summary": "由评论家评审的摄影公开征稿，设系列与单幅赛道。",
+    "rightsNotes": "您保留版权。LensCulture 通常要求授权在网站、通讯及相关推广中展示参赛作品。提交前请阅读现行条款。",
+    "judging": {
+      "notes": "评论家评审单幅与系列作品。获奖作品在 LensCulture 及合作展览中展示。",
+      "judges": ["国际摄影评论家"]
+    }
+  },
+  "animago-2026": {
+    "country": "德国",
+    "summary": "欧洲动画、3D 与动态影像奖项。",
+    "rightsNotes": "参赛者保留版权。主办方可于电影节及档案语境中放映并推广提交影片。",
+    "judging": {
+      "notes": "类别通常包括影片、静帧及青年才俊。柏林电影节放映。",
+      "judges": ["国际 VFX 与动画评审团"]
+    }
+  },
+  "motion-awards-2027": {
+    "country": "美国",
+    "summary": "Motionographer 主办的动态设计行业同行评审奖。",
+    "rightsNotes": "创作者保留版权。获奖作品在 Motionographer 及奖项渠道展示。",
+    "judging": {
+      "notes": "Motionographer 同行评审奖，涵盖商业、娱乐与独立动态设计。设个人与工作室层级。",
+      "judges": ["顶尖动态设计师与工作室"]
+    }
+  },
+  "webby-31": {
+    "country": "美国",
+    "summary": "互联网最高规格的荣誉，涵盖网站、应用、视频与数字工艺。",
+    "rightsNotes": "参赛者保留作品权利。Webby Awards 将提交材料用于评审及奖项推广。",
+    "judging": {
+      "notes": "由 IADAS 评审。设 Webby 与 People's Voice 获奖者；以五词获奖感言闻名。迟交延续至 1 月，费用更高。",
+      "judges": ["International Academy of Digital Arts and Sciences"]
+    }
+  },
+  "lumen-prize-2027": {
+    "country": "英国",
+    "summary": "全球领先的技术艺术创作奖项。",
+    "rightsNotes": "艺术家保留全部权利。Lumen 获许可展出并记录入围作品用于奖项项目。",
+    "judging": {
+      "notes": "全球技术艺术创作奖——设 AI、XR、生成艺术与动态影像类别。入围作品国际展出。",
+      "judges": ["策展人与数字艺术专家"]
+    }
+  },
+  "iib-awards-2026": {
+    "country": "英国",
+    "summary": "数据、信息设计与创意技术奖项。",
+    "rightsNotes": "创作者保留权利。奖项方获许可展出并出版入选项目用于推广报道。",
+    "judging": {
+      "notes": "以数据、代码或计算设计传递信息的作品。",
+      "judges": ["信息设计师", "记者", "研究人员"]
+    }
+  },
+  "prix-ars-2027": {
+    "country": "奥地利",
+    "summary": "媒体艺术界的奥斯卡——免费参赛，Golden Nica 获奖者在 Linz 音乐节压轴亮相。",
+    "rightsNotes": "艺术家保留全部权利。Ars Electronica 获授权将文档用于音乐节、档案及 cyberarts 出版物。",
+    "judging": {
+      "notes": "Golden Nica——自 1987 年以来媒体艺术最负盛名的奖项。类别包括 New Animation Art、Digital Musics、AI in Art 及 u19。获奖者于 Linz Ars Electronica Festival 公布。",
+      "judges": ["各类别国际专家评审团"]
+    }
+  },
+  "starts-prize-2027": {
+    "country": "奥地利",
+    "summary": "欧盟支持的 €20,000 大奖，奖励艺术驱动的创新。免费参赛。",
+    "rightsNotes": "艺术家保留全部权利。文档用于 STARTS 计划、展览及欧盟传播。",
+    "judging": {
+      "notes": "欧盟委员会奖项，表彰科学、技术与艺术交汇的项目。两项 €20,000 Grand Prize。",
+      "judges": ["欧盟委任的专家评审团"]
+    }
+  },
+  "dandad-2026": {
+    "country": "英国",
+    "summary": "全球设计与广告 Pencil 奖。2026 届标准投稿已于 3 月 26 日截止。",
+    "rightsNotes": "参赛者保留版权。D&AD 获授权将获奖及入围作品用于年鉴、网站、讲座及奖项推广。",
+    "judging": {
+      "notes": "2026 年 5 月 19–20 日短名单。2026 年 5 月 20 日公布 Pencil。2026 年 9 月 24 日颁奖典礼。",
+      "judges": ["D&AD 在职创意人评审团"]
+    }
+  },
+  "adc-105": {
+    "country": "美国",
+    "summary": "Art Directors Club 年鉴。自由职业者插画费为 USD 100 / 220，视截止档位而定。",
+    "rightsNotes": "版权仍归创作者所有。ADC 将获奖作品用于年鉴、展览及俱乐部宣传。",
+    "judging": {
+      "notes": "2026 年 4 月 22 日公布入围名单。2026 年 5 月 13 日纽约典礼。实体书籍/包装类作品须于 2026 年 3 月 4 日前寄达。",
+      "judges": ["ADC 成员", "受邀创意总监"]
+    }
+  },
+  "wia-2026": {
+    "country": "英国",
+    "summary": "AOI 全球插画奖。设专业组与 New Talent 组。2026 届征稿已于 2 月 24 日截止。",
+    "rightsNotes": "插画师保留版权。WIA 获授权在奖项巡展中展出、出版及推广入选作品。",
+    "judging": {
+      "notes": "2026 年 5 月长名单、7 月短名单、9 月公布获奖者。下一届征稿于 2026 年 12 月启动。",
+      "judges": ["AOI 委任的国际评审团"]
+    }
+  },
+  "three-x-three-2026": {
+    "country": "美国",
+    "summary": "面向专业与学生作品的插画年鉴。",
+    "rightsNotes": "创作者保留版权。3x3 在年鉴及相关推广中复制入选作品。",
+    "judging": {
+      "notes": "收录于 3x3 年鉴。设专业、学生与未发表赛道。",
+      "judges": ["插画年鉴评审团"]
+    }
+  },
+  "loba-2026": {
+    "country": "德国",
+    "summary": "纪实/人文主义系列摄影奖。主奖 €40,000 及 Leica 设备。",
+    "rightsNotes": "摄影师保留版权。Leica 获授权将作品用于展览、图录及奖项传播。",
+    "judging": {
+      "notes": "主要采用提名制。提交 15–20 张关于人与环境的系列作品。2026 年 10 月在 Wetzlar 公布获奖者。",
+      "judges": ["国际摄影专家"]
+    }
+  },
+  "px3-2026": {
+    "country": "法国",
+    "summary": "巴黎摄影竞赛，涵盖专业与业余类别。",
+    "rightsNotes": "Px3 条款历史上曾包含广泛的免版税许可，允许在赛事推广、出版物及相关媒体中使用提交图像。参赛前请阅读现行官方条款。",
+    "judging": {
+      "notes": "设专业与业余类别。获奖作品于巴黎展出。",
+      "judges": ["Px3 摄影师与编辑评审团"]
+    }
+  },
+  "cursor-vibe-jam-2026": {
+    "country": "国际",
+    "summary": "旗舰年度 vibe-coding 游戏 Jam——单人 AI 构建浏览器游戏，$40K 奖金，由 Cursor 赞助。",
+    "rightsNotes": "创作者保留游戏权利。提交作品公开列于 Vibe Jam 网站，作为开放基准档案。",
+    "judging": {
+      "notes": "Pieter Levels 主办的年度 AI 浏览器游戏 Jam。至少 90% 代码须由 AI 编写；游戏须免费在 Web 上游玩且无需登录。$40,000 奖金池由 Cursor、Bolt.new、Glif 及 Tripo AI 赞助。",
+      "judges": ["Pieter Levels", "社区游戏与 AI 评审"]
+    }
+  },
+  "build-with-gemini-xprize-2026": {
+    "country": "美国",
+    "summary": "Google × XPRIZE $200 万全球挑战——90 天内用 Gemini vibe-ship 一家产生收入的 AI 企业。",
+    "rightsNotes": "创作者保留企业及 IP 所有权。XPRIZE 与 Google 可在活动及推广报道中展示入围者。",
+    "judging": {
+      "notes": "Google 支持的 $200 万 XPRIZE：90 天内使用 Gemini、AI Studio、Antigravity、Stitch 及 Flow 启动一家拥有用户与收入的 AI 企业。五名入围者于 2026 年 9 月 25 日在洛杉矶 Moonshot Summit 现场路演。",
+      "judges": ["Cathie Wood", "Palmer Luckey", "Mark Pincus", "Anousheh Ansari", "Logan Kilpatrick"]
+    }
+  },
+  "devnetwork-api-cloud-ai-2026": {
+    "country": "美国",
+    "summary": "Devpost 主办的 API World 黑客松，面向 AI 智能体、API 与云原生工具——2026 年 9 月初截止。",
+    "rightsNotes": "创作者保留项目权利。赞助商可在会议传播及合作渠道中展示获奖项目。",
+    "judging": {
+      "notes": "与 API World 同场举办的混合黑客松，地点 Santa Clara Convention Center。在线开发窗口 2026 年 8 月 17 日 – 9 月 3 日；现场演示与颁奖 9 月 2–3 日。$39,500 奖金池，涵盖综合与赞助商赛道。",
+      "judges": ["行业合作伙伴工程师", "DevNetwork 评审团"]
+    }
+  },
+  "google-cloud-rapid-agent-2026": {
+    "country": "国际",
+    "summary": "Google Cloud 主要 Devpost 智能体黑客松——Gemini + MCP 合作伙伴赛道，$60K 奖金。",
+    "rightsNotes": "创作者保留权利。评审须公开开源仓库；Google 及合作伙伴可展示获奖者。",
+    "judging": {
+      "notes": "在 Google Cloud Agent Builder 上构建集成合作伙伴 MCP 服务器的 Gemini 智能体。$60,000 奖金分布于合作伙伴奖池（Arize、Elastic、Fivetran、GitLab、MongoDB、Dynatrace）。",
+      "judges": ["Google Cloud 合作伙伴工程师", "合作伙伴赛道评审"]
+    }
+  },
+  "team-usa-google-cloud-2026": {
+    "country": "美国",
+    "summary": "Google Team USA Devpost 挑战——用 Gemini vibe code 粉丝工具，最高 $75K。",
+    "rightsNotes": "创作者保留代码所有权。Google Cloud 与 Team USA 可在开发者及奥运合作伙伴传播中展示获奖项目。",
+    "judging": {
+      "notes": "明确以 Gemini vibe coding 为主题：基于 Team USA 数据构建仪表盘、Web 应用或智能体。须使用 Gemini API 并部署于 Google Cloud。$75,000 奖金池。按官方规则以美国参与者为主。",
+      "judges": ["Google Cloud 客户工程师"]
+    }
+  },
+  "aws-global-vibe-2025": {
+    "country": "国际",
+    "summary": "Amazon 旗舰 $700K+ 全球 vibe-coding 黑客松——在 AWS 工具上构建生产级 AI 应用。",
+    "rightsNotes": "创作者保留项目权利。AWS 及赞助商可在创业与开发者渠道中展示获奖作品。",
+    "judging": {
+      "notes": "AWS Startups 首届全球 vibe-coding 黑客松。须使用 Amazon Q Developer 或 Kiro；$700K+ 现金、积分与合作伙伴福利，涵盖智能体 AI、开发者工具及行业赛道。",
+      "judges": ["AWS Startups", "赞助商合作伙伴"]
+    }
+  },
+  "cursor-hackathon-indonesia-2026": {
+    "country": "印度尼西亚",
+    "summary": "即将在印度尼西亚举办的多日 Cursor vibe-coding 黑客松——免费社区构建周末。",
+    "rightsNotes": "创作者保留黑客松期间构建项目的全部权利。",
+    "judging": {
+      "notes": "2026 年 9 月 9–12 日多日线下 Cursor 社区黑客松。使用 Cursor 与 AI 编程智能体构建；全球 Cursor 大使黑客松系列之一。",
+      "judges": ["Cursor 社区组织者"]
+    }
+  },
+  "cursor-hackathon-singapore-2025": {
+    "country": "新加坡",
+    "summary": "新加坡具有里程碑意义的 24 小时 Cursor vibe-coding 黑客松，赞助商包括 OpenAI、Anthropic 与 DeepMind。",
+    "rightsNotes": "创作者保留项目权利。赞助商可在社区及 DevRel 渠道中展示获奖者。",
+    "judging": {
+      "notes": "Cursor 首场官方 24 小时新加坡黑客松，于 SUTD 举办。400+ 开发者参与；赞助商包括 OpenAI、Anthropic、Google DeepMind 及 Supabase，现金与积分超 $100K。",
+      "judges": ["Cursor 大使", "赞助商工程师"]
+    }
+  }
+}

@@ -82,5 +82,6 @@ export const TIMEZONES = [
   'Australia/Sydney',
 ]
 
-export const GITHUB_CONTRIBUTE_URL =
-  'https://github.com/prix-app/prix/issues/new'
+export const GITHUB_REPO_URL = 'https://github.com/Xiling13/Prix'
+
+export const GITHUB_CONTRIBUTE_URL = `${GITHUB_REPO_URL}/issues/new`

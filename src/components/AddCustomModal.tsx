@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type FormEvent, type ReactNode } from 'react'
 import { X } from 'lucide-react'
 import type {
   Category,
@@ -10,7 +10,8 @@ import type {
 import { CATEGORY_TABS, GITHUB_CONTRIBUTE_URL, TIMEZONES } from '../lib/labels'
 import { cn } from '../lib/cn'
 import { useMessages } from '../lib/i18n'
-import { useAppStore } from '../store/useAppStore'
+import { useAppStore, useCustomCompetition } from '../store/useAppStore'
+import { isValidOfficialUrl, normalizeUrl } from '../lib/url'
 import { Button } from './Button'
 import { Select } from './Select'
 
@@ -24,27 +25,70 @@ const RIGHTS_IDS: RightsEthics[] = [
   'rights-grab-warning',
 ]
 
-const emptyForm = {
+type CustomForm = {
+  name: string
+  shortName: string
+  country: string
+  category: Category
+  eligibility: Eligibility
+  final: string
+  timezone: string
+  isFree: boolean
+  currency: Currency
+  fee: string
+  officialUrl: string
+  rightsEthics: RightsEthics
+  tags: string
+}
+
+const emptyForm = (): CustomForm => ({
   name: '',
   shortName: '',
   country: '',
-  category: 'graphic-design' as Category,
-  eligibility: 'all' as Eligibility,
+  category: 'graphic-design',
+  eligibility: 'all',
   final: '',
   timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
   isFree: false,
-  currency: 'USD' as Currency,
+  currency: 'USD',
   fee: '',
   officialUrl: '',
-  rightsEthics: 'promotional-only' as RightsEthics,
+  rightsEthics: 'promotional-only',
   tags: '',
+})
+
+function toDatetimeLocal(isoLocal: string): string {
+  const match = isoLocal.match(/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})/)
+  if (match) return `${match[1]}T${match[2]}`
+  return isoLocal.slice(0, 16)
 }
 
-function toCompetition(form: typeof emptyForm): Competition {
-  const id = `custom-${form.shortName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`
+function formFromCompetition(competition: Competition): CustomForm {
+  return {
+    name: competition.name,
+    shortName: competition.shortName,
+    country: competition.country === 'International' ? '' : competition.country,
+    category: competition.category,
+    eligibility: competition.eligibility,
+    final: toDatetimeLocal(competition.deadlines.final),
+    timezone: competition.deadlines.timezone,
+    isFree: competition.fees.isFree,
+    currency: competition.fees.currency,
+    fee: competition.fees.isFree ? '' : String(competition.fees.singleRegular),
+    officialUrl: competition.officialUrl,
+    rightsEthics: competition.rightsEthics,
+    tags: competition.tags.join(', '),
+  }
+}
+
+function toCompetition(form: CustomForm, existingId?: string): Competition {
+  const id =
+    existingId ??
+    `custom-${form.shortName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`
   const deadline = form.final.includes('T')
     ? form.final
     : `${form.final}T23:59:00`
+  const officialUrl = normalizeUrl(form.officialUrl)!
   return {
     id,
     name: form.name.trim(),
@@ -75,7 +119,7 @@ function toCompetition(form: typeof emptyForm): Competition {
     rightsEthics: form.rightsEthics,
     rightsNotes:
       'User-added local award. Confirm official terms before entering.',
-    officialUrl: form.officialUrl.trim() || 'https://',
+    officialUrl,
     isCustom: true,
   }
 }
@@ -90,47 +134,45 @@ const overlayBackdrop =
   'absolute inset-0 cursor-pointer bg-ink/20 backdrop-blur-sm transition-opacity duration-100 ease-out'
 
 export function AddCustomModal() {
-  const m = useMessages()
   const open = useAppStore((s) => s.addOpen)
-  const setOpen = useAppStore((s) => s.setAddOpen)
-  const addCustom = useAppStore((s) => s.addCustom)
-  const [form, setForm] = useState(emptyForm)
-  const [copied, setCopied] = useState(false)
-  const [lastAdded, setLastAdded] = useState<Competition | null>(null)
+  const customEditId = useAppStore((s) => s.customEditId)
+  const editingCompetition = useCustomCompetition(customEditId)
+  const isEditing = Boolean(customEditId && editingCompetition)
 
-  const field =
-    'w-full rounded-xl bg-canvas px-3.5 py-2.5 text-sm placeholder:text-ink-soft focus:ring-2 focus:ring-primary/40'
+  const initialForm =
+    isEditing && editingCompetition
+      ? formFromCompetition(editingCompetition)
+      : emptyForm()
+
+  return (
+    <CustomAwardModalShell open={open}>
+      {open ? (
+        <CustomAwardForm
+          key={customEditId ?? 'new'}
+          initialForm={initialForm}
+          isEditing={isEditing}
+          customEditId={customEditId}
+        />
+      ) : null}
+    </CustomAwardModalShell>
+  )
+}
+
+function CustomAwardModalShell({
+  open,
+  children,
+}: {
+  open: boolean
+  children: ReactNode
+}) {
+  const m = useMessages()
+  const setOpen = useAppStore((s) => s.setAddOpen)
+  const setCustomEditId = useAppStore((s) => s.setCustomEditId)
 
   function close() {
     setOpen(false)
-    setCopied(false)
+    setCustomEditId(null)
   }
-
-  function onSubmit(event: FormEvent) {
-    event.preventDefault()
-    const competition = toCompetition(form)
-    addCustom(competition)
-    setLastAdded(competition)
-    setForm(emptyForm)
-  }
-
-  async function copyJson() {
-    if (!lastAdded) return
-    await navigator.clipboard.writeText(contributionJson(lastAdded))
-    setCopied(true)
-  }
-
-  function openGithubIssue() {
-    if (!lastAdded) return
-    const json = contributionJson(lastAdded)
-    const url = `${GITHUB_CONTRIBUTE_URL}?title=${encodeURIComponent(`Add competition: ${lastAdded.name}`)}&body=${encodeURIComponent(`Please add this call to \`src/data/competitions.json\`.\n\n\`\`\`json\n${json}\n\`\`\``)}`
-    window.open(url, '_blank', 'noreferrer')
-  }
-
-  const timezoneOptions = [
-    form.timezone,
-    ...TIMEZONES.filter((z) => z !== form.timezone),
-  ].map((tz) => ({ value: tz, label: tz }))
 
   return (
     <div
@@ -150,20 +192,114 @@ export function AddCustomModal() {
             : 'pointer-events-none translate-y-2 opacity-0',
         )}
       >
-        <div className="flex items-start justify-between gap-4">
+        {children}
+      </div>
+    </div>
+  )
+}
+
+function CustomAwardForm({
+  initialForm,
+  isEditing,
+  customEditId,
+}: {
+  initialForm: CustomForm
+  isEditing: boolean
+  customEditId: string | null
+}) {
+  const m = useMessages()
+  const setOpen = useAppStore((s) => s.setAddOpen)
+  const setCustomEditId = useAppStore((s) => s.setCustomEditId)
+  const addCustom = useAppStore((s) => s.addCustom)
+  const updateCustom = useAppStore((s) => s.updateCustom)
+  const removeCustom = useAppStore((s) => s.removeCustom)
+
+  const [form, setForm] = useState<CustomForm>(initialForm)
+  const [copied, setCopied] = useState(false)
+  const [lastSaved, setLastSaved] = useState<Competition | null>(null)
+  const [urlError, setUrlError] = useState<string | null>(null)
+
+  const field =
+    'w-full rounded-xl bg-canvas px-3.5 py-2.5 text-sm placeholder:text-ink-soft focus:ring-2 focus:ring-primary/40'
+
+  function close() {
+    setOpen(false)
+    setCustomEditId(null)
+    setCopied(false)
+    setUrlError(null)
+  }
+
+  function validateUrl(): boolean {
+    if (!form.officialUrl.trim()) {
+      setUrlError(m.custom.urlRequired)
+      return false
+    }
+    if (!isValidOfficialUrl(form.officialUrl)) {
+      setUrlError(m.custom.urlInvalid)
+      return false
+    }
+    setUrlError(null)
+    return true
+  }
+
+  function onSubmit(event: FormEvent) {
+    event.preventDefault()
+    if (!validateUrl()) return
+
+    if (isEditing && customEditId) {
+      const competition = toCompetition(form, customEditId)
+      updateCustom(customEditId, competition)
+      setLastSaved(competition)
+      return
+    }
+
+    const competition = toCompetition(form)
+    addCustom(competition)
+    setLastSaved(competition)
+    setForm(emptyForm())
+  }
+
+  function confirmDelete() {
+    if (!customEditId) return
+    if (!window.confirm(m.drawer.deleteConfirm)) return
+    removeCustom(customEditId)
+    close()
+  }
+
+  async function copyJson() {
+    if (!lastSaved) return
+    await navigator.clipboard.writeText(contributionJson(lastSaved))
+    setCopied(true)
+  }
+
+  function openGithubIssue() {
+    if (!lastSaved) return
+    const json = contributionJson(lastSaved)
+    const url = `${GITHUB_CONTRIBUTE_URL}?title=${encodeURIComponent(`Add competition: ${lastSaved.name}`)}&body=${encodeURIComponent(`Please add this call to \`src/data/competitions.json\`.\n\n\`\`\`json\n${json}\n\`\`\``)}`
+    window.open(url, '_blank', 'noreferrer')
+  }
+
+  const timezoneOptions = [
+    form.timezone,
+    ...TIMEZONES.filter((z) => z !== form.timezone),
+  ].map((tz) => ({ value: tz, label: tz }))
+
+  return (
+    <>
+      <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="font-mono text-[11px] tracking-[0.24em] text-ink-soft uppercase">
+            <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft uppercase">
               {m.custom.badge}
             </p>
             <h2 className="mt-4 text-2xl font-medium tracking-tight">
-              {m.custom.title}
+              {isEditing ? m.custom.editTitle : m.custom.title}
             </h2>
           </div>
           <button
             type="button"
             onClick={close}
             aria-label={m.drawer.close}
-            className="cursor-pointer bg-transparent p-1 text-ink-soft transition-colors hover:text-ink"
+            className="shrink-0 cursor-pointer bg-transparent py-1 pl-1 -mr-1 text-ink-soft transition-colors hover:text-ink"
           >
             <X className="size-4" aria-hidden />
           </button>
@@ -260,12 +396,30 @@ export function AddCustomModal() {
               />
             </div>
           )}
-          <input
-            className={field}
-            placeholder={m.custom.officialUrl}
-            value={form.officialUrl}
-            onChange={(e) => setForm({ ...form, officialUrl: e.target.value })}
-          />
+          <div>
+            <input
+              required
+              type="url"
+              className={cn(field, urlError && 'ring-2 ring-danger/40')}
+              placeholder={m.custom.officialUrl}
+              value={form.officialUrl}
+              onChange={(e) => {
+                setForm({ ...form, officialUrl: e.target.value })
+                if (urlError) setUrlError(null)
+              }}
+              onBlur={() => {
+                if (form.officialUrl.trim() && isValidOfficialUrl(form.officialUrl)) {
+                  setForm({
+                    ...form,
+                    officialUrl: normalizeUrl(form.officialUrl) ?? form.officialUrl,
+                  })
+                }
+              }}
+            />
+            {urlError && (
+              <p className="mt-1.5 text-xs text-danger">{urlError}</p>
+            )}
+          </div>
           <input
             className={field}
             placeholder={m.custom.tags}
@@ -285,26 +439,38 @@ export function AddCustomModal() {
               })
             }
           />
-          <Button type="submit" variant="primary" className="mt-2 w-full py-2.5">
-            {m.custom.save}
-          </Button>
+          <div className="mt-2 flex flex-col gap-2">
+            <Button type="submit" variant="primary" className="w-full py-2.5">
+              {isEditing ? m.custom.update : m.custom.save}
+            </Button>
+            {isEditing && (
+              <Button
+                type="button"
+                className="w-full py-2.5 text-danger hover:bg-danger/10"
+                onClick={confirmDelete}
+              >
+                {m.custom.delete}
+              </Button>
+            )}
+          </div>
         </form>
 
-        {lastAdded && (
+        {lastSaved && (
           <div className="mt-6 rounded-xl bg-canvas px-4 py-4 text-sm">
             <p className="text-ink">
-              <span className="font-semibold">{lastAdded.shortName}</span> ·{' '}
-              {m.custom.saved}
+              <span className="font-semibold">{lastSaved.shortName}</span> ·{' '}
+              {isEditing ? m.custom.updated : m.custom.saved}
             </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <Button onClick={() => void copyJson()}>
-                {copied ? m.custom.copied : m.custom.copyJson}
-              </Button>
-              <Button onClick={openGithubIssue}>{m.custom.openIssue}</Button>
-            </div>
+            {!isEditing && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Button onClick={() => void copyJson()}>
+                  {copied ? m.custom.copied : m.custom.copyJson}
+                </Button>
+                <Button onClick={openGithubIssue}>{m.custom.openIssue}</Button>
+              </div>
+            )}
           </div>
         )}
-      </div>
-    </div>
+    </>
   )
 }

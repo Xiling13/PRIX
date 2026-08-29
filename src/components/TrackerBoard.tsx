@@ -1,24 +1,38 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { X } from 'lucide-react'
 import type { TrackStatus } from '../types/competition'
 import { STATUS_COLUMNS } from '../lib/labels'
 import { cn } from '../lib/cn'
 import { useMessages } from '../lib/i18n'
+import { searchCompetitions } from '../lib/search'
 import { useAllCompetitions, useAppStore } from '../store/useAppStore'
 import { Button } from './Button'
 
 export function TrackerBoard() {
   const m = useMessages()
+  const lang = useAppStore((s) => s.lang)
   const competitions = useAllCompetitions()
   const progress = useAppStore((s) => s.progress)
+  const categoryFilter = useAppStore((s) => s.categoryFilter)
+  const searchQuery = useAppStore((s) => s.searchQuery)
   const setStatus = useAppStore((s) => s.setStatus)
   const setSelectedId = useAppStore((s) => s.setSelectedId)
   const removeFromBoard = useAppStore((s) => s.removeFromBoard)
   const setView = useAppStore((s) => s.setView)
   const [dragging, setDragging] = useState<string | null>(null)
 
+  const filteredTracked = useMemo(() => {
+    const tracked = competitions.filter((c) => progress[c.id])
+    const byCategory =
+      categoryFilter === 'all'
+        ? tracked
+        : tracked.filter((c) => c.category === categoryFilter)
+    return searchCompetitions(byCategory, searchQuery)
+  }, [competitions, progress, categoryFilter, searchQuery])
+
   const byStatus = (status: TrackStatus) =>
-    competitions.filter((c) => progress[c.id] === status)
+    filteredTracked.filter((c) => progress[c.id] === status)
+
   const tracked = Object.keys(progress).length
 
   if (tracked === 0) {
@@ -30,6 +44,16 @@ export function TrackerBoard() {
             {m.tracker.browse}
           </Button>
         </div>
+      </div>
+    )
+  }
+
+  if (filteredTracked.length === 0) {
+    return (
+      <div className="px-6 pb-24 sm:px-10 lg:px-14">
+        <p className="px-5 py-16 text-sm text-ink-soft">
+          {searchQuery.trim() ? m.tracker.noResults : m.tracker.emptyCategory}
+        </p>
       </div>
     )
   }
@@ -51,7 +75,7 @@ export function TrackerBoard() {
               }}
               className="min-w-[230px] flex-1"
             >
-              <p className="px-1 font-mono text-[11px] tracking-[0.22em] text-ink-muted uppercase">
+              <p className="px-1 font-mono text-[11px] tracking-[0.16em] text-ink-muted uppercase">
                 {m.status[column.id]}
                 <span className="ml-2">{items.length}</span>
               </p>
@@ -94,9 +118,18 @@ export function TrackerBoard() {
                     <button
                       type="button"
                       onClick={() => setSelectedId(competition.id)}
-                      className="mt-3 cursor-pointer text-sm font-medium text-primary transition-colors hover:text-primary-dim"
+                      className="mt-3 inline-flex cursor-pointer items-center gap-0.5 text-sm font-medium text-primary transition-colors hover:text-primary-dim"
                     >
-                      {m.tracker.viewSpecs} →
+                      {lang === 'en' ? (
+                        <>
+                          <span>{m.tracker.viewSpecs}</span>
+                          <span className="relative top-px" aria-hidden>
+                            →
+                          </span>
+                        </>
+                      ) : (
+                        <>{m.tracker.viewSpecs} →</>
+                      )}
                     </button>
                   </div>
                 ))}

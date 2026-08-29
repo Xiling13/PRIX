@@ -1,4 +1,13 @@
-import { ArrowUpRight, CalendarPlus, Check, Package, Plus, X } from 'lucide-react'
+import {
+  ArrowUpRight,
+  CalendarPlus,
+  Check,
+  Package,
+  Pencil,
+  Plus,
+  Trash2,
+  X,
+} from 'lucide-react'
 import { useAppStore, useSelectedCompetition } from '../store/useAppStore'
 import {
   formatFee,
@@ -7,11 +16,17 @@ import {
   inferNextCycle,
   isOpen,
 } from '../lib/dates'
+import {
+  formatJudgingPhase,
+  localizeCompetition,
+} from '../lib/competitionLocale'
 import { downloadDeadlineIcs } from '../lib/ics'
 import { useMessages } from '../lib/i18n'
 import { STATUS_COLUMNS } from '../lib/labels'
 import { downloadSubmissionPack } from '../lib/submissionPack'
+import { normalizeUrl } from '../lib/url'
 import { cn } from '../lib/cn'
+import { toTitleCase } from '../lib/titleCase'
 import { RightsBadge } from './RightsBadge'
 import { Select } from './Select'
 import type { TrackStatus } from '../types/competition'
@@ -27,7 +42,7 @@ function SpecCell({
     <td className={cn('border-ink/20 px-4 py-3 align-top', className)}>
       {label ? (
         <>
-          <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft uppercase">
+          <p className="font-mono text-[11px] tracking-[0.14em] text-ink-soft uppercase">
             {label}
           </p>
           <p className="mt-1 text-sm text-ink">{value}</p>
@@ -55,16 +70,27 @@ const overlayBackdrop =
 
 export function SpecDrawer() {
   const m = useMessages()
+  const lang = useAppStore((s) => s.lang)
   const competition = useSelectedCompetition()
   const selectedId = useAppStore((s) => s.selectedId)
   const setSelectedId = useAppStore((s) => s.setSelectedId)
   const progress = useAppStore((s) => s.progress)
   const addToBoard = useAppStore((s) => s.addToBoard)
   const setStatus = useAppStore((s) => s.setStatus)
+  const removeCustom = useAppStore((s) => s.removeCustom)
+  const setAddOpen = useAppStore((s) => s.setAddOpen)
+  const setCustomEditId = useAppStore((s) => s.setCustomEditId)
   const status = competition ? progress[competition.id] : undefined
   const open = Boolean(competition)
   const cycle = competition ? inferNextCycle(competition) : null
   const stillOpen = competition ? isOpen(competition) : false
+  const localized = competition
+    ? localizeCompetition(competition, lang)
+    : null
+  const meta = (text: string) => (lang === 'en' ? toTitleCase(text) : text)
+  const officialUrl = competition
+    ? normalizeUrl(competition.officialUrl)
+    : null
 
   const specItems: SpecItem[] = competition
     ? [
@@ -73,6 +99,7 @@ export function SpecDrawer() {
           value: formatLocalAbsolute(
             competition.deadlines.final,
             competition.deadlines.timezone,
+            lang,
           ),
         },
         {
@@ -80,6 +107,7 @@ export function SpecDrawer() {
           value: formatSourceDeadline(
             competition.deadlines.final,
             competition.deadlines.timezone,
+            lang,
           ),
         },
         ...(competition.deadlines.earlyBird
@@ -89,18 +117,19 @@ export function SpecDrawer() {
                 value: formatLocalAbsolute(
                   competition.deadlines.earlyBird,
                   competition.deadlines.timezone,
+                  lang,
                 ),
               },
             ]
           : []),
-        { label: m.drawer.fee, value: formatFee(competition, m) },
+        { label: m.drawer.fee, value: meta(formatFee(competition, m)) },
         {
           label: m.drawer.eligibility,
-          value: m.eligibility[competition.eligibility],
+          value: meta(m.eligibility[competition.eligibility]),
         },
         {
           label: m.drawer.colorSpace,
-          value: competition.specs.colorSpace,
+          value: localized?.colorSpace ?? competition.specs.colorSpace,
         },
         {
           label: m.drawer.formats,
@@ -122,20 +151,36 @@ export function SpecDrawer() {
           ? [
               {
                 label: m.drawer.statement,
-                value: `${competition.specs.maxWordCount} ${m.drawer.statementUnit}`,
+                value: meta(
+                  `${competition.specs.maxWordCount} ${m.drawer.statementUnit}`,
+                ),
               },
             ]
           : []),
         {
           label: m.drawer.watermark,
-          value: competition.specs.noWatermark
-            ? m.drawer.watermarkNone
-            : m.drawer.watermarkCheck,
+          value: meta(
+            competition.specs.noWatermark
+              ? m.drawer.watermarkNone
+              : m.drawer.watermarkCheck,
+          ),
         },
       ]
     : []
 
   const specRows = chunkPairs(specItems)
+
+  function startEditCustom() {
+    if (!competition?.isCustom) return
+    setCustomEditId(competition.id)
+    setAddOpen(true)
+  }
+
+  function confirmDeleteCustom() {
+    if (!competition?.isCustom) return
+    if (!window.confirm(m.drawer.deleteConfirm)) return
+    removeCustom(competition.id)
+  }
 
   return (
     <div
@@ -153,17 +198,17 @@ export function SpecDrawer() {
           open ? 'translate-x-0' : 'translate-x-full',
         )}
       >
-        {competition && (
+        {competition && localized && (
           <div className="flex h-full flex-col overflow-y-auto px-7 py-7 sm:px-9">
             <div className="flex items-center justify-between gap-4">
-              <p className="font-mono text-[11px] tracking-[0.28em] text-ink-soft uppercase">
+              <p className="font-mono text-[11px] tracking-[0.20em] text-ink-soft uppercase">
                 {competition.shortName}
               </p>
               <button
                 type="button"
                 onClick={() => setSelectedId(null)}
                 aria-label={m.drawer.close}
-                className="cursor-pointer bg-transparent p-1 text-ink-soft transition-colors hover:text-ink"
+                className="shrink-0 cursor-pointer bg-transparent py-1 pl-1 -mr-1 text-ink-soft transition-colors hover:text-ink"
               >
                 <X className="size-4" aria-hidden />
               </button>
@@ -173,22 +218,25 @@ export function SpecDrawer() {
               <h2 className="min-w-0 text-3xl font-medium tracking-tight">
                 {competition.name}
               </h2>
-              <a
-                href={competition.officialUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mb-1 inline-flex shrink-0 items-center gap-1 text-sm font-medium text-primary transition-colors hover:text-primary-dim"
-              >
-                {m.drawer.official}
-                <ArrowUpRight className="size-3.5" aria-hidden />
-              </a>
+              {officialUrl && (
+                <a
+                  href={officialUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mb-1 inline-flex shrink-0 items-center gap-1 text-sm font-medium text-ink-soft transition-colors hover:text-primary"
+                >
+                  {meta(m.drawer.official)}
+                  <ArrowUpRight className="size-3.5" aria-hidden />
+                </a>
+              )}
             </div>
             <p className="mt-3 text-sm text-ink-soft">
-              {m.categories[competition.category]} · {competition.country} ·{' '}
-              {m.tiers[competition.tier]}
+              {meta(m.categories[competition.category])} ·{' '}
+              {meta(localized.country)} ·{' '}
+              {meta(m.tiers[competition.tier])}
             </p>
 
-            <div className="mt-6">
+            <div className="mt-6 flex flex-col gap-6">
               {!status ? (
                 <button
                   type="button"
@@ -219,101 +267,138 @@ export function SpecDrawer() {
                   />
                 </div>
               )}
-            </div>
 
-            {competition.summary && (
-              <p className="mt-6 text-[15px] leading-relaxed text-ink-muted">
-                {competition.summary}
-              </p>
-            )}
+              {competition.isCustom && (
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={startEditCustom}
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-ink-soft transition-colors hover:bg-muted hover:text-ink"
+                  >
+                    <Pencil className="size-3.5" aria-hidden />
+                    {m.drawer.editCustom}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={confirmDeleteCustom}
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-danger transition-colors hover:bg-danger/10"
+                  >
+                    <Trash2 className="size-3.5" aria-hidden />
+                    {m.drawer.deleteCustom}
+                  </button>
+                </div>
+              )}
 
-            <div className="mt-8 shrink-0 overflow-hidden rounded-xl border border-ink/20">
-              <table className="w-full table-fixed border-collapse">
-                <tbody>
-                  {specRows.map((row, rowIndex) => {
-                    const lastRow = rowIndex === specRows.length - 1
-                    const cells =
-                      row.length === 1
-                        ? [...row, { value: '' } as SpecItem]
-                        : row
-                    return (
-                      <tr key={rowIndex}>
-                        {cells.map((cell, cellIndex) => {
-                          const lastCol = cellIndex === cells.length - 1
-                          const edge = cn(
-                            !lastRow && 'border-b',
-                            !lastCol && 'border-r',
-                          )
-                          if (!cell.value && !cell.label) {
+              {localized.summary && (
+                <p className="text-[15px] leading-relaxed text-ink-muted">
+                  {localized.summary}
+                </p>
+              )}
+
+              <div className="shrink-0 overflow-hidden rounded-xl border border-ink/20">
+                <table className="w-full table-fixed border-collapse">
+                  <tbody>
+                    {specRows.map((row, rowIndex) => {
+                      const lastRow = rowIndex === specRows.length - 1
+                      const cells =
+                        row.length === 1
+                          ? [...row, { value: '' } as SpecItem]
+                          : row
+                      return (
+                        <tr key={rowIndex}>
+                          {cells.map((cell, cellIndex) => {
+                            const lastCol = cellIndex === cells.length - 1
+                            const edge = cn(
+                              !lastRow && 'border-b',
+                              !lastCol && 'border-r',
+                            )
+                            if (!cell.value && !cell.label) {
+                              return (
+                                <td
+                                  key={cellIndex}
+                                  className={cn('border-ink/20', edge)}
+                                  aria-hidden
+                                />
+                              )
+                            }
                             return (
-                              <td
+                              <SpecCell
                                 key={cellIndex}
-                                className={cn('border-ink/20', edge)}
-                                aria-hidden
+                                label={cell.label}
+                                value={cell.value}
+                                className={edge}
                               />
                             )
-                          }
-                          return (
-                            <SpecCell
-                              key={cellIndex}
-                              label={cell.label}
-                              value={cell.value}
-                              className={edge}
-                            />
-                          )
-                        })}
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-            </div>
+                          })}
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
 
-            {(competition.judging?.preliminary ||
-              competition.judging?.final ||
-              competition.judging?.notes) && (
-              <div className="mt-8">
-                <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft uppercase">
-                  {m.drawer.judging}
+              {(localized.judging?.preliminary ||
+                localized.judging?.final ||
+                localized.judging?.notes) && (
+                <div>
+                  <p className="font-mono text-[11px] tracking-[0.14em] text-ink-soft uppercase">
+                    {m.drawer.judging}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    {[
+                      localized.judging.preliminary &&
+                        formatJudgingPhase(
+                          'preliminary',
+                          localized.judging.preliminary,
+                          lang,
+                        ),
+                      localized.judging.final &&
+                        formatJudgingPhase(
+                          'final',
+                          localized.judging.final,
+                          lang,
+                        ),
+                      localized.judging.notes && meta(localized.judging.notes),
+                    ]
+                      .filter(Boolean)
+                      .join(lang === 'zh' ? '。' : '. ')}
+                  </p>
+                  {localized.judging.judges && (
+                    <p className="mt-2 text-sm text-ink-muted">
+                      {localized.judging.judges.map((judge) => meta(judge)).join(' · ')}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              <div className="border-t border-ink/15 pt-6">
+                <RightsBadge value={competition.rightsEthics} />
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                  {lang === 'zh'
+                    ? competition.isCustom &&
+                      localized.rightsNotes.startsWith('User-added')
+                      ? '用户本地添加的赛事，参赛前请自行核对官方条款。'
+                      : localized.rightsNotes
+                    : `${m.rights[competition.rightsEthics].hint} ${localized.rightsNotes}`}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                  {[
-                    competition.judging.preliminary &&
-                      `Preliminary ${competition.judging.preliminary}`,
-                    competition.judging.final &&
-                      `Final ${competition.judging.final}`,
-                    competition.judging.notes,
-                  ]
-                    .filter(Boolean)
-                    .join('. ')}
-                </p>
-                {competition.judging.judges && (
-                  <p className="mt-2 text-sm text-ink-muted">
-                    {competition.judging.judges.join(' · ')}
+                {!stillOpen && cycle && (
+                  <p className="mt-2 font-mono text-sm text-ink-muted">
+                    {m.drawer.nextCycleNote} {cycle.year} {cycle.quarter}
                   </p>
                 )}
               </div>
-            )}
 
-            <div className="mt-5 border-t border-ink/15 pt-5">
-              <RightsBadge value={competition.rightsEthics} />
-              <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                {m.rights[competition.rightsEthics].hint}{' '}
-                {competition.rightsNotes}
-              </p>
+              <div className="border-t border-ink/15 pt-8">
+                <p className="rounded-xl bg-primary/5 px-4 py-3 text-sm leading-relaxed text-ink-muted">
+                  {m.drawer.disclaimer}
+                </p>
+                {localized.tags.length > 0 && (
+                  <p className="mt-6 text-sm text-ink-muted">
+                    {localized.tags.map((tag) => `#${tag}`).join('  ')}
+                  </p>
+                )}
+              </div>
             </div>
-
-            {!stillOpen && cycle && (
-              <p className="mt-5 font-mono text-sm text-ink-muted">
-                {m.drawer.nextCycleNote} {cycle.year} {cycle.quarter}
-              </p>
-            )}
-
-            {competition.tags.length > 0 && (
-              <p className="mt-5 border-t border-ink/15 pt-5 text-sm text-ink-muted">
-                {competition.tags.map((tag) => `#${tag}`).join('  ')}
-              </p>
-            )}
 
             <div className="mt-auto grid grid-cols-2 gap-2 pt-10">
               <button

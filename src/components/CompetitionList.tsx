@@ -52,7 +52,7 @@ export function CompetitionList() {
 
       {archived.length > 0 && (
         <section className="mt-12 lg:mt-16">
-          <p className="font-mono text-[11px] tracking-[0.28em] text-ink-soft uppercase lg:pl-5">
+          <p className="font-mono text-[11px] tracking-[0.20em] text-ink-soft uppercase lg:pl-5">
             {m.archivedTitle}
           </p>
           <div className={`mt-4 ${LIST_GRID}`}>

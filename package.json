@@ -1,7 +1,12 @@
 {
   "name": "prix",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Open-call and submission workstation for global creative competitions",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Xiling13/Prix.git"
+  },
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
