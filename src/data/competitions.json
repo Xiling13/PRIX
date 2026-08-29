@@ -7,32 +7,18 @@
     "category": "graphic-design",
     "tier": "tier-1-annual",
     "eligibility": "all",
-    "tags": [
-      "Typography",
-      "Poster",
-      "Editorial",
-      "300DPI",
-      "Yearbook"
-    ],
+    "tags": ["Typography", "Poster", "Editorial", "300DPI", "Yearbook"],
     "deadlines": {
       "earlyBird": "2026-08-15T22:00:00",
       "final": "2026-09-15T22:00:00",
       "timezone": "Asia/Tokyo"
     },
-    "fees": {
-      "currency": "JPY",
-      "singleEarly": 3300,
-      "singleRegular": 5500,
-      "isFree": false
-    },
+    "fees": { "currency": "JPY", "singleEarly": 3300, "singleRegular": 5500, "isFree": false },
     "specs": {
       "colorSpace": "sRGB",
       "minDPI": 300,
       "maxFileSizeMB": 20,
-      "fileFormats": [
-        "JPG",
-        "PNG"
-      ],
+      "fileFormats": ["JPG", "PNG"],
       "maxWordCount": 200,
       "noWatermark": true
     },
@@ -40,10 +26,7 @@
       "preliminary": "2026-10",
       "final": "2026-12",
       "notes": "Selected works appear in the Tokyo TDC Annual and exhibition the following spring.",
-      "judges": [
-        "Tokyo TDC members",
-        "Invited international jurors"
-      ]
+      "judges": ["Tokyo TDC members", "Invited international jurors"]
     },
     "rightsEthics": "creator-retains-all",
     "rightsNotes": "Copyright remains with the creator. Tokyo TDC requests a license to reproduce selected work in the annual, exhibition, and related publicity.",
@@ -59,41 +42,25 @@
     "category": "illustration",
     "tier": "tier-1-annual",
     "eligibility": "all",
-    "tags": [
-      "Editorial",
-      "Poster",
-      "300DPI",
-      "Annual"
-    ],
+    "tags": ["Editorial", "Poster", "300DPI", "Annual"],
     "deadlines": {
       "earlyBird": "2026-08-28T23:59:00",
       "final": "2026-09-18T23:59:00",
       "timezone": "America/New_York"
     },
-    "fees": {
-      "currency": "USD",
-      "singleEarly": 45,
-      "singleRegular": 55,
-      "seriesRegular": 90,
-      "isFree": false
-    },
+    "fees": { "currency": "USD", "singleEarly": 45, "singleRegular": 55, "seriesRegular": 90, "isFree": false },
     "specs": {
       "colorSpace": "sRGB",
       "minDPI": 300,
       "maxFileSizeMB": 10,
-      "fileFormats": [
-        "JPG"
-      ],
+      "fileFormats": ["JPG"],
       "noWatermark": true
     },
     "judging": {
       "preliminary": "2026-10",
       "final": "2026-11",
       "notes": "Chosen images are published in the American Illustration annual.",
-      "judges": [
-        "Art directors",
-        "Illustration editors"
-      ]
+      "judges": ["Art directors", "Illustration editors"]
     },
     "rightsEthics": "promotional-only",
     "rightsNotes": "Creators retain copyright. AI uses selected work in the printed/digital annual and related promotion of the annual.",
@@ -101,203 +68,410 @@
     "summary": "US illustration annual spanning editorial, advertising, and unpublished work."
   },
   {
-    "id": "animago-2026",
-    "name": "Animago Award 2026",
-    "shortName": "Animago",
-    "country": "Germany",
-    "category": "motion-3d",
-    "tier": "specialized-pioneer",
-    "eligibility": "all",
-    "tags": [
-      "Motion",
-      "3D",
-      "Animation",
-      "VFX",
-      "Free"
-    ],
-    "deadlines": {
-      "final": "2026-09-30T23:59:00",
-      "timezone": "Europe/Berlin"
-    },
-    "fees": {
-      "currency": "EUR",
-      "singleRegular": 0,
-      "isFree": true
-    },
-    "specs": {
-      "colorSpace": "sRGB",
-      "maxFileSizeMB": 500,
-      "fileFormats": [
-        "MP4",
-        "MOV"
-      ],
-      "maxWordCount": 300,
-      "noWatermark": true
-    },
-    "judging": {
-      "preliminary": "2026-10",
-      "final": "2026-11",
-      "notes": "Categories typically include film, still, and young talent. Festival screening in Berlin.",
-      "judges": [
-        "International VFX and animation jury"
-      ]
-    },
-    "rightsEthics": "promotional-only",
-    "rightsNotes": "Entrants keep copyright. Organizers may screen and promote submitted films in festival and archive contexts.",
-    "officialUrl": "https://www.animago.com/",
-    "summary": "European award for animation, 3D, and moving image."
-  },
-  {
-    "id": "ca-interactive-2026",
-    "name": "Communication Arts Interactive Competition 2026",
-    "shortName": "CA Interactive",
+    "id": "soi-illustrators-69",
+    "name": "Society of Illustrators — Illustrators 69",
+    "shortName": "SOI 69",
     "country": "United States",
-    "category": "digital-art",
+    "category": "illustration",
     "tier": "tier-1-annual",
     "eligibility": "all",
-    "tags": [
-      "Digital",
-      "Web",
-      "Interactive",
-      "App"
-    ],
+    "tags": ["Editorial", "Book", "Advertising", "Annual", "NoAI"],
     "deadlines": {
-      "regular": "2026-10-16T23:59:00",
-      "final": "2026-10-30T23:59:00",
-      "timezone": "America/Los_Angeles"
+      "final": "2026-10-06T23:59:00",
+      "timezone": "America/New_York"
     },
-    "fees": {
-      "currency": "USD",
-      "singleEarly": 40,
-      "singleRegular": 50,
-      "isFree": false
-    },
-    "specs": {
-      "colorSpace": "sRGB",
-      "maxFileSizeMB": 15,
-      "fileFormats": [
-        "JPG",
-        "PNG",
-        "MP4"
-      ],
-      "maxWordCount": 200,
-      "noWatermark": true
-    },
-    "judging": {
-      "preliminary": "2026-11",
-      "final": "2026-12",
-      "notes": "Winners appear in the Communication Arts Interactive Annual, print and digital.",
-      "judges": [
-        "Creative directors",
-        "Digital designers"
-      ]
-    },
-    "rightsEthics": "promotional-only",
-    "rightsNotes": "Copyright stays with the creator. CA reproduces winning work in the annual and on commarts.com.",
-    "officialUrl": "https://www.commarts.com/competitions",
-    "summary": "Digital and interactive work for the CA annual — sites, products, campaigns."
-  },
-  {
-    "id": "iib-awards-2026",
-    "name": "Information is Beautiful Awards 2026",
-    "shortName": "IIB",
-    "country": "United Kingdom",
-    "category": "creative-tech",
-    "tier": "specialized-pioneer",
-    "eligibility": "all",
-    "tags": [
-      "Data",
-      "Code",
-      "AI",
-      "Visualization",
-      "CreativeTech"
-    ],
-    "deadlines": {
-      "earlyBird": "2026-10-01T23:59:00",
-      "final": "2026-10-31T23:59:00",
-      "timezone": "Europe/London"
-    },
-    "fees": {
-      "currency": "GBP",
-      "singleEarly": 45,
-      "singleRegular": 65,
-      "isFree": false
-    },
-    "specs": {
-      "colorSpace": "sRGB",
-      "maxFileSizeMB": 25,
-      "fileFormats": [
-        "JPG",
-        "PNG",
-        "PDF",
-        "MP4"
-      ],
-      "maxWordCount": 250,
-      "noWatermark": true
-    },
-    "judging": {
-      "preliminary": "2026-11",
-      "final": "2026-12",
-      "notes": "Work that informs through data, code, or computational design.",
-      "judges": [
-        "Information designers",
-        "Journalists",
-        "Researchers"
-      ]
-    },
-    "rightsEthics": "creator-retains-all",
-    "rightsNotes": "Creators retain rights. The awards request permission to exhibit and publish selected projects for promotional coverage.",
-    "officialUrl": "https://www.informationisbeautifulawards.com/",
-    "summary": "Awards for data, information design, and creative technology."
-  },
-  {
-    "id": "lensculture-critics-2026",
-    "name": "LensCulture Critics' Choice Awards 2026",
-    "shortName": "LensCulture",
-    "country": "Netherlands",
-    "category": "photography",
-    "tier": "specialized-pioneer",
-    "eligibility": "all",
-    "tags": [
-      "Photography",
-      "Series",
-      "Portrait",
-      "Documentary"
-    ],
-    "deadlines": {
-      "earlyBird": "2026-10-15T23:59:00",
-      "final": "2026-11-18T23:59:00",
-      "timezone": "Europe/Amsterdam"
-    },
-    "fees": {
-      "currency": "USD",
-      "singleEarly": 45,
-      "singleRegular": 65,
-      "seriesRegular": 85,
-      "isFree": false
-    },
+    "fees": { "currency": "USD", "singleRegular": 40, "seriesRegular": 80, "isFree": false },
     "specs": {
       "colorSpace": "sRGB",
       "minDPI": 300,
-      "maxFileSizeMB": 12,
-      "fileFormats": [
-        "JPG"
-      ],
-      "maxWordCount": 400,
+      "maxFileSizeMB": 10,
+      "fileFormats": ["JPG", "GIF"],
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2026-11",
+      "final": "2026-12",
+      "notes": "Work created or published Oct 2025 – Nov 2026. AI-assisted work is ineligible. Gold and Silver Medals per category; exhibition at the Museum of Illustration, New York. Accepted entries pay a $95 hanging/publication fee.",
+      "judges": ["Illustrators", "Art directors", "Designers"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Creators retain copyright. Accepted work is exhibited and reproduced in the Illustrators Annual Book and online gallery.",
+    "officialUrl": "https://societyillustrators.org/annual-exhibition/illu69call/",
+    "summary": "The premier US illustration annual since 1959. Opens Sep 2026; series of five $80."
+  },
+  {
+    "id": "bologna-illustrators-2027",
+    "name": "Bologna Illustrators Exhibition 2027",
+    "shortName": "Bologna",
+    "country": "Italy",
+    "category": "illustration",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["ChildrensBooks", "Series", "150DPI", "StudentFree"],
+    "deadlines": {
+      "final": "2026-10-26T23:59:00",
+      "timezone": "Europe/Rome"
+    },
+    "fees": { "currency": "EUR", "singleRegular": 25, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 150,
+      "maxFileSizeMB": 5,
+      "fileFormats": ["JPG", "PNG"],
       "noWatermark": true
     },
     "judging": {
       "preliminary": "2026-12",
-      "final": "2027-01",
-      "notes": "Critics review single images and series. Winners featured on LensCulture and partner exhibitions.",
-      "judges": [
-        "International photography critics"
-      ]
+      "final": "2027-02",
+      "notes": "Submit a series of 5 illustrations. Selected works tour worldwide for two years and appear in the Illustrators Annual (5 languages). Free for students with a school code. Fair runs 5–8 Apr 2027.",
+      "judges": ["International jury of publishers and illustrators"]
     },
     "rightsEthics": "promotional-only",
-    "rightsNotes": "You keep copyright. LensCulture typically requires a license to display entries on the site, in newsletters, and related promotion. Read the current terms before submitting.",
-    "officialUrl": "https://www.lensculture.com/photo-competitions",
-    "summary": "Photography open call judged by critics, with series and single-image tracks."
+    "rightsNotes": "Copyright stays with the illustrator. BCBF licenses selected work for the exhibition, catalogue, and touring shows.",
+    "officialUrl": "https://www.bolognachildrensbookfair.com/en/focus-on/illustrators/the-illustrators-exhibition/",
+    "summary": "The global gateway for children's book illustration. €25 entry, series of 5, deadline 26 Oct 2026."
+  },
+  {
+    "id": "hiii-illustration-2026",
+    "name": "Hiii Illustration International Competition 2026",
+    "shortName": "Hiii",
+    "country": "China",
+    "category": "illustration",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["Illustration", "Commercial", "SelfInitiated", "Student"],
+    "deadlines": {
+      "final": "2026-11-30T23:59:00",
+      "timezone": "Asia/Shanghai"
+    },
+    "fees": { "currency": "USD", "singleRegular": 30, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 10,
+      "fileFormats": ["JPG", "PNG", "GIF", "MP4"],
+      "maxWordCount": 200,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2026-12",
+      "final": "2027-02",
+      "notes": "Commercial and self-initiated tracks. Winners exhibited and published in the Hiii annual.",
+      "judges": ["International illustration jury"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Creators retain copyright. Organizer may use entries for exhibition, publication, and promotion of the competition.",
+    "officialUrl": "https://hiiibrand.com/",
+    "summary": "China-based international illustration award with commercial and personal tracks."
+  },
+  {
+    "id": "ca-illustration-2027",
+    "name": "Communication Arts Illustration Competition 2027",
+    "shortName": "CA Illustration",
+    "country": "United States",
+    "category": "illustration",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Editorial", "Advertising", "Annual", "Poster"],
+    "deadlines": {
+      "regular": "2027-01-08T23:59:00",
+      "final": "2027-01-22T23:59:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleRegular": 40, "seriesRegular": 80, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 10,
+      "fileFormats": ["JPG", "PNG"],
+      "maxWordCount": 150,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-02",
+      "final": "2027-03",
+      "notes": "Work first published or produced Jan 2026 – Jan 2027. Late entries accepted two weeks after the deadline with a $10 late fee. Winners appear in the CA Illustration Annual.",
+      "judges": ["International jury of designers, art directors, and illustrators"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Copyright stays with the creator. CA reproduces winning work in the annual, in print and digital editions, and on commarts.com.",
+    "officialUrl": "https://www.commarts.com/competitions",
+    "summary": "One of the most prestigious illustration annuals. Award of Excellence milled from solid aluminum."
+  },
+  {
+    "id": "ca-photography-2027",
+    "name": "Communication Arts Photography Competition 2027",
+    "shortName": "CA Photography",
+    "country": "United States",
+    "category": "photography",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Editorial", "Advertising", "Annual", "FineArt"],
+    "deadlines": {
+      "regular": "2027-03-12T23:59:00",
+      "final": "2027-03-26T23:59:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleRegular": 40, "seriesRegular": 80, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 10,
+      "fileFormats": ["JPG"],
+      "maxWordCount": 150,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-04",
+      "final": "2027-05",
+      "notes": "Work first published or produced Mar 2026 – Mar 2027. Late entries for two weeks with a $10 fee. Winners appear in the CA Photography Annual.",
+      "judges": ["International jury of creative directors and photographers"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Copyright stays with the creator. CA reproduces winning work in the annual and on commarts.com.",
+    "officialUrl": "https://www.commarts.com/competitions",
+    "summary": "CA's photography annual — a career-making credit for commercial and editorial photographers."
+  },
+  {
+    "id": "ca-design-2027",
+    "name": "Communication Arts Design Competition 2027",
+    "shortName": "CA Design",
+    "country": "United States",
+    "category": "graphic-design",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Identity", "Packaging", "Editorial", "Annual"],
+    "deadlines": {
+      "regular": "2026-10-09T23:59:00",
+      "final": "2026-10-23T23:59:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleRegular": 65, "seriesRegular": 130, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 15,
+      "fileFormats": ["JPG", "PNG", "PDF"],
+      "maxWordCount": 150,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2026-11",
+      "final": "2026-12",
+      "notes": "Identity, packaging, editorial design, and more. Late entries for two weeks with a $10 fee. Winners appear in the CA Design Annual.",
+      "judges": ["International jury of design directors"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Copyright stays with the creator. CA reproduces winning work in the annual and on commarts.com.",
+    "officialUrl": "https://www.commarts.com/competitions",
+    "summary": "CA's design annual covering identity, packaging, and editorial design."
+  },
+  {
+    "id": "tdc-ny-2027",
+    "name": "TDC Awards 2027 (Type Directors Club, New York)",
+    "shortName": "TDC NY",
+    "country": "United States",
+    "category": "graphic-design",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Typography", "Typeface", "Lettering", "Annual"],
+    "deadlines": {
+      "regular": "2026-10-16T23:59:00",
+      "final": "2026-11-13T23:59:00",
+      "timezone": "America/New_York"
+    },
+    "fees": { "currency": "USD", "singleRegular": 95, "seriesRegular": 190, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 30,
+      "fileFormats": ["JPG", "PNG", "PDF", "MP4"],
+      "maxWordCount": 200,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2026-12",
+      "final": "2027-02",
+      "notes": "Communication design and typeface design competitions. Winners published in The World's Best Typography annual and touring exhibition.",
+      "judges": ["The One Club / TDC international jury"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Entrants retain copyright. TDC licenses winning work for the annual, exhibitions, and promotion.",
+    "officialUrl": "https://tdc.org/",
+    "summary": "The definitive global award for typography and typeface design, since 1946."
+  },
+  {
+    "id": "one-show-2027",
+    "name": "The One Show 2027",
+    "shortName": "One Show",
+    "country": "United States",
+    "category": "graphic-design",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Advertising", "Design", "Craft", "Pencil"],
+    "deadlines": {
+      "earlyBird": "2026-11-13T23:59:00",
+      "regular": "2027-01-22T23:59:00",
+      "final": "2027-02-26T23:59:00",
+      "timezone": "America/New_York"
+    },
+    "fees": { "currency": "USD", "singleEarly": 245, "singleRegular": 315, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 100,
+      "fileFormats": ["JPG", "PNG", "PDF", "MP4"],
+      "maxWordCount": 250,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-03",
+      "final": "2027-05",
+      "notes": "Gold, Silver, and Bronze Pencils across design and craft disciplines. Winners announced at Creative Week New York.",
+      "judges": ["The One Club international jury"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Entrants retain copyright. The One Club uses entered work for judging, the annual, and award promotion.",
+    "officialUrl": "https://www.oneshow.org/",
+    "summary": "One of advertising and design's most coveted Pencils, judged by a global creative jury."
+  },
+  {
+    "id": "red-dot-bcd-2027",
+    "name": "Red Dot Award: Brands & Communication Design 2027",
+    "shortName": "Red Dot",
+    "country": "Germany",
+    "category": "graphic-design",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Branding", "Communication", "Digital", "Annual"],
+    "deadlines": {
+      "earlyBird": "2027-03-12T23:59:00",
+      "final": "2027-06-18T23:59:00",
+      "timezone": "Europe/Berlin"
+    },
+    "fees": { "currency": "EUR", "singleEarly": 245, "singleRegular": 345, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 50,
+      "fileFormats": ["JPG", "PNG", "PDF", "MP4"],
+      "maxWordCount": 300,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-07",
+      "final": "2027-09",
+      "notes": "Red Dot, Best of the Best, and Grand Prix. Winners exhibited in the Red Dot Design Museum and yearbook.",
+      "judges": ["International Red Dot jury"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Entrants retain copyright. Red Dot licenses winning work for the yearbook, museum exhibitions, and communication.",
+    "officialUrl": "https://www.red-dot.org/",
+    "summary": "The German-based international label for branding and communication design quality."
+  },
+  {
+    "id": "dandad-2027",
+    "name": "D&AD Awards 2027",
+    "shortName": "D&AD",
+    "country": "United Kingdom",
+    "category": "graphic-design",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Advertising", "Design", "Craft", "Pencil"],
+    "deadlines": {
+      "earlyBird": "2027-01-13T23:59:00",
+      "regular": "2027-02-10T23:59:00",
+      "final": "2027-03-25T23:59:00",
+      "timezone": "Europe/London"
+    },
+    "fees": { "currency": "GBP", "singleEarly": 196, "singleRegular": 245, "isFree": false },
+    "specs": {
+      "colorSpace": "Any",
+      "minDPI": 300,
+      "maxFileSizeMB": 50,
+      "fileFormats": ["JPG", "PNG", "PDF", "MP4"],
+      "maxWordCount": 150,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-04",
+      "final": "2027-05",
+      "notes": "Entries open late Nov 2026. Super Earlybird saves up to 30%. Every entry needs an Entry Validation Card with AI disclosure. Pencils announced May 2027.",
+      "judges": ["D&AD jury of practising creatives"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Entrants retain copyright. D&AD licenses winning and shortlisted work for the Annual, website, talks, and awards promotion.",
+    "officialUrl": "https://www.dandad.org/awards",
+    "summary": "The Yellow Pencil — global design and advertising's benchmark of craft. 2027 cycle."
+  },
+  {
+    "id": "adc-106",
+    "name": "ADC 106th Annual Awards",
+    "shortName": "ADC",
+    "country": "United States",
+    "category": "graphic-design",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Design", "Illustration", "Packaging", "Cube"],
+    "deadlines": {
+      "earlyBird": "2027-01-22T23:59:00",
+      "regular": "2027-02-05T23:59:00",
+      "final": "2027-02-19T23:59:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleEarly": 100, "singleRegular": 220, "seriesRegular": 270, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 30,
+      "fileFormats": ["JPG", "PNG", "PDF"],
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-03",
+      "final": "2027-04",
+      "notes": "Fees rise $60 per deadline tier. Personal projects from $75. Cubes and Merits announced at the annual ceremony in New York.",
+      "judges": ["ADC members", "Invited creative directors"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Copyright remains with the creator. ADC uses awarded work in the annual, exhibition, and club publicity.",
+    "officialUrl": "https://adcawards.org/",
+    "summary": "Art Directors Club annual, 106th edition — craft-first design, illustration, and photography Cubes."
+  },
+  {
+    "id": "wia-2027",
+    "name": "World Illustration Awards 2027",
+    "shortName": "WIA",
+    "country": "United Kingdom",
+    "category": "illustration",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["Illustration", "Editorial", "NewTalent", "AOI"],
+    "deadlines": {
+      "earlyBird": "2027-01-08T12:00:00",
+      "regular": "2027-02-16T23:59:00",
+      "final": "2027-02-23T23:59:00",
+      "timezone": "Europe/London"
+    },
+    "fees": { "currency": "GBP", "singleEarly": 42, "singleRegular": 54, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 15,
+      "fileFormats": ["JPG", "PNG", "GIF", "MP4"],
+      "maxWordCount": 150,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-03",
+      "final": "2027-07",
+      "notes": "Call opens Dec 2026. Professional and New Talent groups across ten categories. Longlist May, shortlist July, winners September 2027.",
+      "judges": ["AOI-appointed international jury"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Illustrators retain copyright. WIA asks for a license to exhibit, publish, and promote selected work for the awards tour.",
+    "officialUrl": "https://worldillustrationawards.com/",
+    "summary": "AOI's global illustration awards with the touring exhibition — 2027 call opens December 2026."
   },
   {
     "id": "sony-wpa-2027",
@@ -307,37 +481,24 @@
     "category": "photography",
     "tier": "tier-1-annual",
     "eligibility": "all",
-    "tags": [
-      "Photography",
-      "Free",
-      "Series",
-      "Student"
-    ],
+    "tags": ["Photography", "Free", "Series", "Student"],
     "deadlines": {
       "regular": "2026-11-27T16:00:00",
       "final": "2027-01-05T16:00:00",
       "timezone": "Europe/London"
     },
-    "fees": {
-      "currency": "GBP",
-      "singleRegular": 0,
-      "isFree": true
-    },
+    "fees": { "currency": "GBP", "singleRegular": 0, "isFree": true },
     "specs": {
       "colorSpace": "sRGB",
       "maxFileSizeMB": 10,
-      "fileFormats": [
-        "JPG"
-      ],
+      "fileFormats": ["JPG"],
       "noWatermark": true
     },
     "judging": {
       "preliminary": "2027-01",
       "final": "2027-04",
       "notes": "Student closes 27 Nov 2026 16:00 GMT. Single Image and Youth close 5 Jan 2027. Series closes 12 Jan 2027. Exhibition at Somerset House.",
-      "judges": [
-        "World Photography Organisation jury"
-      ]
+      "judges": ["World Photography Organisation jury"]
     },
     "rightsEthics": "promotional-only",
     "rightsNotes": "Free to enter. Entrants retain copyright; WPO requires a license to exhibit, publish, and promote selected work. Review the official rules for the 2027 edition.",
@@ -345,41 +506,416 @@
     "summary": "20th edition. Free global photography awards. Images must be taken in 2026."
   },
   {
+    "id": "world-press-photo-2027",
+    "name": "World Press Photo Contest 2027",
+    "shortName": "WPP",
+    "country": "Netherlands",
+    "category": "photography",
+    "tier": "tier-1-annual",
+    "eligibility": "professionals-only",
+    "tags": ["Photojournalism", "Documentary", "Free", "Series"],
+    "deadlines": {
+      "final": "2027-01-18T13:00:00",
+      "timezone": "Europe/Amsterdam"
+    },
+    "fees": { "currency": "EUR", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 20,
+      "fileFormats": ["JPG"],
+      "maxWordCount": 500,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-02",
+      "final": "2027-04",
+      "notes": "Entries open Dec 2026 via Picter with proof of professional status. Winners announced April; €10,000 for Photo of the Year; exhibition tours 60+ countries.",
+      "judges": ["Independent international jury"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Photographers retain copyright. WPP licenses winning work for the exhibition, yearbook, website, and contest promotion.",
+    "officialUrl": "https://www.worldpressphoto.org/contest",
+    "summary": "The benchmark of photojournalism. Free, professionals only, closes 18 Jan 2027 13:00 CET."
+  },
+  {
+    "id": "wpy-63",
+    "name": "Wildlife Photographer of the Year 63",
+    "shortName": "WPY",
+    "country": "United Kingdom",
+    "category": "photography",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Wildlife", "Nature", "RAW", "YouthFree"],
+    "deadlines": {
+      "final": "2026-12-03T11:30:00",
+      "timezone": "Europe/London"
+    },
+    "fees": { "currency": "GBP", "singleRegular": 35, "isFree": false },
+    "specs": {
+      "colorSpace": "Adobe RGB",
+      "maxFileSizeMB": 20,
+      "fileFormats": ["JPG"],
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-01",
+      "final": "2027-03",
+      "notes": "One fee covers up to 25 images. Free for entrants aged 18–26. Anonymous two-round judging with authenticity checks (RAW files required for finalists). Exhibition at the Natural History Museum, London.",
+      "judges": ["NHM-appointed international jury"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Photographers retain copyright. NHM licenses awarded images for the exhibition, book, and promotion of the competition.",
+    "officialUrl": "https://www.nhm.ac.uk/wpy",
+    "summary": "The world's most prestigious nature photography award, exhibited at the NHM London."
+  },
+  {
+    "id": "ipa-2027",
+    "name": "International Photography Awards 2027",
+    "shortName": "IPA",
+    "country": "United States",
+    "category": "photography",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["FineArt", "Editorial", "Series", "Lucie"],
+    "deadlines": {
+      "earlyBird": "2027-01-31T23:59:00",
+      "regular": "2027-04-30T23:59:00",
+      "final": "2027-06-30T23:59:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleRegular": 40, "seriesRegular": 65, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 8,
+      "fileFormats": ["JPG"],
+      "maxWordCount": 300,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-07",
+      "final": "2027-09",
+      "notes": "Professional single $40 / series $65; non-pro and student cheaper; 10% early-bird discount. Winners feed into the Lucie Awards. Fees support the Lucie Foundation.",
+      "judges": ["International panel of curators and editors"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Photographers retain copyright. IPA licenses entries for judging, the annual book, exhibitions, and promotion.",
+    "officialUrl": "https://www.photoawards.com/",
+    "summary": "Large international competition tied to the Lucie Awards; International Photographer of the Year wins $10,000."
+  },
+  {
+    "id": "hipa-2026",
+    "name": "HIPA — Hamdan International Photography Award 2026/27",
+    "shortName": "HIPA",
+    "country": "United Arab Emirates",
+    "category": "photography",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["Free", "CashPrize", "Theme", "Documentary"],
+    "deadlines": {
+      "final": "2026-10-29T23:59:00",
+      "timezone": "Asia/Dubai"
+    },
+    "fees": { "currency": "USD", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 25,
+      "fileFormats": ["JPG"],
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2026-12",
+      "final": "2027-03",
+      "notes": "Free to enter with a $1M total prize pool — the Grand Prize is among photography's largest. Annual theme plus general categories.",
+      "judges": ["International jury appointed by HIPA"]
+    },
+    "rightsEthics": "rights-grab-warning",
+    "rightsNotes": "HIPA's terms have historically granted the organizer broad, royalty-free usage of submitted images. Read the current terms carefully before entering, especially for commercially sensitive work.",
+    "officialUrl": "https://www.hipa.ae/",
+    "summary": "Dubai's free-entry award with a $1M prize pool — but check the usage-rights clauses."
+  },
+  {
+    "id": "lensculture-critics-2026",
+    "name": "LensCulture Critics' Choice Awards 2026",
+    "shortName": "LensCulture",
+    "country": "Netherlands",
+    "category": "photography",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["Photography", "Series", "Portrait", "Documentary"],
+    "deadlines": {
+      "earlyBird": "2026-10-15T23:59:00",
+      "final": "2026-11-18T23:59:00",
+      "timezone": "Europe/Amsterdam"
+    },
+    "fees": { "currency": "USD", "singleEarly": 45, "singleRegular": 65, "seriesRegular": 85, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "minDPI": 300,
+      "maxFileSizeMB": 12,
+      "fileFormats": ["JPG"],
+      "maxWordCount": 400,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2026-12",
+      "final": "2027-01",
+      "notes": "Critics review single images and series. Winners featured on LensCulture and partner exhibitions.",
+      "judges": ["International photography critics"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "You keep copyright. LensCulture typically requires a license to display entries on the site, in newsletters, and related promotion. Read the current terms before submitting.",
+    "officialUrl": "https://www.lensculture.com/photo-competitions",
+    "summary": "Photography open call judged by critics, with series and single-image tracks."
+  },
+  {
+    "id": "animago-2026",
+    "name": "Animago Award 2026",
+    "shortName": "Animago",
+    "country": "Germany",
+    "category": "motion-3d",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["Motion", "3D", "Animation", "VFX", "Free"],
+    "deadlines": {
+      "final": "2026-09-30T23:59:00",
+      "timezone": "Europe/Berlin"
+    },
+    "fees": { "currency": "EUR", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 500,
+      "fileFormats": ["MP4", "MOV"],
+      "maxWordCount": 300,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2026-10",
+      "final": "2026-11",
+      "notes": "Categories typically include film, still, and young talent. Festival screening in Berlin.",
+      "judges": ["International VFX and animation jury"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Entrants keep copyright. Organizers may screen and promote submitted films in festival and archive contexts.",
+    "officialUrl": "https://www.animago.com/",
+    "summary": "European award for animation, 3D, and moving image."
+  },
+  {
+    "id": "motion-awards-2027",
+    "name": "The Motion Awards 2027 (Motionographer)",
+    "shortName": "Motion Awards",
+    "country": "United States",
+    "category": "motion-3d",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["MotionDesign", "Animation", "TitleSequence", "Commercial"],
+    "deadlines": {
+      "final": "2027-02-12T23:59:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleRegular": 99, "seriesRegular": 199, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 500,
+      "fileFormats": ["MP4", "MOV"],
+      "maxWordCount": 300,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-03",
+      "final": "2027-04",
+      "notes": "Motionographer's peer-judged awards across commercial, entertainment, and independent motion design. Individual and studio tiers.",
+      "judges": ["Leading motion designers and studios"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Creators retain copyright. Winning work is showcased on Motionographer and awards channels.",
+    "officialUrl": "https://theawards.motionographer.com/",
+    "summary": "The motion design industry's peer-reviewed award, from Motionographer."
+  },
+  {
+    "id": "webby-31",
+    "name": "The 31st Annual Webby Awards",
+    "shortName": "Webby",
+    "country": "United States",
+    "category": "digital-art",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["Web", "Apps", "Video", "Social", "AI"],
+    "deadlines": {
+      "earlyBird": "2026-10-30T23:59:00",
+      "final": "2026-12-18T23:59:00",
+      "timezone": "America/New_York"
+    },
+    "fees": { "currency": "USD", "singleEarly": 375, "singleRegular": 445, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 200,
+      "fileFormats": ["URL", "MP4", "PNG"],
+      "maxWordCount": 300,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-01",
+      "final": "2027-04",
+      "notes": "Judged by IADAS. Webby and People's Voice winners; famous five-word acceptance speeches. Late entry runs into January at higher fees.",
+      "judges": ["International Academy of Digital Arts and Sciences"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Entrants retain rights to their work. The Webbys use entered material for judging and award promotion.",
+    "officialUrl": "https://www.webbyawards.com/",
+    "summary": "The internet's highest-profile honor for websites, apps, video, and digital craft."
+  },
+  {
+    "id": "lumen-prize-2027",
+    "name": "Lumen Prize for Art and Technology 2027",
+    "shortName": "Lumen",
+    "country": "United Kingdom",
+    "category": "digital-art",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["DigitalArt", "AI", "XR", "Moving Image"],
+    "deadlines": {
+      "final": "2027-05-14T23:59:00",
+      "timezone": "Europe/London"
+    },
+    "fees": { "currency": "GBP", "singleRegular": 55, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 100,
+      "fileFormats": ["JPG", "PNG", "MP4", "URL"],
+      "maxWordCount": 500,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-06",
+      "final": "2027-09",
+      "notes": "Global award for art created with technology — AI, XR, generative, and moving image categories. Shortlist exhibited internationally.",
+      "judges": ["Curators and digital art specialists"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Artists retain all rights. Lumen requests permission to exhibit and document shortlisted work for the prize program.",
+    "officialUrl": "https://www.lumenprize.com/",
+    "summary": "The leading global prize for art made with technology."
+  },
+  {
+    "id": "iib-awards-2026",
+    "name": "Information is Beautiful Awards 2026",
+    "shortName": "IIB",
+    "country": "United Kingdom",
+    "category": "creative-tech",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["Data", "Code", "AI", "Visualization", "CreativeTech"],
+    "deadlines": {
+      "earlyBird": "2026-10-01T23:59:00",
+      "final": "2026-10-31T23:59:00",
+      "timezone": "Europe/London"
+    },
+    "fees": { "currency": "GBP", "singleEarly": 45, "singleRegular": 65, "isFree": false },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 25,
+      "fileFormats": ["JPG", "PNG", "PDF", "MP4"],
+      "maxWordCount": 250,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2026-11",
+      "final": "2026-12",
+      "notes": "Work that informs through data, code, or computational design.",
+      "judges": ["Information designers", "Journalists", "Researchers"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Creators retain rights. The awards request permission to exhibit and publish selected projects for promotional coverage.",
+    "officialUrl": "https://www.informationisbeautifulawards.com/",
+    "summary": "Awards for data, information design, and creative technology."
+  },
+  {
+    "id": "prix-ars-2027",
+    "name": "Prix Ars Electronica 2027",
+    "shortName": "Prix Ars",
+    "country": "Austria",
+    "category": "creative-tech",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["MediaArt", "AI", "Free", "GoldenNica"],
+    "deadlines": {
+      "final": "2027-03-04T23:59:00",
+      "timezone": "Europe/Vienna"
+    },
+    "fees": { "currency": "EUR", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 500,
+      "fileFormats": ["MP4", "PDF", "URL"],
+      "maxWordCount": 600,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-04",
+      "final": "2027-06",
+      "notes": "The Golden Nica — media art's most storied prize, awarded since 1987. Categories include New Animation Art, Digital Musics, AI in Art, and u19. Winners presented at Ars Electronica Festival, Linz.",
+      "judges": ["International expert juries per category"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Artists retain all rights. Ars Electronica licenses documentation for the festival, archive, and cyberarts publications.",
+    "officialUrl": "https://ars.electronica.art/prix/",
+    "summary": "Media art's Oscar — free to enter, Golden Nica winners headline the Linz festival."
+  },
+  {
+    "id": "starts-prize-2027",
+    "name": "S+T+ARTS Prize 2027",
+    "shortName": "S+T+ARTS",
+    "country": "Austria",
+    "category": "creative-tech",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["ScienceTechArts", "Free", "EU", "Innovation"],
+    "deadlines": {
+      "final": "2027-03-03T23:59:00",
+      "timezone": "Europe/Vienna"
+    },
+    "fees": { "currency": "EUR", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 500,
+      "fileFormats": ["MP4", "PDF", "URL"],
+      "maxWordCount": 600,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2027-04",
+      "final": "2027-06",
+      "notes": "European Commission prize for projects at the nexus of science, technology, and the arts. Two €20,000 Grand Prizes.",
+      "judges": ["EU-appointed expert jury"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Artists retain all rights. Documentation is used for the STARTS initiative, exhibitions, and EU communication.",
+    "officialUrl": "https://starts-prize.aec.at/",
+    "summary": "EU-backed €20,000 grand prizes for art-driven innovation. Free to enter."
+  },
+  {
     "id": "dandad-2026",
     "name": "D&AD Awards 2026",
-    "shortName": "D&AD",
+    "shortName": "D&AD 26",
     "country": "United Kingdom",
     "category": "graphic-design",
     "tier": "tier-1-annual",
     "eligibility": "all",
-    "tags": [
-      "Advertising",
-      "Design",
-      "Craft",
-      "Pencil"
-    ],
+    "tags": ["Advertising", "Design", "Craft", "Pencil"],
     "deadlines": {
       "earlyBird": "2026-02-18T23:59:00",
       "regular": "2026-03-19T23:59:00",
       "final": "2026-03-26T23:59:00",
       "timezone": "Europe/London"
     },
-    "fees": {
-      "currency": "GBP",
-      "singleEarly": 196,
-      "singleRegular": 245,
-      "isFree": false
-    },
+    "fees": { "currency": "GBP", "singleEarly": 196, "singleRegular": 245, "isFree": false },
     "specs": {
       "colorSpace": "Any",
       "minDPI": 300,
       "maxFileSizeMB": 50,
-      "fileFormats": [
-        "JPG",
-        "PNG",
-        "PDF",
-        "MP4"
-      ],
+      "fileFormats": ["JPG", "PNG", "PDF", "MP4"],
       "maxWordCount": 150,
       "noWatermark": true
     },
@@ -387,113 +923,72 @@
       "preliminary": "2026-04",
       "final": "2026-05-20",
       "notes": "Shortlist 19–20 May 2026. Pencils announced 20 May 2026. Ceremony 24 September 2026.",
-      "judges": [
-        "D&AD jury of practising creatives"
-      ]
+      "judges": ["D&AD jury of practising creatives"]
     },
     "rightsEthics": "promotional-only",
     "rightsNotes": "Entrants retain copyright. D&AD licenses winning and shortlisted work for the Annual, website, talks, and awards promotion.",
     "officialUrl": "https://www.dandad.org/awards",
     "archiveUrl": "https://www.dandad.org/awards",
-    "nextCycleHint": {
-      "year": 2027,
-      "quarter": "Q1"
-    },
+    "nextCycleHint": { "year": 2027, "quarter": "Q1" },
     "summary": "Global design and advertising pencils. 2026 standard submission closed 26 March."
   },
   {
     "id": "adc-105",
     "name": "ADC 105th Annual Awards",
-    "shortName": "ADC",
+    "shortName": "ADC 105",
     "country": "United States",
     "category": "graphic-design",
     "tier": "tier-1-annual",
     "eligibility": "all",
-    "tags": [
-      "Design",
-      "Illustration",
-      "Packaging",
-      "Cube"
-    ],
+    "tags": ["Design", "Illustration", "Packaging", "Cube"],
     "deadlines": {
       "earlyBird": "2026-01-23T23:59:00",
       "regular": "2026-02-06T23:59:00",
       "final": "2026-02-20T23:59:00",
       "timezone": "America/Los_Angeles"
     },
-    "fees": {
-      "currency": "USD",
-      "singleEarly": 100,
-      "singleRegular": 220,
-      "seriesRegular": 270,
-      "isFree": false
-    },
+    "fees": { "currency": "USD", "singleEarly": 100, "singleRegular": 220, "seriesRegular": 270, "isFree": false },
     "specs": {
       "colorSpace": "sRGB",
       "minDPI": 300,
       "maxFileSizeMB": 30,
-      "fileFormats": [
-        "JPG",
-        "PNG",
-        "PDF"
-      ],
+      "fileFormats": ["JPG", "PNG", "PDF"],
       "noWatermark": true
     },
     "judging": {
       "preliminary": "2026-03",
       "final": "2026-04-22",
       "notes": "Finalists announced 22 April 2026. Ceremony 13 May 2026 in New York. Physical books/packaging due 4 March 2026.",
-      "judges": [
-        "ADC members",
-        "Invited creative directors"
-      ]
+      "judges": ["ADC members", "Invited creative directors"]
     },
     "rightsEthics": "promotional-only",
     "rightsNotes": "Copyright remains with the creator. ADC uses awarded work in the annual, exhibition, and club publicity.",
     "officialUrl": "https://adcawards.org/",
     "archiveUrl": "https://adcawards.org/",
-    "nextCycleHint": {
-      "year": 2027,
-      "quarter": "Q1"
-    },
+    "nextCycleHint": { "year": 2027, "quarter": "Q1" },
     "summary": "Art Directors Club annual. Freelancer illustration was USD 100 / 220 depending on deadline tier."
   },
   {
     "id": "wia-2026",
     "name": "World Illustration Awards 2026",
-    "shortName": "WIA",
+    "shortName": "WIA 26",
     "country": "United Kingdom",
     "category": "illustration",
     "tier": "specialized-pioneer",
     "eligibility": "all",
-    "tags": [
-      "Illustration",
-      "Editorial",
-      "NewTalent",
-      "AOI"
-    ],
+    "tags": ["Illustration", "Editorial", "NewTalent", "AOI"],
     "deadlines": {
       "earlyBird": "2026-01-09T12:00:00",
       "regular": "2026-02-17T23:59:00",
       "final": "2026-02-24T23:59:00",
       "timezone": "Europe/London"
     },
-    "fees": {
-      "currency": "GBP",
-      "singleEarly": 42,
-      "singleRegular": 54,
-      "isFree": false
-    },
+    "fees": { "currency": "GBP", "singleEarly": 42, "singleRegular": 54, "isFree": false },
     "specs": {
       "colorSpace": "sRGB",
       "minDPI": 300,
       "maxFileSizeMB": 15,
-      "fileFormats": [
-        "JPG",
-        "PNG",
-        "GIF",
-        "MP4"
-      ],
+      "fileFormats": ["JPG", "PNG", "GIF", "MP4"],
       "maxWordCount": 150,
       "noWatermark": true
     },
@@ -501,18 +996,13 @@
       "preliminary": "2026-03",
       "final": "2026-07",
       "notes": "Longlist May 2026, shortlist July 2026, winners September 2026. Next call launches December 2026.",
-      "judges": [
-        "AOI-appointed international jury"
-      ]
+      "judges": ["AOI-appointed international jury"]
     },
     "rightsEthics": "creator-retains-all",
     "rightsNotes": "Illustrators retain copyright. WIA asks for a license to exhibit, publish, and promote selected work for the awards tour.",
     "officialUrl": "https://worldillustrationawards.com/",
     "archiveUrl": "https://worldillustrationawards.com/",
-    "nextCycleHint": {
-      "year": 2026,
-      "quarter": "Q4"
-    },
+    "nextCycleHint": { "year": 2026, "quarter": "Q4" },
     "summary": "AOI global illustration awards. Professional and New Talent. 2026 call closed 24 February."
   },
   {
@@ -523,46 +1013,28 @@
     "category": "illustration",
     "tier": "specialized-pioneer",
     "eligibility": "all",
-    "tags": [
-      "Illustration",
-      "ProShow",
-      "Student",
-      "Annual"
-    ],
+    "tags": ["Illustration", "ProShow", "Student", "Annual"],
     "deadlines": {
       "earlyBird": "2026-02-15T23:59:00",
       "final": "2026-03-22T23:59:00",
       "timezone": "America/New_York"
     },
-    "fees": {
-      "currency": "USD",
-      "singleEarly": 45,
-      "singleRegular": 55,
-      "seriesRegular": 90,
-      "isFree": false
-    },
+    "fees": { "currency": "USD", "singleEarly": 45, "singleRegular": 55, "seriesRegular": 90, "isFree": false },
     "specs": {
       "colorSpace": "sRGB",
       "minDPI": 300,
       "maxFileSizeMB": 8,
-      "fileFormats": [
-        "JPG"
-      ],
+      "fileFormats": ["JPG"],
       "noWatermark": true
     },
     "judging": {
       "notes": "Published in the 3x3 annual. Professional, student, and unpublished tracks.",
-      "judges": [
-        "Illustration annual jury"
-      ]
+      "judges": ["Illustration annual jury"]
     },
     "rightsEthics": "promotional-only",
     "rightsNotes": "Creators retain copyright. 3x3 reproduces selected work in the annual and related promotion.",
     "officialUrl": "https://3x3mag.com/",
-    "nextCycleHint": {
-      "year": 2027,
-      "quarter": "Q1"
-    },
+    "nextCycleHint": { "year": 2027, "quarter": "Q1" },
     "summary": "Illustration annual for professional and student work."
   },
   {
@@ -573,28 +1045,17 @@
     "category": "photography",
     "tier": "specialized-pioneer",
     "eligibility": "professionals-only",
-    "tags": [
-      "Photography",
-      "Documentary",
-      "Series",
-      "Free"
-    ],
+    "tags": ["Photography", "Documentary", "Series", "Free"],
     "deadlines": {
       "final": "2026-03-30T23:59:00",
       "timezone": "Europe/Berlin"
     },
-    "fees": {
-      "currency": "EUR",
-      "singleRegular": 0,
-      "isFree": true
-    },
+    "fees": { "currency": "EUR", "singleRegular": 0, "isFree": true },
     "specs": {
       "colorSpace": "Adobe RGB",
       "minDPI": 300,
       "maxFileSizeMB": 20,
-      "fileFormats": [
-        "JPG"
-      ],
+      "fileFormats": ["JPG"],
       "maxWordCount": 500,
       "noWatermark": true
     },
@@ -602,19 +1063,14 @@
       "preliminary": "2026-06",
       "final": "2026-10",
       "notes": "Primarily nominator-driven. Series of 15–20 images on people and environment. Winners announced in Wetzlar, October 2026.",
-      "judges": [
-        "International photography experts"
-      ]
+      "judges": ["International photography experts"]
     },
     "rightsEthics": "promotional-only",
     "rightsNotes": "Photographers retain copyright. Leica requires usage for exhibition, catalogue, and award communication.",
     "officialUrl": "https://www.leica-oskar-barnack-award.com/en/",
     "archiveUrl": "https://www.leica-oskar-barnack-award.com/en/",
-    "nextCycleHint": {
-      "year": 2027,
-      "quarter": "Q1"
-    },
-    "summary": "Documentary / humanist series award. Main prize plus Newcomer. 2026 nomination window closed 30 March."
+    "nextCycleHint": { "year": 2027, "quarter": "Q1" },
+    "summary": "Documentary / humanist series award. Main prize €40,000 plus Leica equipment."
   },
   {
     "id": "px3-2026",
@@ -624,46 +1080,278 @@
     "category": "photography",
     "tier": "specialized-pioneer",
     "eligibility": "all",
-    "tags": [
-      "Photography",
-      "Paris",
-      "Professional",
-      "Amateur"
-    ],
+    "tags": ["Photography", "Paris", "Professional", "Amateur"],
     "deadlines": {
       "earlyBird": "2026-05-15T23:59:00",
       "final": "2026-07-10T23:59:00",
       "timezone": "Europe/Paris"
     },
-    "fees": {
-      "currency": "USD",
-      "singleEarly": 35,
-      "singleRegular": 50,
-      "seriesRegular": 80,
-      "isFree": false
-    },
+    "fees": { "currency": "USD", "singleEarly": 35, "singleRegular": 50, "seriesRegular": 80, "isFree": false },
     "specs": {
       "colorSpace": "sRGB",
       "minDPI": 300,
       "maxFileSizeMB": 8,
-      "fileFormats": [
-        "JPG"
-      ],
+      "fileFormats": ["JPG"],
       "noWatermark": true
     },
     "judging": {
       "notes": "Professional and amateur categories. Paris exhibition for awarded work.",
-      "judges": [
-        "Px3 jury of photographers and editors"
-      ]
+      "judges": ["Px3 jury of photographers and editors"]
     },
     "rightsEthics": "rights-grab-warning",
-    "rightsNotes": "Px3 terms have historically included a broad royalty-free license to use submitted images in contest promotion, publications, and related media. Read the current official terms before you enter. If you need to keep tight commercial control, treat this as a rights-risk call.",
+    "rightsNotes": "Px3 terms have historically included a broad royalty-free license to use submitted images in contest promotion, publications, and related media. Read the current official terms before you enter.",
     "officialUrl": "https://px3.fr/",
-    "nextCycleHint": {
-      "year": 2027,
-      "quarter": "Q2"
-    },
+    "nextCycleHint": { "year": 2027, "quarter": "Q2" },
     "summary": "Paris photography contest spanning professional and amateur categories."
+  },
+  {
+    "id": "cursor-vibe-jam-2026",
+    "name": "Cursor Vibe Jam 2026",
+    "shortName": "Vibe Jam",
+    "country": "International",
+    "category": "vibe-coding",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["VibeCoding", "Cursor", "Games", "Free", "AI"],
+    "deadlines": {
+      "final": "2026-05-01T13:37:00",
+      "timezone": "UTC"
+    },
+    "fees": { "currency": "USD", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 100,
+      "fileFormats": ["URL", "HTML"],
+      "noWatermark": true
+    },
+    "judging": {
+      "final": "2026-05",
+      "notes": "Annual AI-made browser game jam hosted by Pieter Levels. At least 90% of code must be AI-written; games must be free-to-play on the web with no login. $40,000 prize pool sponsored by Cursor, Bolt.new, Glif, and Tripo AI.",
+      "judges": ["Pieter Levels", "Community game & AI jurors"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Creators retain rights to their games. Submissions are listed publicly on the Vibe Jam site as an open benchmark archive.",
+    "officialUrl": "https://vibej.am/2026",
+    "archiveUrl": "https://vibej.am/2025",
+    "nextCycleHint": { "year": 2027, "quarter": "Q2" },
+    "summary": "The flagship annual vibe-coding game jam — solo AI-built browser games, $40K prizes, Cursor-sponsored."
+  },
+  {
+    "id": "build-with-gemini-xprize-2026",
+    "name": "Build with Gemini XPRIZE 2026",
+    "shortName": "Gemini XPRIZE",
+    "country": "United States",
+    "category": "vibe-coding",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["VibeCoding", "Google", "Gemini", "Free", "XPRIZE", "Agents"],
+    "deadlines": {
+      "final": "2026-08-17T23:59:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 500,
+      "fileFormats": ["URL", "MP4", "PDF"],
+      "maxWordCount": 1000,
+      "noWatermark": true
+    },
+    "judging": {
+      "preliminary": "2026-08",
+      "final": "2026-09",
+      "notes": "$2M Google-backed XPRIZE: launch a real AI business with users and revenue in 90 days using Gemini, AI Studio, Antigravity, Stitch, and Flow. Five finalists pitch live at Moonshot Summit, Los Angeles, 25 Sep 2026.",
+      "judges": ["Cathie Wood", "Palmer Luckey", "Mark Pincus", "Anousheh Ansari", "Logan Kilpatrick"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Creators retain ownership of their businesses and IP. XPRIZE and Google may showcase finalists for event and promotional coverage.",
+    "officialUrl": "https://www.geminixprize.com/",
+    "archiveUrl": "https://devpost.com/hackathons",
+    "nextCycleHint": { "year": 2027, "quarter": "Q2" },
+    "summary": "Google × XPRIZE $2M global challenge — vibe-ship a revenue-generating Gemini business in 90 days."
+  },
+  {
+    "id": "devnetwork-api-cloud-ai-2026",
+    "name": "DevNetwork API + Cloud + AI Hackathon 2026",
+    "shortName": "API World",
+    "country": "United States",
+    "category": "vibe-coding",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["VibeCoding", "API", "Cloud", "AI", "Free", "Devpost"],
+    "deadlines": {
+      "final": "2026-09-03T10:00:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 100,
+      "fileFormats": ["URL", "MP4"],
+      "noWatermark": true
+    },
+    "judging": {
+      "final": "2026-09",
+      "notes": "Hybrid hackathon co-located with API World at Santa Clara Convention Center. Online build window 17 Aug – 3 Sep 2026; in-person demos and awards 2–3 Sep. $39,500 prize pool across overall and sponsor tracks.",
+      "judges": ["Industry partner engineers", "DevNetwork jury"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Creators retain project rights. Sponsors may feature winning projects in conference communications and partner channels.",
+    "officialUrl": "https://api-cloud-ai-hackathon-2026.devpost.com/",
+    "summary": "Devpost-hosted API World hackathon for AI agents, APIs, and cloud-native tools — open through early September 2026."
+  },
+  {
+    "id": "google-cloud-rapid-agent-2026",
+    "name": "Google Cloud Rapid Agent Hackathon 2026",
+    "shortName": "Rapid Agent",
+    "country": "International",
+    "category": "vibe-coding",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["VibeCoding", "Google", "Gemini", "Agents", "MCP", "Free", "Devpost"],
+    "deadlines": {
+      "final": "2026-06-11T23:59:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 100,
+      "fileFormats": ["URL", "MP4"],
+      "noWatermark": true
+    },
+    "judging": {
+      "final": "2026-06",
+      "notes": "Build a functional Gemini agent on Google Cloud Agent Builder that integrates a partner MCP server. $60,000 across partner prize buckets (Arize, Elastic, Fivetran, GitLab, MongoDB, Dynatrace).",
+      "judges": ["Google Cloud partner engineers", "Partner track judges"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Creators retain rights. Public open-source repos required for judging; Google and partners may showcase winners.",
+    "officialUrl": "https://rapid-agent.devpost.com/",
+    "nextCycleHint": { "year": 2027, "quarter": "Q2" },
+    "summary": "Google Cloud’s major Devpost agent hackathon — Gemini + MCP partner tracks, $60K prizes."
+  },
+  {
+    "id": "team-usa-google-cloud-2026",
+    "name": "Team USA × Google Cloud Hackathon 2026",
+    "shortName": "Team USA GC",
+    "country": "United States",
+    "category": "vibe-coding",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["VibeCoding", "Google", "Gemini", "Free", "Devpost", "Sports"],
+    "deadlines": {
+      "final": "2026-05-11T23:59:00",
+      "timezone": "America/Los_Angeles"
+    },
+    "fees": { "currency": "USD", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 100,
+      "fileFormats": ["URL", "MP4"],
+      "noWatermark": true
+    },
+    "judging": {
+      "final": "2026-05",
+      "notes": "Explicitly framed as vibe coding with Gemini: build dashboards, web apps, or agents from Team USA data. Must use Gemini API and deploy on Google Cloud. $75,000 prize pool. US-focused eligibility per official rules.",
+      "judges": ["Google Cloud customer engineers"]
+    },
+    "rightsEthics": "promotional-only",
+    "rightsNotes": "Creators retain code ownership. Google Cloud and Team USA may feature winning projects in developer and Olympic partner communications.",
+    "officialUrl": "https://vibecodeforgoldwithgoogle.devpost.com/",
+    "nextCycleHint": { "year": 2027, "quarter": "Q1" },
+    "summary": "Google’s Team USA Devpost challenge — vibe code fan tools with Gemini for up to $75K."
+  },
+  {
+    "id": "aws-global-vibe-2025",
+    "name": "AWS Global Vibe: AI Coding Hackathon 2025",
+    "shortName": "AWS Vibe",
+    "country": "International",
+    "category": "vibe-coding",
+    "tier": "tier-1-annual",
+    "eligibility": "all",
+    "tags": ["VibeCoding", "AWS", "Free", "AI", "Enterprise"],
+    "deadlines": {
+      "final": "2025-12-01T13:00:00",
+      "timezone": "UTC"
+    },
+    "fees": { "currency": "USD", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 100,
+      "fileFormats": ["URL", "MP4"],
+      "noWatermark": true
+    },
+    "judging": {
+      "final": "2025-12",
+      "notes": "AWS Startups’ first global vibe-coding hackathon. Required Amazon Q Developer or Kiro; $700K+ in cash, credits, and partner perks across agentic AI, developer tools, and industry tracks.",
+      "judges": ["AWS Startups", "Sponsor partners"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Creators retain project rights. AWS and sponsors may showcase winning builds in startup and developer channels.",
+    "officialUrl": "https://dorahacks.io/hackathon/awsvibecoding",
+    "nextCycleHint": { "year": 2026, "quarter": "Q4" },
+    "summary": "Amazon’s flagship $700K+ global vibe-coding hackathon — production AI apps on AWS tooling."
+  },
+  {
+    "id": "cursor-hackathon-indonesia-2026",
+    "name": "Cursor Hackathon Indonesia 2026",
+    "shortName": "Cursor ID",
+    "country": "Indonesia",
+    "category": "vibe-coding",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["VibeCoding", "Cursor", "Free", "InPerson"],
+    "deadlines": {
+      "final": "2026-09-12T23:59:00",
+      "timezone": "Asia/Jakarta"
+    },
+    "fees": { "currency": "USD", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 100,
+      "fileFormats": ["URL", "MP4"],
+      "noWatermark": true
+    },
+    "judging": {
+      "final": "2026-09",
+      "notes": "Multi-day in-person Cursor community hackathon (9–12 Sep 2026). Build with Cursor and AI coding agents; part of the global Cursor ambassador hackathon series.",
+      "judges": ["Cursor community organizers"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Creators retain all rights to projects built during the hackathon.",
+    "officialUrl": "https://vibecoding.app/events/cursor-hackathon-indonesia-2026-09",
+    "summary": "Upcoming multi-day Cursor vibe-coding hackathon in Indonesia — free community build weekend."
+  },
+  {
+    "id": "cursor-hackathon-singapore-2025",
+    "name": "Cursor Hackathon Singapore 2025",
+    "shortName": "Cursor SG",
+    "country": "Singapore",
+    "category": "vibe-coding",
+    "tier": "specialized-pioneer",
+    "eligibility": "all",
+    "tags": ["VibeCoding", "Cursor", "OpenAI", "Anthropic", "Free", "InPerson"],
+    "deadlines": {
+      "final": "2025-10-19T09:00:00",
+      "timezone": "Asia/Singapore"
+    },
+    "fees": { "currency": "USD", "singleRegular": 0, "isFree": true },
+    "specs": {
+      "colorSpace": "sRGB",
+      "maxFileSizeMB": 100,
+      "fileFormats": ["URL", "MP4"],
+      "noWatermark": true
+    },
+    "judging": {
+      "final": "2025-10",
+      "notes": "Cursor’s first official 24-hour Singapore hackathon at SUTD. 400+ builders; sponsors included OpenAI, Anthropic, Google DeepMind, and Supabase with $100K+ in cash and credits.",
+      "judges": ["Cursor ambassadors", "Sponsor engineers"]
+    },
+    "rightsEthics": "creator-retains-all",
+    "rightsNotes": "Creators retain project rights. Sponsors may highlight winners in community and DevRel channels.",
+    "officialUrl": "https://luma.com/cursor-hack-sg",
+    "nextCycleHint": { "year": 2026, "quarter": "Q4" },
+    "summary": "Landmark 24-hour Cursor vibe-coding hackathon in Singapore with OpenAI, Anthropic, and DeepMind."
   }
 ]

@@ -54,21 +54,40 @@ export function formatCountdown(
   return `${hours}h ${String(minutes).padStart(2, '0')}m`
 }
 
+export function formatDisplayDate(
+  isoLocal: string,
+  timezone: string,
+  inTimezone = true,
+): string {
+  const utc = deadlineToUtc(isoLocal, timezone)
+  const day = inTimezone
+    ? formatInTimeZone(utc, timezone, 'dd')
+    : format(utc, 'dd')
+  const month = (
+    inTimezone
+      ? formatInTimeZone(utc, timezone, 'MMM')
+      : format(utc, 'MMM')
+  ).toUpperCase()
+  const rest = (
+    inTimezone
+      ? formatInTimeZone(utc, timezone, 'yyyy, hh:mm a')
+      : format(utc, 'yyyy, hh:mm a')
+  ).replace(/\b(am|pm)\b/g, (m) => m.toUpperCase())
+  return `${day} ${month} ${rest}`
+}
+
 export function formatLocalAbsolute(
   isoLocal: string,
   timezone: string,
-  nowPattern = 'EEE d MMM yyyy, HH:mm',
 ): string {
-  const utc = deadlineToUtc(isoLocal, timezone)
-  return `${format(utc, nowPattern)} ${format(utc, 'zzz')}`
+  return formatDisplayDate(isoLocal, timezone, false)
 }
 
 export function formatSourceDeadline(
   isoLocal: string,
   timezone: string,
 ): string {
-  const utc = deadlineToUtc(isoLocal, timezone)
-  return formatInTimeZone(utc, timezone, 'EEE d MMM yyyy, HH:mm zzz')
+  return formatDisplayDate(isoLocal, timezone, true)
 }
 
 export function quarterFromDate(date: Date): Quarter {
@@ -89,16 +108,31 @@ export function inferNextCycle(competition: Competition): {
   return { year: getYear(final) + 1, quarter }
 }
 
-export function formatFee(competition: Competition): string {
+export interface FeeWords {
+  free: string
+  early: string
+  regular: string
+}
+
+const DEFAULT_FEE_WORDS: FeeWords = {
+  free: 'Free',
+  early: 'early',
+  regular: 'regular',
+}
+
+export function formatFee(
+  competition: Competition,
+  words: FeeWords = DEFAULT_FEE_WORDS,
+): string {
   const { fees } = competition
-  if (fees.isFree) return 'Free'
+  if (fees.isFree) return words.free
   const amount = new Intl.NumberFormat('en', {
     style: 'currency',
     currency: fees.currency,
     maximumFractionDigits: 0,
   })
   if (fees.singleEarly != null) {
-    return `${amount.format(fees.singleEarly)} early · ${amount.format(fees.singleRegular)} regular`
+    return `${amount.format(fees.singleEarly)} ${words.early} / ${amount.format(fees.singleRegular)} ${words.regular}`
   }
   return amount.format(fees.singleRegular)
 }

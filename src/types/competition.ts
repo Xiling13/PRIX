@@ -5,6 +5,7 @@ export type Category =
   | 'motion-3d'
   | 'digital-art'
   | 'creative-tech'
+  | 'vibe-coding'
 
 export type Tier = 'tier-1-annual' | 'specialized-pioneer'
 

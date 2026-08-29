@@ -9,6 +9,8 @@ npm install
 npm run dev
 ```
 
+Open **http://localhost:5181/**
+
 ## Data
 
 Curated calls live in `src/data/competitions.json`. Each season:

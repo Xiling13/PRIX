@@ -14,6 +14,7 @@ const CATEGORIES = new Set([
   'motion-3d',
   'digital-art',
   'creative-tech',
+  'vibe-coding',
 ])
 const TIERS = new Set(['tier-1-annual', 'specialized-pioneer'])
 const ELIGIBILITY = new Set(['all', 'students-only', 'professionals-only'])
@@ -25,6 +26,8 @@ const RIGHTS = new Set([
 const CURRENCIES = new Set(['USD', 'EUR', 'GBP', 'JPY'])
 
 const timezones = new Set(Intl.supportedValuesOf('timeZone'))
+timezones.add('UTC')
+timezones.add('Etc/UTC')
 const competitions = JSON.parse(readFileSync(dataPath, 'utf8')) as Competition[]
 
 const errors: string[] = []

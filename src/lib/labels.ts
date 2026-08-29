@@ -9,12 +9,13 @@ import type {
 
 export const CATEGORY_TABS: { id: 'all' | Category; label: string }[] = [
   { id: 'all', label: 'All' },
+  { id: 'creative-tech', label: 'Creative Tech' },
+  { id: 'digital-art', label: 'Digital Art' },
   { id: 'graphic-design', label: 'Graphic Design' },
   { id: 'illustration', label: 'Illustration' },
-  { id: 'photography', label: 'Photography' },
   { id: 'motion-3d', label: 'Motion & 3D' },
-  { id: 'digital-art', label: 'Digital Art' },
-  { id: 'creative-tech', label: 'Creative Tech' },
+  { id: 'photography', label: 'Photography' },
+  { id: 'vibe-coding', label: 'Vibe Coding' },
 ]
 
 export const CATEGORY_LABELS: Record<Category, string> = {
@@ -24,6 +25,7 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   'motion-3d': 'Motion & 3D',
   'digital-art': 'Digital Art',
   'creative-tech': 'Creative Tech',
+  'vibe-coding': 'Vibe Coding',
 }
 
 export const TIER_LABELS: Record<Tier, string> = {

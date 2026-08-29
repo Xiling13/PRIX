@@ -6,21 +6,24 @@ import { isWithinRetention } from '../lib/dates'
 
 const seededCompetitions = seed as Competition[]
 
-export type AppView = 'list' | 'kanban'
+export type AppView = 'list' | 'tracker'
+export type Lang = 'en' | 'zh'
 
 interface AppState {
   view: AppView
-  commandOpen: boolean
+  lang: Lang
   addOpen: boolean
   selectedId: string | null
   categoryFilter: 'all' | Category
+  searchQuery: string
   progress: Record<string, TrackStatus>
   customCompetitions: Competition[]
   setView: (view: AppView) => void
-  setCommandOpen: (open: boolean) => void
+  setLang: (lang: Lang) => void
   setAddOpen: (open: boolean) => void
   setSelectedId: (id: string | null) => void
   setCategoryFilter: (filter: 'all' | Category) => void
+  setSearchQuery: (query: string) => void
   setStatus: (id: string, status: TrackStatus) => void
   addToBoard: (id: string) => void
   removeFromBoard: (id: string) => void
@@ -31,17 +34,19 @@ export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
       view: 'list',
-      commandOpen: false,
+      lang: 'en',
       addOpen: false,
       selectedId: null,
       categoryFilter: 'all',
+      searchQuery: '',
       progress: {},
       customCompetitions: [],
       setView: (view) => set({ view }),
-      setCommandOpen: (commandOpen) => set({ commandOpen }),
+      setLang: (lang) => set({ lang }),
       setAddOpen: (addOpen) => set({ addOpen }),
       setSelectedId: (selectedId) => set({ selectedId }),
       setCategoryFilter: (categoryFilter) => set({ categoryFilter }),
+      setSearchQuery: (searchQuery) => set({ searchQuery }),
       setStatus: (id, status) =>
         set({ progress: { ...get().progress, [id]: status } }),
       addToBoard: (id) => {
@@ -62,6 +67,7 @@ export const useAppStore = create<AppState>()(
       name: 'prix-storage',
       partialize: (state) => ({
         view: state.view,
+        lang: state.lang,
         progress: state.progress,
         customCompetitions: state.customCompetitions,
       }),

@@ -1,3 +1,4 @@
+import { CalendarPlus, Check, ExternalLink, Package, Plus, X } from 'lucide-react'
 import { useAppStore, useSelectedCompetition } from '../store/useAppStore'
 import {
   formatFee,
@@ -7,20 +8,17 @@ import {
   isOpen,
 } from '../lib/dates'
 import { downloadDeadlineIcs } from '../lib/ics'
-import {
-  CATEGORY_LABELS,
-  ELIGIBILITY_LABELS,
-  RIGHTS_LABELS,
-  TIER_LABELS,
-} from '../lib/labels'
+import { useMessages } from '../lib/i18n'
+import { STATUS_COLUMNS } from '../lib/labels'
 import { downloadSubmissionPack } from '../lib/submissionPack'
 import { cn } from '../lib/cn'
 import { RightsBadge } from './RightsBadge'
+import type { TrackStatus } from '../types/competition'
 
 function Spec({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft">
+      <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft uppercase">
         {label}
       </p>
       <p className="mt-1 text-sm">{value}</p>
@@ -28,13 +26,18 @@ function Spec({ label, value }: { label: string; value: string }) {
   )
 }
 
+const actionButton =
+  'inline-flex w-full cursor-pointer items-center gap-2.5 rounded-xl bg-muted px-4 py-3 text-sm font-medium text-ink transition-colors hover:bg-muted/70'
+
 export function SpecDrawer() {
+  const m = useMessages()
   const competition = useSelectedCompetition()
   const selectedId = useAppStore((s) => s.selectedId)
   const setSelectedId = useAppStore((s) => s.setSelectedId)
   const progress = useAppStore((s) => s.progress)
   const addToBoard = useAppStore((s) => s.addToBoard)
-  const onBoard = competition ? Boolean(progress[competition.id]) : false
+  const setStatus = useAppStore((s) => s.setStatus)
+  const status = competition ? progress[competition.id] : undefined
   const open = Boolean(competition)
   const cycle = competition ? inferNextCycle(competition) : null
   const stillOpen = competition ? isOpen(competition) : false
@@ -42,34 +45,35 @@ export function SpecDrawer() {
   return (
     <div
       className={cn(
-        'fixed inset-0 z-40 transition-opacity duration-300',
+        'fixed inset-0 z-40 transition-opacity duration-150',
         open ? 'opacity-100' : 'pointer-events-none opacity-0',
       )}
     >
       <button
         type="button"
-        aria-label="Close"
-        className="absolute inset-0 bg-ink/20 backdrop-blur-sm"
+        aria-label={m.drawer.close}
+        className="absolute inset-0 cursor-pointer bg-ink/30"
         onClick={() => setSelectedId(null)}
       />
       <aside
         className={cn(
-          'absolute top-0 right-0 flex h-full w-full max-w-xl flex-col bg-surface/95 shadow-2xl shadow-ink/10 backdrop-blur-xl transition-transform duration-300 ease-out',
+          'absolute top-0 right-0 flex h-full w-full max-w-xl flex-col bg-surface shadow-2xl shadow-ink/20 transition-transform duration-200 ease-out',
           open ? 'translate-x-0' : 'translate-x-full',
         )}
       >
         {competition && (
-          <div className="flex h-full flex-col overflow-y-auto px-8 py-8 sm:px-10">
-            <div className="flex items-start justify-between gap-4">
-              <p className="font-mono text-[11px] tracking-[0.28em] text-ink-soft">
+          <div className="flex h-full flex-col overflow-y-auto px-7 py-7 sm:px-9">
+            <div className="flex items-center justify-between gap-4">
+              <p className="font-mono text-[11px] tracking-[0.28em] text-ink-soft uppercase">
                 {competition.shortName}
               </p>
               <button
                 type="button"
                 onClick={() => setSelectedId(null)}
-                className="text-sm text-ink-soft hover:text-ink"
+                className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-muted px-3 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:text-ink"
               >
-                Close
+                <X className="size-4" aria-hidden />
+                {m.drawer.close}
               </button>
             </div>
 
@@ -77,25 +81,60 @@ export function SpecDrawer() {
               {competition.name}
             </h2>
             <p className="mt-3 text-sm text-ink-soft">
-              {CATEGORY_LABELS[competition.category]} · {competition.country} ·{' '}
-              {TIER_LABELS[competition.tier]}
+              {m.categories[competition.category]} · {competition.country} ·{' '}
+              {m.tiers[competition.tier]}
             </p>
+
+            <div className="mt-6">
+              {!status ? (
+                <button
+                  type="button"
+                  onClick={() => addToBoard(competition.id)}
+                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dim"
+                >
+                  <Plus className="size-4" aria-hidden />
+                  {m.drawer.addToTracker}
+                </button>
+              ) : (
+                <div className="flex items-center gap-3 rounded-xl bg-safe/10 px-4 py-3">
+                  <Check className="size-4 shrink-0 text-safe" aria-hidden />
+                  <span className="text-sm font-medium text-safe">
+                    {m.drawer.onTracker}
+                  </span>
+                  <select
+                    value={status}
+                    onChange={(e) =>
+                      setStatus(competition.id, e.target.value as TrackStatus)
+                    }
+                    className="ml-auto cursor-pointer rounded-lg bg-surface px-2.5 py-1.5 text-sm font-medium shadow-sm shadow-ink/10"
+                    aria-label={m.drawer.statusLabel}
+                  >
+                    {STATUS_COLUMNS.map((column) => (
+                      <option key={column.id} value={column.id}>
+                        {m.status[column.id]}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+            </div>
+
             {competition.summary && (
-              <p className="mt-5 text-[15px] leading-relaxed text-ink-soft">
+              <p className="mt-6 text-[15px] leading-relaxed text-ink-soft">
                 {competition.summary}
               </p>
             )}
 
-            <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-8">
+            <div className="mt-9 grid grid-cols-2 gap-x-8 gap-y-7">
               <Spec
-                label="Local deadline"
+                label={m.drawer.localDeadline}
                 value={formatLocalAbsolute(
                   competition.deadlines.final,
                   competition.deadlines.timezone,
                 )}
               />
               <Spec
-                label={`Organizer (${competition.deadlines.timezone})`}
+                label={`${m.drawer.organizerTime} · ${competition.deadlines.timezone}`}
                 value={formatSourceDeadline(
                   competition.deadlines.final,
                   competition.deadlines.timezone,
@@ -103,51 +142,58 @@ export function SpecDrawer() {
               />
               {competition.deadlines.earlyBird && (
                 <Spec
-                  label="Early bird"
+                  label={m.drawer.earlyBird}
                   value={formatLocalAbsolute(
                     competition.deadlines.earlyBird,
                     competition.deadlines.timezone,
                   )}
                 />
               )}
-              <Spec label="Fee" value={formatFee(competition)} />
+              <Spec label={m.drawer.fee} value={formatFee(competition, m)} />
               <Spec
-                label="Eligibility"
-                value={ELIGIBILITY_LABELS[competition.eligibility]}
+                label={m.drawer.eligibility}
+                value={m.eligibility[competition.eligibility]}
               />
               <Spec
-                label="Color space"
+                label={m.drawer.colorSpace}
                 value={competition.specs.colorSpace}
               />
               <Spec
-                label="Formats"
-                value={competition.specs.fileFormats.join('  ')}
+                label={m.drawer.formats}
+                value={competition.specs.fileFormats.join(', ')}
               />
               <Spec
-                label="Max file"
+                label={m.drawer.maxFile}
                 value={`${competition.specs.maxFileSizeMB} MB`}
               />
               {competition.specs.minDPI && (
-                <Spec label="DPI" value={`${competition.specs.minDPI}`} />
+                <Spec
+                  label={m.drawer.dpi}
+                  value={`${competition.specs.minDPI}`}
+                />
               )}
               {competition.specs.maxWordCount && (
                 <Spec
-                  label="Statement"
-                  value={`${competition.specs.maxWordCount} words max`}
+                  label={m.drawer.statement}
+                  value={`${competition.specs.maxWordCount} ${m.drawer.statementUnit}`}
                 />
               )}
               <Spec
-                label="Watermark"
-                value={competition.specs.noWatermark ? 'None' : 'Check rules'}
+                label={m.drawer.watermark}
+                value={
+                  competition.specs.noWatermark
+                    ? m.drawer.watermarkNone
+                    : m.drawer.watermarkCheck
+                }
               />
             </div>
 
             {(competition.judging?.preliminary ||
               competition.judging?.final ||
               competition.judging?.notes) && (
-              <div className="mt-12">
-                <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft">
-                  Judging
+              <div className="mt-10">
+                <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft uppercase">
+                  {m.drawer.judging}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                   {[
@@ -168,61 +214,57 @@ export function SpecDrawer() {
               </div>
             )}
 
-            <div className="mt-12">
+            <div className="mt-10">
               <RightsBadge value={competition.rightsEthics} />
               <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                {RIGHTS_LABELS[competition.rightsEthics].hint}{' '}
+                {m.rights[competition.rightsEthics].hint}{' '}
                 {competition.rightsNotes}
               </p>
             </div>
 
             {!stillOpen && cycle && (
-              <p className="mt-8 font-mono text-sm text-ink-soft">
-                Closed · next cycle expected {cycle.year} {cycle.quarter}
+              <p className="mt-7 font-mono text-sm text-ink-soft">
+                {m.drawer.nextCycleNote} {cycle.year} {cycle.quarter}
               </p>
             )}
 
             {competition.tags.length > 0 && (
-              <p className="mt-8 text-sm text-ink-soft">
+              <p className="mt-7 text-sm text-ink-soft">
                 {competition.tags.map((tag) => `#${tag}`).join('  ')}
               </p>
             )}
 
-            <div className="mt-auto flex flex-col gap-4 pt-12 text-sm">
-              <button
-                type="button"
-                onClick={() => addToBoard(competition.id)}
-                className="text-left text-cyan-dim"
-              >
-                {onBoard ? 'Already on your board' : 'Add to board'}
-              </button>
+            <div className="mt-auto grid gap-2 pt-10">
               <button
                 type="button"
                 onClick={() => downloadDeadlineIcs(competition)}
-                className="text-left"
+                className={actionButton}
               >
-                Export to calendar
+                <CalendarPlus className="size-4 text-ink-soft" aria-hidden />
+                {m.drawer.exportIcs}
               </button>
               <button
                 type="button"
                 onClick={() => void downloadSubmissionPack(competition)}
-                className="text-left"
+                className={actionButton}
               >
-                Generate submission pack
+                <Package className="size-4 text-ink-soft" aria-hidden />
+                {m.drawer.pack}
               </button>
               <a
                 href={competition.officialUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-ink-soft"
+                className={actionButton}
               >
-                Official site
+                <ExternalLink className="size-4 text-ink-soft" aria-hidden />
+                {m.drawer.official}
               </a>
             </div>
           </div>
         )}
         {!competition && selectedId && (
-          <p className="p-10 text-sm text-ink-soft">Call not found.</p>
+          <p className="p-10 text-sm text-ink-soft">{m.drawer.notFound}</p>
         )}
       </aside>
     </div>

@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { X } from 'lucide-react'
 import type {
   Category,
   Competition,
@@ -8,17 +9,18 @@ import type {
 } from '../types/competition'
 import { CATEGORY_TABS, GITHUB_CONTRIBUTE_URL, TIMEZONES } from '../lib/labels'
 import { cn } from '../lib/cn'
+import { useMessages } from '../lib/i18n'
 import { useAppStore } from '../store/useAppStore'
+import { Button } from './Button'
 
-const CATEGORIES = CATEGORY_TABS.filter((t) => t.id !== 'all') as {
-  id: Category
-  label: string
-}[]
+const CATEGORY_IDS = CATEGORY_TABS.filter((t) => t.id !== 'all').map(
+  (t) => t.id,
+) as Category[]
 
-const RIGHTS: { id: RightsEthics; label: string }[] = [
-  { id: 'creator-retains-all', label: 'Creator retains all rights' },
-  { id: 'promotional-only', label: 'Promotional license only' },
-  { id: 'rights-grab-warning', label: 'Rights grab warning' },
+const RIGHTS_IDS: RightsEthics[] = [
+  'creator-retains-all',
+  'promotional-only',
+  'rights-grab-warning',
 ]
 
 const emptyForm = {
@@ -32,9 +34,6 @@ const emptyForm = {
   isFree: false,
   currency: 'USD' as Currency,
   fee: '',
-  colorSpace: 'sRGB',
-  formats: 'JPG',
-  maxFileSizeMB: '10',
   officialUrl: '',
   rightsEthics: 'promotional-only' as RightsEthics,
   tags: '',
@@ -42,7 +41,9 @@ const emptyForm = {
 
 function toCompetition(form: typeof emptyForm): Competition {
   const id = `custom-${form.shortName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`
-  const deadline = form.final.includes('T') ? form.final : `${form.final}T23:59:00`
+  const deadline = form.final.includes('T')
+    ? form.final
+    : `${form.final}T23:59:00`
   return {
     id,
     name: form.name.trim(),
@@ -65,16 +66,14 @@ function toCompetition(form: typeof emptyForm): Competition {
       isFree: form.isFree,
     },
     specs: {
-      colorSpace: form.colorSpace === 'CMYK' ? 'CMYK' : 'sRGB',
-      maxFileSizeMB: Number(form.maxFileSizeMB || 10),
-      fileFormats: form.formats
-        .split(',')
-        .map((f) => f.trim().toUpperCase())
-        .filter(Boolean),
+      colorSpace: 'sRGB',
+      maxFileSizeMB: 10,
+      fileFormats: ['JPG'],
       noWatermark: true,
     },
     rightsEthics: form.rightsEthics,
-    rightsNotes: 'User-added local call. Confirm official terms before entering.',
+    rightsNotes:
+      'User-added local award. Confirm official terms before entering.',
     officialUrl: form.officialUrl.trim() || 'https://',
     isCustom: true,
   }
@@ -87,6 +86,7 @@ function contributionJson(competition: Competition) {
 }
 
 export function AddCustomModal() {
+  const m = useMessages()
   const open = useAppStore((s) => s.addOpen)
   const setOpen = useAppStore((s) => s.setAddOpen)
   const addCustom = useAppStore((s) => s.addCustom)
@@ -95,7 +95,7 @@ export function AddCustomModal() {
   const [lastAdded, setLastAdded] = useState<Competition | null>(null)
 
   const field =
-    'w-full rounded-xl bg-muted px-3 py-2.5 text-sm placeholder:text-ink-soft'
+    'w-full rounded-xl bg-muted px-3.5 py-2.5 text-sm placeholder:text-ink-soft focus:ring-2 focus:ring-primary/40'
 
   function close() {
     setOpen(false)
@@ -126,36 +126,41 @@ export function AddCustomModal() {
   return (
     <div
       className={cn(
-        'fixed inset-0 z-40 transition-opacity duration-300',
+        'fixed inset-0 z-40 transition-opacity duration-150',
         open ? 'opacity-100' : 'pointer-events-none opacity-0',
       )}
     >
       <button
         type="button"
-        aria-label="Close"
-        className="absolute inset-0 bg-ink/20 backdrop-blur-sm"
+        aria-label={m.drawer.close}
+        className="absolute inset-0 cursor-pointer bg-ink/30"
         onClick={close}
       />
-      <div className="absolute inset-x-0 top-[8vh] mx-auto max-h-[84vh] w-full max-w-lg overflow-y-auto rounded-3xl bg-surface/95 px-8 py-8 shadow-2xl shadow-ink/10 backdrop-blur-xl">
-        <div className="flex items-start justify-between">
+      <div className="absolute inset-x-0 top-[6vh] mx-auto max-h-[88vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-surface px-6 py-6 shadow-2xl shadow-ink/20 sm:px-8">
+        <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="font-mono text-[11px] tracking-[0.28em] text-ink-soft">
-              Local only
+            <p className="font-mono text-[11px] tracking-[0.24em] text-ink-soft uppercase">
+              {m.custom.badge}
             </p>
             <h2 className="mt-2 text-2xl font-medium tracking-tight">
-              Add a custom call
+              {m.custom.title}
             </h2>
           </div>
-          <button type="button" onClick={close} className="text-sm text-ink-soft">
-            Close
+          <button
+            type="button"
+            onClick={close}
+            aria-label={m.drawer.close}
+            className="cursor-pointer rounded-full bg-muted p-2 text-ink-soft transition-colors hover:text-ink"
+          >
+            <X className="size-4" aria-hidden />
           </button>
         </div>
 
-        <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4">
+        <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3">
           <input
             required
             className={field}
-            placeholder="Name"
+            placeholder={m.custom.name}
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
           />
@@ -163,13 +168,13 @@ export function AddCustomModal() {
             <input
               required
               className={field}
-              placeholder="Short name"
+              placeholder={m.custom.shortName}
               value={form.shortName}
               onChange={(e) => setForm({ ...form, shortName: e.target.value })}
             />
             <input
               className={field}
-              placeholder="Country"
+              placeholder={m.custom.country}
               value={form.country}
               onChange={(e) => setForm({ ...form, country: e.target.value })}
             />
@@ -182,9 +187,9 @@ export function AddCustomModal() {
                 setForm({ ...form, category: e.target.value as Category })
               }
             >
-              {CATEGORIES.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.label}
+              {CATEGORY_IDS.map((id) => (
+                <option key={id} value={id}>
+                  {m.categories[id]}
                 </option>
               ))}
             </select>
@@ -195,15 +200,20 @@ export function AddCustomModal() {
                 setForm({ ...form, eligibility: e.target.value as Eligibility })
               }
             >
-              <option value="all">Open worldwide</option>
-              <option value="students-only">Students only</option>
-              <option value="professionals-only">Professionals</option>
+              {(['all', 'students-only', 'professionals-only'] as const).map(
+                (id) => (
+                  <option key={id} value={id}>
+                    {m.eligibility[id]}
+                  </option>
+                ),
+              )}
             </select>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <input
               required
               type="datetime-local"
+              aria-label={m.custom.deadline}
               className={field}
               value={form.final}
               onChange={(e) => setForm({ ...form, final: e.target.value })}
@@ -213,22 +223,23 @@ export function AddCustomModal() {
               value={form.timezone}
               onChange={(e) => setForm({ ...form, timezone: e.target.value })}
             >
-              {[form.timezone, ...TIMEZONES.filter((z) => z !== form.timezone)].map(
-                (tz) => (
-                  <option key={tz} value={tz}>
-                    {tz}
-                  </option>
-                ),
-              )}
+              {[
+                form.timezone,
+                ...TIMEZONES.filter((z) => z !== form.timezone),
+              ].map((tz) => (
+                <option key={tz} value={tz}>
+                  {tz}
+                </option>
+              ))}
             </select>
           </div>
-          <label className="flex items-center gap-2 text-sm text-ink-soft">
+          <label className="flex cursor-pointer items-center gap-2 rounded-xl bg-muted px-3.5 py-2.5 text-sm">
             <input
               type="checkbox"
               checked={form.isFree}
               onChange={(e) => setForm({ ...form, isFree: e.target.checked })}
             />
-            Free to enter
+            {m.custom.freeToEnter}
           </label>
           {!form.isFree && (
             <div className="grid grid-cols-2 gap-3">
@@ -247,7 +258,7 @@ export function AddCustomModal() {
               </select>
               <input
                 className={field}
-                placeholder="Regular fee"
+                placeholder={m.custom.fee}
                 inputMode="decimal"
                 value={form.fee}
                 onChange={(e) => setForm({ ...form, fee: e.target.value })}
@@ -256,13 +267,13 @@ export function AddCustomModal() {
           )}
           <input
             className={field}
-            placeholder="Official URL"
+            placeholder={m.custom.officialUrl}
             value={form.officialUrl}
             onChange={(e) => setForm({ ...form, officialUrl: e.target.value })}
           />
           <input
             className={field}
-            placeholder="Tags, comma separated (Poster, Free)"
+            placeholder={m.custom.tags}
             value={form.tags}
             onChange={(e) => setForm({ ...form, tags: e.target.value })}
           />
@@ -273,27 +284,28 @@ export function AddCustomModal() {
               setForm({ ...form, rightsEthics: e.target.value as RightsEthics })
             }
           >
-            {RIGHTS.map((r) => (
-              <option key={r.id} value={r.id}>
-                {r.label}
+            {RIGHTS_IDS.map((id) => (
+              <option key={id} value={id}>
+                {m.rights[id].title}
               </option>
             ))}
           </select>
-          <button type="submit" className="mt-2 text-left text-cyan-dim">
-            Save to this browser
-          </button>
+          <Button type="submit" variant="primary" className="mt-2 w-full py-2.5">
+            {m.custom.save}
+          </Button>
         </form>
 
         {lastAdded && (
-          <div className="mt-8 text-sm text-ink-soft">
-            <p>Saved {lastAdded.shortName}. Export a snippet for the open-source list:</p>
-            <div className="mt-3 flex gap-5">
-              <button type="button" onClick={() => void copyJson()}>
-                {copied ? 'Copied' : 'Copy JSON'}
-              </button>
-              <button type="button" onClick={openGithubIssue}>
-                Open GitHub issue
-              </button>
+          <div className="mt-6 rounded-xl bg-muted px-4 py-4 text-sm">
+            <p className="text-ink">
+              <span className="font-semibold">{lastAdded.shortName}</span> ·{' '}
+              {m.custom.saved}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Button onClick={() => void copyJson()}>
+                {copied ? m.custom.copied : m.custom.copyJson}
+              </Button>
+              <Button onClick={openGithubIssue}>{m.custom.openIssue}</Button>
             </div>
           </div>
         )}
