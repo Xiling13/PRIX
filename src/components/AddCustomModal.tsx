@@ -12,6 +12,7 @@ import { cn } from '../lib/cn'
 import { useMessages } from '../lib/i18n'
 import { useAppStore } from '../store/useAppStore'
 import { Button } from './Button'
+import { Select } from './Select'
 
 const CATEGORY_IDS = CATEGORY_TABS.filter((t) => t.id !== 'all').map(
   (t) => t.id,
@@ -85,6 +86,9 @@ function contributionJson(competition: Competition) {
   return JSON.stringify(payload, null, 2)
 }
 
+const overlayBackdrop =
+  'absolute inset-0 cursor-pointer bg-ink/20 backdrop-blur-sm transition-opacity duration-100 ease-out'
+
 export function AddCustomModal() {
   const m = useMessages()
   const open = useAppStore((s) => s.addOpen)
@@ -95,7 +99,7 @@ export function AddCustomModal() {
   const [lastAdded, setLastAdded] = useState<Competition | null>(null)
 
   const field =
-    'w-full rounded-xl bg-muted px-3.5 py-2.5 text-sm placeholder:text-ink-soft focus:ring-2 focus:ring-primary/40'
+    'w-full rounded-xl bg-canvas px-3.5 py-2.5 text-sm placeholder:text-ink-soft focus:ring-2 focus:ring-primary/40'
 
   function close() {
     setOpen(false)
@@ -123,26 +127,35 @@ export function AddCustomModal() {
     window.open(url, '_blank', 'noreferrer')
   }
 
+  const timezoneOptions = [
+    form.timezone,
+    ...TIMEZONES.filter((z) => z !== form.timezone),
+  ].map((tz) => ({ value: tz, label: tz }))
+
   return (
     <div
-      className={cn(
-        'fixed inset-0 z-40 transition-opacity duration-150',
-        open ? 'opacity-100' : 'pointer-events-none opacity-0',
-      )}
+      className={cn('fixed inset-0 z-40', open ? '' : 'pointer-events-none')}
     >
       <button
         type="button"
         aria-label={m.drawer.close}
-        className="absolute inset-0 cursor-pointer bg-ink/30"
+        className={cn(overlayBackdrop, open ? 'opacity-100' : 'opacity-0')}
         onClick={close}
       />
-      <div className="absolute inset-x-0 top-[6vh] mx-auto max-h-[88vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-surface px-6 py-6 shadow-2xl shadow-ink/20 sm:px-8">
+      <div
+        className={cn(
+          'absolute inset-x-0 top-[6vh] mx-auto max-h-[88vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-surface px-6 py-6 shadow-2xl shadow-ink/20 transition-[opacity,transform] duration-150 ease-out sm:px-8',
+          open
+            ? 'translate-y-0 opacity-100'
+            : 'pointer-events-none translate-y-2 opacity-0',
+        )}
+      >
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="font-mono text-[11px] tracking-[0.24em] text-ink-soft uppercase">
               {m.custom.badge}
             </p>
-            <h2 className="mt-2 text-2xl font-medium tracking-tight">
+            <h2 className="mt-4 text-2xl font-medium tracking-tight">
               {m.custom.title}
             </h2>
           </div>
@@ -150,13 +163,13 @@ export function AddCustomModal() {
             type="button"
             onClick={close}
             aria-label={m.drawer.close}
-            className="cursor-pointer rounded-full bg-muted p-2 text-ink-soft transition-colors hover:text-ink"
+            className="cursor-pointer bg-transparent p-1 text-ink-soft transition-colors hover:text-ink"
           >
             <X className="size-4" aria-hidden />
           </button>
         </div>
 
-        <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3">
+        <form onSubmit={onSubmit} className="mt-3 flex flex-col gap-3">
           <input
             required
             className={field}
@@ -180,60 +193,45 @@ export function AddCustomModal() {
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <select
-              className={field}
+            <Select
               value={form.category}
-              onChange={(e) =>
-                setForm({ ...form, category: e.target.value as Category })
+              options={CATEGORY_IDS.map((id) => ({
+                value: id,
+                label: m.categories[id],
+              }))}
+              onChange={(category) =>
+                setForm({ ...form, category: category as Category })
               }
-            >
-              {CATEGORY_IDS.map((id) => (
-                <option key={id} value={id}>
-                  {m.categories[id]}
-                </option>
-              ))}
-            </select>
-            <select
-              className={field}
+            />
+            <Select
               value={form.eligibility}
-              onChange={(e) =>
-                setForm({ ...form, eligibility: e.target.value as Eligibility })
+              options={(
+                ['all', 'students-only', 'professionals-only'] as const
+              ).map((id) => ({
+                value: id,
+                label: m.eligibility[id],
+              }))}
+              onChange={(eligibility) =>
+                setForm({ ...form, eligibility: eligibility as Eligibility })
               }
-            >
-              {(['all', 'students-only', 'professionals-only'] as const).map(
-                (id) => (
-                  <option key={id} value={id}>
-                    {m.eligibility[id]}
-                  </option>
-                ),
-              )}
-            </select>
+            />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <input
               required
               type="datetime-local"
               aria-label={m.custom.deadline}
-              className={field}
+              className={cn(field, 'pr-3.5')}
               value={form.final}
               onChange={(e) => setForm({ ...form, final: e.target.value })}
             />
-            <select
-              className={field}
+            <Select
               value={form.timezone}
-              onChange={(e) => setForm({ ...form, timezone: e.target.value })}
-            >
-              {[
-                form.timezone,
-                ...TIMEZONES.filter((z) => z !== form.timezone),
-              ].map((tz) => (
-                <option key={tz} value={tz}>
-                  {tz}
-                </option>
-              ))}
-            </select>
+              options={timezoneOptions}
+              onChange={(timezone) => setForm({ ...form, timezone })}
+            />
           </div>
-          <label className="flex cursor-pointer items-center gap-2 rounded-xl bg-muted px-3.5 py-2.5 text-sm">
+          <label className="flex cursor-pointer items-center gap-2 rounded-xl bg-canvas px-3.5 py-2.5 text-sm">
             <input
               type="checkbox"
               checked={form.isFree}
@@ -243,19 +241,16 @@ export function AddCustomModal() {
           </label>
           {!form.isFree && (
             <div className="grid grid-cols-2 gap-3">
-              <select
-                className={field}
+              <Select
                 value={form.currency}
-                onChange={(e) =>
-                  setForm({ ...form, currency: e.target.value as Currency })
+                options={['USD', 'EUR', 'GBP', 'JPY'].map((c) => ({
+                  value: c,
+                  label: c,
+                }))}
+                onChange={(currency) =>
+                  setForm({ ...form, currency: currency as Currency })
                 }
-              >
-                {['USD', 'EUR', 'GBP', 'JPY'].map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
+              />
               <input
                 className={field}
                 placeholder={m.custom.fee}
@@ -277,26 +272,26 @@ export function AddCustomModal() {
             value={form.tags}
             onChange={(e) => setForm({ ...form, tags: e.target.value })}
           />
-          <select
-            className={field}
+          <Select
             value={form.rightsEthics}
-            onChange={(e) =>
-              setForm({ ...form, rightsEthics: e.target.value as RightsEthics })
+            options={RIGHTS_IDS.map((id) => ({
+              value: id,
+              label: m.rights[id].title,
+            }))}
+            onChange={(rightsEthics) =>
+              setForm({
+                ...form,
+                rightsEthics: rightsEthics as RightsEthics,
+              })
             }
-          >
-            {RIGHTS_IDS.map((id) => (
-              <option key={id} value={id}>
-                {m.rights[id].title}
-              </option>
-            ))}
-          </select>
+          />
           <Button type="submit" variant="primary" className="mt-2 w-full py-2.5">
             {m.custom.save}
           </Button>
         </form>
 
         {lastAdded && (
-          <div className="mt-6 rounded-xl bg-muted px-4 py-4 text-sm">
+          <div className="mt-6 rounded-xl bg-canvas px-4 py-4 text-sm">
             <p className="text-ink">
               <span className="font-semibold">{lastAdded.shortName}</span> ·{' '}
               {m.custom.saved}

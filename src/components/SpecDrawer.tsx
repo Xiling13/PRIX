@@ -29,6 +29,9 @@ function Spec({ label, value }: { label: string; value: string }) {
 const actionButton =
   'inline-flex w-full cursor-pointer items-center gap-2.5 rounded-xl bg-muted px-4 py-3 text-sm font-medium text-ink transition-colors hover:bg-muted/70'
 
+const overlayBackdrop =
+  'absolute inset-0 cursor-pointer bg-ink/20 backdrop-blur-sm transition-opacity duration-100 ease-out'
+
 export function SpecDrawer() {
   const m = useMessages()
   const competition = useSelectedCompetition()
@@ -44,15 +47,12 @@ export function SpecDrawer() {
 
   return (
     <div
-      className={cn(
-        'fixed inset-0 z-40 transition-opacity duration-150',
-        open ? 'opacity-100' : 'pointer-events-none opacity-0',
-      )}
+      className={cn('fixed inset-0 z-40', open ? '' : 'pointer-events-none')}
     >
       <button
         type="button"
         aria-label={m.drawer.close}
-        className="absolute inset-0 cursor-pointer bg-ink/30"
+        className={cn(overlayBackdrop, open ? 'opacity-100' : 'opacity-0')}
         onClick={() => setSelectedId(null)}
       />
       <aside
@@ -70,10 +70,10 @@ export function SpecDrawer() {
               <button
                 type="button"
                 onClick={() => setSelectedId(null)}
-                className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-muted px-3 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:text-ink"
+                aria-label={m.drawer.close}
+                className="cursor-pointer p-1 text-ink-soft transition-colors hover:text-ink"
               >
                 <X className="size-4" aria-hidden />
-                {m.drawer.close}
               </button>
             </div>
 

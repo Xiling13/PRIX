@@ -35,7 +35,7 @@ export function TrackerBoard() {
   }
 
   return (
-    <div className="px-6 pb-24 sm:px-10 lg:px-14">
+    <div className="px-6 pt-2 pb-24 sm:px-10 lg:px-14">
       <div className="flex gap-5 overflow-x-auto pb-2">
         {STATUS_COLUMNS.map((column) => {
           const items = byStatus(column.id)
@@ -51,21 +51,16 @@ export function TrackerBoard() {
               }}
               className="min-w-[230px] flex-1"
             >
-              <p className="px-1 font-mono text-[11px] tracking-[0.22em] text-ink-soft uppercase">
+              <p className="px-1 font-mono text-[11px] tracking-[0.22em] text-ink-muted uppercase">
                 {m.status[column.id]}
                 <span className="ml-2">{items.length}</span>
               </p>
               <div
                 className={cn(
-                  'mt-3 flex min-h-[46vh] flex-col gap-3 rounded-2xl p-2 transition-colors',
+                  'mt-2 flex min-h-[66vh] max-h-[75vh] flex-col gap-3 rounded-2xl p-2 transition-colors duration-150',
                   dragging ? 'bg-primary/5' : 'bg-transparent',
                 )}
               >
-                {items.length === 0 && (
-                  <p className="px-3 py-10 text-center text-sm text-ink-soft/60">
-                    {m.tracker.dropHere}
-                  </p>
-                )}
                 {items.map((competition) => (
                   <div
                     key={competition.id}
@@ -76,7 +71,7 @@ export function TrackerBoard() {
                     }}
                     onDragEnd={() => setDragging(null)}
                     className={cn(
-                      'group cursor-grab rounded-xl bg-surface p-4 shadow-sm shadow-ink/5 active:cursor-grabbing',
+                      'group cursor-grab rounded-xl bg-surface px-4.5 py-4 shadow-sm shadow-ink/5 active:cursor-grabbing',
                       dragging === competition.id && 'opacity-50',
                     )}
                   >

@@ -100,7 +100,7 @@ export function CompetitionRow({
       <div className="flex items-center justify-between gap-3 lg:col-start-3 lg:row-start-1 lg:row-span-3 lg:self-center lg:justify-end lg:pr-5">
         <p
           className={cn(
-            'shrink-0 text-[1.35rem] font-medium whitespace-nowrap tabular-nums tracking-tight',
+            'min-w-[7.5ch] shrink-0 text-right text-[1.35rem] font-medium whitespace-nowrap tabular-nums',
             urgent && 'text-danger',
             !open && 'text-ink-soft',
           )}
