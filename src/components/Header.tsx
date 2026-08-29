@@ -64,14 +64,14 @@ export function Header() {
           <p className="hidden font-mono text-sm text-ink-soft sm:block">
             {format(now, 'HH:mm:ss zzz')}
           </p>
-          <div className="flex rounded-full bg-muted p-px text-xs font-medium">
+          <div className="flex rounded-full bg-muted p-0.5 text-xs font-medium">
             {(['en', 'zh'] as const).map((l) => (
               <button
                 key={l}
                 type="button"
                 onClick={() => setLang(l)}
                 className={cn(
-                  'cursor-pointer rounded-full px-2 py-0.5 leading-none transition-colors',
+                  'cursor-pointer rounded-full px-2.5 py-0.5 leading-none transition-colors',
                   lang === l
                     ? 'bg-surface text-ink shadow-sm shadow-ink/10'
                     : 'text-ink-soft hover:text-ink',

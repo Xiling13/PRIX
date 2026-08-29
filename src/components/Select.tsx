@@ -17,12 +17,14 @@ export function Select({
   options,
   onChange,
   className,
+  triggerClassName,
   'aria-label': ariaLabel,
 }: {
   value: string
   options: SelectOption[]
   onChange: (value: string) => void
   className?: string
+  triggerClassName?: string
   'aria-label'?: string
 }) {
   const [open, setOpen] = useState(false)
@@ -95,7 +97,10 @@ export function Select({
         aria-expanded={open}
         aria-controls={listId}
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full cursor-pointer items-center rounded-xl bg-canvas px-3.5 py-2.5 pr-10 text-left text-sm focus:ring-2 focus:ring-primary/40"
+        className={cn(
+          'relative flex w-full cursor-pointer items-center rounded-xl bg-canvas px-3.5 py-2.5 pr-10 text-left text-sm focus:ring-2 focus:ring-primary/40',
+          triggerClassName,
+        )}
       >
         <span className="min-w-0 truncate">{selected?.label}</span>
         <ChevronDown

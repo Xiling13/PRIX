@@ -1,4 +1,4 @@
-import { CalendarPlus, Check, ExternalLink, Package, Plus, X } from 'lucide-react'
+import { ArrowUpRight, CalendarPlus, Check, Package, Plus, X } from 'lucide-react'
 import { useAppStore, useSelectedCompetition } from '../store/useAppStore'
 import {
   formatFee,
@@ -13,21 +13,42 @@ import { STATUS_COLUMNS } from '../lib/labels'
 import { downloadSubmissionPack } from '../lib/submissionPack'
 import { cn } from '../lib/cn'
 import { RightsBadge } from './RightsBadge'
+import { Select } from './Select'
 import type { TrackStatus } from '../types/competition'
 
-function Spec({ label, value }: { label: string; value: string }) {
+type SpecItem = { label?: string; value: string }
+
+function SpecCell({
+  label,
+  value,
+  className,
+}: SpecItem & { className?: string }) {
   return (
-    <div>
-      <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft uppercase">
-        {label}
-      </p>
-      <p className="mt-1 text-sm">{value}</p>
-    </div>
+    <td className={cn('border-ink/20 px-4 py-3 align-top', className)}>
+      {label ? (
+        <>
+          <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft uppercase">
+            {label}
+          </p>
+          <p className="mt-1 text-sm text-ink">{value}</p>
+        </>
+      ) : (
+        <p className="text-sm text-ink">{value}</p>
+      )}
+    </td>
   )
 }
 
-const actionButton =
-  'inline-flex w-full cursor-pointer items-center gap-2.5 rounded-xl bg-muted px-4 py-3 text-sm font-medium text-ink transition-colors hover:bg-muted/70'
+function chunkPairs(items: SpecItem[]): SpecItem[][] {
+  const rows: SpecItem[][] = []
+  for (let i = 0; i < items.length; i += 2) {
+    rows.push(items.slice(i, i + 2))
+  }
+  return rows
+}
+
+const outlineButton =
+  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-primary bg-transparent px-4 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white'
 
 const overlayBackdrop =
   'absolute inset-0 cursor-pointer bg-ink/20 backdrop-blur-sm transition-opacity duration-100 ease-out'
@@ -44,6 +65,77 @@ export function SpecDrawer() {
   const open = Boolean(competition)
   const cycle = competition ? inferNextCycle(competition) : null
   const stillOpen = competition ? isOpen(competition) : false
+
+  const specItems: SpecItem[] = competition
+    ? [
+        {
+          label: m.drawer.localDeadline,
+          value: formatLocalAbsolute(
+            competition.deadlines.final,
+            competition.deadlines.timezone,
+          ),
+        },
+        {
+          label: m.drawer.organizerTime,
+          value: formatSourceDeadline(
+            competition.deadlines.final,
+            competition.deadlines.timezone,
+          ),
+        },
+        ...(competition.deadlines.earlyBird
+          ? [
+              {
+                label: m.drawer.earlyBird,
+                value: formatLocalAbsolute(
+                  competition.deadlines.earlyBird,
+                  competition.deadlines.timezone,
+                ),
+              },
+            ]
+          : []),
+        { label: m.drawer.fee, value: formatFee(competition, m) },
+        {
+          label: m.drawer.eligibility,
+          value: m.eligibility[competition.eligibility],
+        },
+        {
+          label: m.drawer.colorSpace,
+          value: competition.specs.colorSpace,
+        },
+        {
+          label: m.drawer.formats,
+          value: competition.specs.fileFormats.join(', '),
+        },
+        {
+          label: m.drawer.maxFile,
+          value: `${competition.specs.maxFileSizeMB} MB`,
+        },
+        ...(competition.specs.minDPI
+          ? [
+              {
+                label: m.drawer.dpi,
+                value: `${competition.specs.minDPI}`,
+              },
+            ]
+          : []),
+        ...(competition.specs.maxWordCount
+          ? [
+              {
+                label: m.drawer.statement,
+                value: `${competition.specs.maxWordCount} ${m.drawer.statementUnit}`,
+              },
+            ]
+          : []),
+        {
+          label: m.drawer.watermark,
+          value: competition.specs.noWatermark
+            ? m.drawer.watermarkNone
+            : m.drawer.watermarkCheck,
+        },
+      ]
+    : []
+
+  const specRows = chunkPairs(specItems)
 
   return (
     <div
@@ -71,15 +163,26 @@ export function SpecDrawer() {
                 type="button"
                 onClick={() => setSelectedId(null)}
                 aria-label={m.drawer.close}
-                className="cursor-pointer p-1 text-ink-soft transition-colors hover:text-ink"
+                className="cursor-pointer bg-transparent p-1 text-ink-soft transition-colors hover:text-ink"
               >
                 <X className="size-4" aria-hidden />
               </button>
             </div>
 
-            <h2 className="mt-4 text-3xl font-medium tracking-tight">
-              {competition.name}
-            </h2>
+            <div className="mt-4 flex items-end justify-between gap-4">
+              <h2 className="min-w-0 text-3xl font-medium tracking-tight">
+                {competition.name}
+              </h2>
+              <a
+                href={competition.officialUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mb-1 inline-flex shrink-0 items-center gap-1 text-sm font-medium text-primary transition-colors hover:text-primary-dim"
+              >
+                {m.drawer.official}
+                <ArrowUpRight className="size-3.5" aria-hidden />
+              </a>
+            </div>
             <p className="mt-3 text-sm text-ink-soft">
               {m.categories[competition.category]} · {competition.country} ·{' '}
               {m.tiers[competition.tier]}
@@ -90,7 +193,7 @@ export function SpecDrawer() {
                 <button
                   type="button"
                   onClick={() => addToBoard(competition.id)}
-                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dim"
+                  className={cn(outlineButton, 'w-full')}
                 >
                   <Plus className="size-4" aria-hidden />
                   {m.drawer.addToTracker}
@@ -101,101 +204,79 @@ export function SpecDrawer() {
                   <span className="text-sm font-medium text-safe">
                     {m.drawer.onTracker}
                   </span>
-                  <select
-                    value={status}
-                    onChange={(e) =>
-                      setStatus(competition.id, e.target.value as TrackStatus)
-                    }
-                    className="ml-auto cursor-pointer rounded-lg bg-surface px-2.5 py-1.5 text-sm font-medium shadow-sm shadow-ink/10"
+                  <Select
+                    className="ml-auto w-auto min-w-[10.5rem]"
                     aria-label={m.drawer.statusLabel}
-                  >
-                    {STATUS_COLUMNS.map((column) => (
-                      <option key={column.id} value={column.id}>
-                        {m.status[column.id]}
-                      </option>
-                    ))}
-                  </select>
+                    value={status}
+                    options={STATUS_COLUMNS.map((column) => ({
+                      value: column.id,
+                      label: m.status[column.id],
+                    }))}
+                    onChange={(next) =>
+                      setStatus(competition.id, next as TrackStatus)
+                    }
+                    triggerClassName="rounded-lg bg-surface px-3 py-1.5 pr-9 shadow-sm shadow-ink/10 focus:ring-2 focus:ring-primary/40"
+                  />
                 </div>
               )}
             </div>
 
             {competition.summary && (
-              <p className="mt-6 text-[15px] leading-relaxed text-ink-soft">
+              <p className="mt-6 text-[15px] leading-relaxed text-ink-muted">
                 {competition.summary}
               </p>
             )}
 
-            <div className="mt-9 grid grid-cols-2 gap-x-8 gap-y-7">
-              <Spec
-                label={m.drawer.localDeadline}
-                value={formatLocalAbsolute(
-                  competition.deadlines.final,
-                  competition.deadlines.timezone,
-                )}
-              />
-              <Spec
-                label={`${m.drawer.organizerTime} · ${competition.deadlines.timezone}`}
-                value={formatSourceDeadline(
-                  competition.deadlines.final,
-                  competition.deadlines.timezone,
-                )}
-              />
-              {competition.deadlines.earlyBird && (
-                <Spec
-                  label={m.drawer.earlyBird}
-                  value={formatLocalAbsolute(
-                    competition.deadlines.earlyBird,
-                    competition.deadlines.timezone,
-                  )}
-                />
-              )}
-              <Spec label={m.drawer.fee} value={formatFee(competition, m)} />
-              <Spec
-                label={m.drawer.eligibility}
-                value={m.eligibility[competition.eligibility]}
-              />
-              <Spec
-                label={m.drawer.colorSpace}
-                value={competition.specs.colorSpace}
-              />
-              <Spec
-                label={m.drawer.formats}
-                value={competition.specs.fileFormats.join(', ')}
-              />
-              <Spec
-                label={m.drawer.maxFile}
-                value={`${competition.specs.maxFileSizeMB} MB`}
-              />
-              {competition.specs.minDPI && (
-                <Spec
-                  label={m.drawer.dpi}
-                  value={`${competition.specs.minDPI}`}
-                />
-              )}
-              {competition.specs.maxWordCount && (
-                <Spec
-                  label={m.drawer.statement}
-                  value={`${competition.specs.maxWordCount} ${m.drawer.statementUnit}`}
-                />
-              )}
-              <Spec
-                label={m.drawer.watermark}
-                value={
-                  competition.specs.noWatermark
-                    ? m.drawer.watermarkNone
-                    : m.drawer.watermarkCheck
-                }
-              />
+            <div className="mt-8 shrink-0 overflow-hidden rounded-xl border border-ink/20">
+              <table className="w-full table-fixed border-collapse">
+                <tbody>
+                  {specRows.map((row, rowIndex) => {
+                    const lastRow = rowIndex === specRows.length - 1
+                    const cells =
+                      row.length === 1
+                        ? [...row, { value: '' } as SpecItem]
+                        : row
+                    return (
+                      <tr key={rowIndex}>
+                        {cells.map((cell, cellIndex) => {
+                          const lastCol = cellIndex === cells.length - 1
+                          const edge = cn(
+                            !lastRow && 'border-b',
+                            !lastCol && 'border-r',
+                          )
+                          if (!cell.value && !cell.label) {
+                            return (
+                              <td
+                                key={cellIndex}
+                                className={cn('border-ink/20', edge)}
+                                aria-hidden
+                              />
+                            )
+                          }
+                          return (
+                            <SpecCell
+                              key={cellIndex}
+                              label={cell.label}
+                              value={cell.value}
+                              className={edge}
+                            />
+                          )
+                        })}
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
             </div>
 
             {(competition.judging?.preliminary ||
               competition.judging?.final ||
               competition.judging?.notes) && (
-              <div className="mt-10">
+              <div className="mt-8">
                 <p className="font-mono text-[11px] tracking-[0.18em] text-ink-soft uppercase">
                   {m.drawer.judging}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                   {[
                     competition.judging.preliminary &&
                       `Preliminary ${competition.judging.preliminary}`,
@@ -207,59 +288,50 @@ export function SpecDrawer() {
                     .join('. ')}
                 </p>
                 {competition.judging.judges && (
-                  <p className="mt-2 text-sm text-ink-soft">
+                  <p className="mt-2 text-sm text-ink-muted">
                     {competition.judging.judges.join(' · ')}
                   </p>
                 )}
               </div>
             )}
 
-            <div className="mt-10">
+            <div className="mt-5 border-t border-ink/15 pt-5">
               <RightsBadge value={competition.rightsEthics} />
-              <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+              <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                 {m.rights[competition.rightsEthics].hint}{' '}
                 {competition.rightsNotes}
               </p>
             </div>
 
             {!stillOpen && cycle && (
-              <p className="mt-7 font-mono text-sm text-ink-soft">
+              <p className="mt-5 font-mono text-sm text-ink-muted">
                 {m.drawer.nextCycleNote} {cycle.year} {cycle.quarter}
               </p>
             )}
 
             {competition.tags.length > 0 && (
-              <p className="mt-7 text-sm text-ink-soft">
+              <p className="mt-5 border-t border-ink/15 pt-5 text-sm text-ink-muted">
                 {competition.tags.map((tag) => `#${tag}`).join('  ')}
               </p>
             )}
 
-            <div className="mt-auto grid gap-2 pt-10">
+            <div className="mt-auto grid grid-cols-2 gap-2 pt-10">
               <button
                 type="button"
                 onClick={() => downloadDeadlineIcs(competition)}
-                className={actionButton}
+                className={outlineButton}
               >
-                <CalendarPlus className="size-4 text-ink-soft" aria-hidden />
+                <CalendarPlus className="size-4" aria-hidden />
                 {m.drawer.exportIcs}
               </button>
               <button
                 type="button"
                 onClick={() => void downloadSubmissionPack(competition)}
-                className={actionButton}
+                className={outlineButton}
               >
-                <Package className="size-4 text-ink-soft" aria-hidden />
+                <Package className="size-4" aria-hidden />
                 {m.drawer.pack}
               </button>
-              <a
-                href={competition.officialUrl}
-                target="_blank"
-                rel="noreferrer"
-                className={actionButton}
-              >
-                <ExternalLink className="size-4 text-ink-soft" aria-hidden />
-                {m.drawer.official}
-              </a>
             </div>
           </div>
         )}
