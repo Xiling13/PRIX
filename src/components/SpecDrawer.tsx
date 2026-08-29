@@ -22,14 +22,11 @@ import {
 } from '../lib/competitionLocale'
 import { downloadDeadlineIcs } from '../lib/ics'
 import { useMessages } from '../lib/i18n'
-import { STATUS_COLUMNS } from '../lib/labels'
 import { downloadSubmissionPack } from '../lib/submissionPack'
 import { normalizeUrl } from '../lib/url'
 import { cn } from '../lib/cn'
 import { toTitleCase } from '../lib/titleCase'
 import { RightsBadge } from './RightsBadge'
-import { Select } from './Select'
-import type { TrackStatus } from '../types/competition'
 
 type SpecItem = { label?: string; value: string }
 
@@ -65,6 +62,9 @@ function chunkPairs(items: SpecItem[]): SpecItem[][] {
 const outlineButton =
   'inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-primary bg-transparent px-4 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white'
 
+const outlineSafeButton =
+  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-safe bg-transparent px-4 py-3 text-sm font-semibold text-safe transition-colors hover:bg-safe hover:text-white'
+
 const overlayBackdrop =
   'absolute inset-0 cursor-pointer bg-ink/20 backdrop-blur-sm transition-opacity duration-100 ease-out'
 
@@ -76,7 +76,7 @@ export function SpecDrawer() {
   const setSelectedId = useAppStore((s) => s.setSelectedId)
   const progress = useAppStore((s) => s.progress)
   const addToBoard = useAppStore((s) => s.addToBoard)
-  const setStatus = useAppStore((s) => s.setStatus)
+  const setView = useAppStore((s) => s.setView)
   const removeCustom = useAppStore((s) => s.removeCustom)
   const setAddOpen = useAppStore((s) => s.setAddOpen)
   const setCustomEditId = useAppStore((s) => s.setCustomEditId)
@@ -247,25 +247,17 @@ export function SpecDrawer() {
                   {m.drawer.addToTracker}
                 </button>
               ) : (
-                <div className="flex items-center gap-3 rounded-xl bg-safe/10 px-4 py-3">
-                  <Check className="size-4 shrink-0 text-safe" aria-hidden />
-                  <span className="text-sm font-medium text-safe">
-                    {m.drawer.onTracker}
-                  </span>
-                  <Select
-                    className="ml-auto w-auto min-w-[10.5rem]"
-                    aria-label={m.drawer.statusLabel}
-                    value={status}
-                    options={STATUS_COLUMNS.map((column) => ({
-                      value: column.id,
-                      label: m.status[column.id],
-                    }))}
-                    onChange={(next) =>
-                      setStatus(competition.id, next as TrackStatus)
-                    }
-                    triggerClassName="rounded-lg bg-surface px-3 py-1.5 pr-9 shadow-sm shadow-ink/10 focus:ring-2 focus:ring-primary/40"
-                  />
-                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setView('tracker')
+                    setSelectedId(null)
+                  }}
+                  className={cn(outlineSafeButton, 'w-full')}
+                >
+                  <Check className="size-4 shrink-0" aria-hidden />
+                  {m.drawer.openInTracker}
+                </button>
               )}
 
               {competition.isCustom && (

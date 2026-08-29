@@ -67,7 +67,7 @@ export function Header() {
             {format(now, 'HH:mm:ss zzz')}
           </p>
           <div className="flex items-center gap-3">
-            <div className="flex rounded-full bg-muted p-0.5 text-xs font-medium">
+            <div className="flex rounded-full bg-muted p-0.5 text-xs">
               {(['en', 'zh'] as const).map((l) => (
                 <button
                   key={l}
@@ -76,8 +76,8 @@ export function Header() {
                   className={cn(
                     'cursor-pointer rounded-full px-2.5 py-0.5 leading-none transition-colors',
                     lang === l
-                      ? 'bg-surface text-ink shadow-sm shadow-ink/10'
-                      : 'text-ink-soft hover:text-primary',
+                      ? 'bg-surface font-medium text-ink shadow-sm shadow-ink/10'
+                      : 'font-normal text-ink-soft hover:text-primary',
                   )}
                 >
                   {l === 'en' ? 'EN' : '汉'}
@@ -129,10 +129,10 @@ export function Header() {
                 type="button"
                 onClick={() => setView(id)}
                 className={cn(
-                  'cursor-pointer rounded-full px-3 py-1 text-xs font-medium transition-colors',
+                  'cursor-pointer rounded-full px-3 py-1 text-xs transition-colors',
                   view === id
-                    ? 'bg-surface text-ink shadow-sm shadow-ink/10'
-                    : 'text-ink-soft hover:text-primary',
+                    ? 'bg-surface font-medium text-ink shadow-sm shadow-ink/10'
+                    : 'font-normal text-ink-soft hover:text-primary',
                 )}
               >
                 {label}
@@ -154,10 +154,10 @@ export function Header() {
               type="button"
               onClick={() => setCategoryFilter(tab.id)}
               className={cn(
-                'shrink-0 cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
+                'shrink-0 cursor-pointer rounded-md px-2.5 py-1 text-xs transition-colors',
                 categoryFilter === tab.id
-                  ? 'bg-muted text-primary'
-                  : 'text-ink-soft hover:text-primary',
+                  ? 'bg-muted font-medium text-primary'
+                  : 'font-normal text-ink-soft hover:text-primary',
               )}
             >
               {m.categories[tab.id]}

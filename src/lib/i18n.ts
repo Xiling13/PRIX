@@ -33,7 +33,7 @@ export interface Messages {
   drawer: {
     close: string
     addToTracker: string
-    onTracker: string
+    openInTracker: string
     statusLabel: string
     exportIcs: string
     pack: string
@@ -99,6 +99,9 @@ export interface Messages {
   header: {
     github: string
   }
+  footer: {
+    createdBy: string
+  }
 }
 
 const en: Messages = {
@@ -160,7 +163,7 @@ const en: Messages = {
   drawer: {
     close: 'Close',
     addToTracker: 'Add to tracker',
-    onTracker: 'On your tracker',
+    openInTracker: 'Open in tracker',
     statusLabel: 'Status',
     exportIcs: 'Add to calendar',
     pack: 'Submission pack',
@@ -227,6 +230,9 @@ const en: Messages = {
   header: {
     github: 'GitHub repository',
   },
+  footer: {
+    createdBy: 'Created by Xiling',
+  },
 }
 
 const zh: Messages = {
@@ -288,7 +294,7 @@ const zh: Messages = {
   drawer: {
     close: '关闭',
     addToTracker: '加入备赛',
-    onTracker: '已在备赛列表',
+    openInTracker: '打开备赛看板',
     statusLabel: '当前状态',
     exportIcs: '加入日历',
     pack: '提报资产包',
@@ -354,6 +360,9 @@ const zh: Messages = {
   },
   header: {
     github: 'GitHub 仓库',
+  },
+  footer: {
+    createdBy: 'Created by Xiling',
   },
 }
 

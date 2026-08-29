@@ -1,4 +1,4 @@
-import { Check, Plus } from 'lucide-react'
+import { Check, Minus, Plus } from 'lucide-react'
 import type { Competition } from '../types/competition'
 import { cn } from '../lib/cn'
 import {
@@ -43,6 +43,7 @@ export function CompetitionRow({
   const next = inferNextCycle(competition)
   const setSelectedId = useAppStore((s) => s.setSelectedId)
   const addToBoard = useAppStore((s) => s.addToBoard)
+  const removeFromBoard = useAppStore((s) => s.removeFromBoard)
   const tracked = Boolean(useAppStore((s) => s.progress[competition.id]))
   const localized = localizeCompetition(competition, lang)
   const meta = (text: string) => (lang === 'en' ? toTitleCase(text) : text)
@@ -59,7 +60,7 @@ export function CompetitionRow({
         }
       }}
       className={cn(
-        'group col-span-full grid cursor-pointer grid-cols-1 gap-3 rounded-md px-4 py-5 text-left transition-colors',
+        'group col-span-full grid cursor-pointer grid-cols-1 gap-3 rounded-md py-5 text-left transition-colors',
         'lg:col-span-3 lg:row-span-3 lg:grid-cols-subgrid lg:grid-rows-[auto_auto_auto] lg:gap-y-1 lg:gap-x-6 lg:px-0 lg:py-5',
         'hover:bg-surface hover:shadow-sm hover:shadow-ink/5',
         archived && 'opacity-50 grayscale',
@@ -115,19 +116,30 @@ export function CompetitionRow({
         </p>
         <button
           type="button"
-          disabled={tracked}
-          aria-label={tracked ? m.tracked : m.track}
+          aria-label={tracked ? m.tracker.remove : m.track}
           onClick={(e) => {
             e.stopPropagation()
-            addToBoard(competition.id)
+            if (tracked) removeFromBoard(competition.id)
+            else addToBoard(competition.id)
           }}
           className={cn(
-            'inline-flex size-9 shrink-0 cursor-pointer items-center justify-center transition-colors lg:size-7',
-            tracked ? 'text-safe' : 'text-ink-soft hover:text-primary',
+            'group/track inline-flex h-9 shrink-0 cursor-pointer items-center justify-end pl-4 transition-colors lg:h-7 lg:pl-3',
+            tracked
+              ? 'text-safe hover:text-ink-soft'
+              : 'text-ink-soft hover:text-primary',
           )}
         >
           {tracked ? (
-            <Check className="size-4" aria-hidden />
+            <>
+              <Check
+                className="size-4 max-lg:hidden lg:block lg:group-hover/track:hidden"
+                aria-hidden
+              />
+              <Minus
+                className="size-4 lg:hidden lg:group-hover/track:block"
+                aria-hidden
+              />
+            </>
           ) : (
             <Plus className="size-4" aria-hidden />
           )}
