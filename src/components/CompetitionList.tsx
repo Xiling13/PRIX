@@ -1,9 +1,11 @@
 import { useMemo } from 'react'
 import { useNow } from '../hooks/useNow'
 import { getFinalUtc, isOpen } from '../lib/dates'
+import { cn } from '../lib/cn'
 import { useMessages } from '../lib/i18n'
 import { searchCompetitions } from '../lib/search'
 import { useAllCompetitions, useAppStore } from '../store/useAppStore'
+import { pageX } from '../lib/layout'
 import { CompetitionRow } from './CompetitionRow'
 
 const LIST_GRID =
@@ -34,7 +36,7 @@ export function CompetitionList() {
   }, [competitions, categoryFilter, searchQuery, now])
 
   return (
-    <div className="px-4 pb-8 sm:px-10 lg:px-14">
+    <div className={cn(pageX, 'pb-8')}>
       <div className={LIST_GRID}>
         {open.length === 0 && (
           <p className="py-16 text-sm text-ink-soft lg:col-span-3">
@@ -68,7 +70,7 @@ export function CompetitionList() {
         </section>
       )}
 
-      <footer className="mt-10 flex items-center justify-between border-t border-ink/10 pt-4 text-xs text-ink-soft lg:pl-5 lg:pr-5">
+      <footer className="mt-10 flex items-center justify-between border-t border-ink-line pt-4 text-xs text-ink-soft lg:pl-5 lg:pr-5">
         <span>{m.footer.createdBy}</span>
         <span>2026</span>
       </footer>

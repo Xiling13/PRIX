@@ -1,6 +1,7 @@
 import { cn } from '../lib/cn'
 import { useMessages } from '../lib/i18n'
 import type { RightsEthics } from '../types/competition'
+import { MetaDot } from './MetaDot'
 
 const TONE: Record<RightsEthics, string> = {
   'creator-retains-all': 'text-safe',
@@ -8,10 +9,13 @@ const TONE: Record<RightsEthics, string> = {
   'rights-grab-warning': 'text-danger',
 }
 
-const DOT: Record<RightsEthics, string> = {
-  'creator-retains-all': 'bg-safe',
-  'promotional-only': 'bg-warn',
-  'rights-grab-warning': 'bg-danger',
+const DOT_COLOR: Record<
+  RightsEthics,
+  'safe' | 'warn' | 'danger'
+> = {
+  'creator-retains-all': 'safe',
+  'promotional-only': 'warn',
+  'rights-grab-warning': 'danger',
 }
 
 export function RightsBadge({
@@ -30,7 +34,7 @@ export function RightsBadge({
         className,
       )}
     >
-      <span className={cn('size-1.5 rounded-full', DOT[value])} />
+      <MetaDot color={DOT_COLOR[value]} />
       {m.rights[value].title}
     </span>
   )

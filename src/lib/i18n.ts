@@ -98,6 +98,7 @@ export interface Messages {
   }
   header: {
     github: string
+    categoryFilter: string
   }
   footer: {
     createdBy: string
@@ -229,6 +230,7 @@ const en: Messages = {
   },
   header: {
     github: 'GitHub repository',
+    categoryFilter: 'Category',
   },
   footer: {
     createdBy: 'Created by Xiling',
@@ -360,6 +362,7 @@ const zh: Messages = {
   },
   header: {
     github: 'GitHub 仓库',
+    categoryFilter: '分类',
   },
   footer: {
     createdBy: 'Created by Xiling',

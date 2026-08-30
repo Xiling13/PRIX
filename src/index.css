@@ -5,6 +5,7 @@
   --color-surface: #ffffff;
   --color-muted: #e9ecf0;
   --color-ink: #171e28;
+  --color-ink-line: color-mix(in srgb, var(--color-ink) 10%, white);
   --color-ink-soft: #9aa5b3;
   --color-ink-muted: #5c6b7a;
   --color-primary: #3d5afe;

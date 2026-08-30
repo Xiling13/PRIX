@@ -12,20 +12,9 @@ import {
 import { useMessages } from '../lib/i18n'
 import { localizeCompetition } from '../lib/competitionLocale'
 import { toTitleCase } from '../lib/titleCase'
+import { MetaDot } from './MetaDot'
 import { RightsBadge } from './RightsBadge'
 import { useAppStore } from '../store/useAppStore'
-
-function MetaDot({ tone = 'muted' }: { tone?: 'muted' | 'soft' }) {
-  return (
-    <span
-      className={cn(
-        'mx-2 inline-block size-1 shrink-0 rounded-full',
-        tone === 'soft' ? 'bg-ink-soft' : 'bg-ink-muted',
-      )}
-      aria-hidden
-    />
-  )
-}
 
 export function CompetitionRow({
   competition,
@@ -77,9 +66,9 @@ export function CompetitionRow({
 
       <p className="flex flex-wrap items-center text-sm text-ink-soft lg:col-start-1 lg:row-start-3 lg:self-end lg:pl-5">
         {meta(m.categories[competition.category])}
-        <MetaDot tone="soft" />
+        <MetaDot tone="soft" className="mx-2" />
         {meta(localized.country)}
-        <MetaDot tone="soft" />
+        <MetaDot tone="soft" className="mx-2" />
         {meta(m.tiers[competition.tier])}
       </p>
 
@@ -90,12 +79,12 @@ export function CompetitionRow({
               competition.deadlines.timezone,
               lang,
             )
-          : `${m.nextCycle} ${next.year} ${next.quarter}`}
+          : `${meta(m.nextCycle)} ${next.year} ${next.quarter}`}
       </p>
 
       <p className="flex flex-wrap items-center text-sm leading-snug text-ink-muted lg:col-start-2 lg:row-start-2 lg:-translate-y-[1.5px] lg:self-end">
         {meta(formatFee(competition, m))}
-        <MetaDot />
+        <MetaDot className="mx-2" />
         {meta(m.eligibility[competition.eligibility])}
       </p>
 
@@ -107,7 +96,7 @@ export function CompetitionRow({
       <div className="flex items-center justify-between gap-3 lg:col-start-3 lg:row-start-1 lg:row-span-3 lg:self-center lg:justify-end lg:pr-5">
         <p
           className={cn(
-            'min-w-[7.5ch] shrink-0 text-right text-[1.35rem] font-medium whitespace-nowrap tabular-nums',
+            'min-w-[7.5ch] shrink-0 text-left text-[1.35rem] font-medium whitespace-nowrap tabular-nums lg:text-right',
             urgent && 'text-danger',
             !open && 'text-ink-soft',
           )}

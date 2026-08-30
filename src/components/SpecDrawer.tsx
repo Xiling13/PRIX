@@ -25,6 +25,7 @@ import { useMessages } from '../lib/i18n'
 import { downloadSubmissionPack } from '../lib/submissionPack'
 import { normalizeUrl } from '../lib/url'
 import { cn } from '../lib/cn'
+import { pageX } from '../lib/layout'
 import { toTitleCase } from '../lib/titleCase'
 import { RightsBadge } from './RightsBadge'
 
@@ -36,18 +37,18 @@ function SpecCell({
   className,
 }: SpecItem & { className?: string }) {
   return (
-    <td className={cn('border-ink/20 px-4 py-3 align-top', className)}>
+    <div className={cn('min-w-0 px-4 py-3', className)}>
       {label ? (
-        <>
-          <p className="font-mono text-[11px] tracking-[0.14em] text-ink-soft uppercase">
+        <div className="flex min-w-0 flex-col gap-1">
+          <p className="font-mono text-[10px] leading-snug tracking-[0.10em] text-ink-soft uppercase sm:text-[11px] sm:tracking-[0.14em]">
             {label}
           </p>
-          <p className="mt-1 text-sm text-ink">{value}</p>
-        </>
+          <p className="text-sm leading-snug text-ink">{value}</p>
+        </div>
       ) : (
         <p className="text-sm text-ink">{value}</p>
       )}
-    </td>
+    </div>
   )
 }
 
@@ -199,7 +200,7 @@ export function SpecDrawer() {
         )}
       >
         {competition && localized && (
-          <div className="flex h-full flex-col overflow-y-auto px-7 py-7 sm:px-9">
+          <div className={cn(pageX, 'flex h-full flex-col overflow-y-auto py-7')}>
             <div className="flex items-center justify-between gap-4">
               <p className="font-mono text-[11px] tracking-[0.20em] text-ink-soft uppercase">
                 {competition.shortName}
@@ -287,46 +288,40 @@ export function SpecDrawer() {
                 </p>
               )}
 
-              <div className="shrink-0 overflow-hidden rounded-xl border border-ink/20">
-                <table className="w-full table-fixed border-collapse">
-                  <tbody>
-                    {specRows.map((row, rowIndex) => {
-                      const lastRow = rowIndex === specRows.length - 1
-                      const cells =
-                        row.length === 1
-                          ? [...row, { value: '' } as SpecItem]
-                          : row
-                      return (
-                        <tr key={rowIndex}>
-                          {cells.map((cell, cellIndex) => {
-                            const lastCol = cellIndex === cells.length - 1
-                            const edge = cn(
-                              !lastRow && 'border-b',
-                              !lastCol && 'border-r',
-                            )
-                            if (!cell.value && !cell.label) {
-                              return (
-                                <td
-                                  key={cellIndex}
-                                  className={cn('border-ink/20', edge)}
-                                  aria-hidden
-                                />
-                              )
-                            }
-                            return (
-                              <SpecCell
-                                key={cellIndex}
-                                label={cell.label}
-                                value={cell.value}
-                                className={edge}
-                              />
-                            )
-                          })}
-                        </tr>
+              <div className="shrink-0 overflow-hidden rounded-xl border border-ink-line">
+                <div className="grid grid-cols-2">
+                  {specRows.map((row, rowIndex) => {
+                    const lastRow = rowIndex === specRows.length - 1
+                    const cells =
+                      row.length === 1
+                        ? [...row, { value: '' } as SpecItem]
+                        : row
+                    return cells.map((cell, cellIndex) => {
+                      const lastCol = cellIndex === cells.length - 1
+                      const edge = cn(
+                        !lastRow && 'border-b border-ink-line',
+                        !lastCol && 'border-r border-ink-line',
                       )
-                    })}
-                  </tbody>
-                </table>
+                      if (!cell.value && !cell.label) {
+                        return (
+                          <div
+                            key={`${rowIndex}-${cellIndex}`}
+                            className={cn('min-w-0', edge)}
+                            aria-hidden
+                          />
+                        )
+                      }
+                      return (
+                        <SpecCell
+                          key={`${rowIndex}-${cellIndex}`}
+                          label={cell.label}
+                          value={cell.value}
+                          className={edge}
+                        />
+                      )
+                    })
+                  })}
+                </div>
               </div>
 
               {(localized.judging?.preliminary ||
@@ -363,7 +358,7 @@ export function SpecDrawer() {
                 </div>
               )}
 
-              <div className="border-t border-ink/15 pt-6">
+              <div className="border-t border-ink-line pt-6">
                 <RightsBadge value={competition.rightsEthics} />
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">
                   {lang === 'zh'
@@ -380,7 +375,7 @@ export function SpecDrawer() {
                 )}
               </div>
 
-              <div className="border-t border-ink/15 pt-8">
+              <div className="border-t border-ink-line pt-8">
                 <p className="rounded-xl bg-primary/5 px-4 py-3 text-sm leading-relaxed text-ink-muted">
                   {m.drawer.disclaimer}
                 </p>

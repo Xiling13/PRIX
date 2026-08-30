@@ -3,6 +3,7 @@ import { X } from 'lucide-react'
 import type { TrackStatus } from '../types/competition'
 import { STATUS_COLUMNS } from '../lib/labels'
 import { cn } from '../lib/cn'
+import { pageX } from '../lib/layout'
 import { useMessages } from '../lib/i18n'
 import { searchCompetitions } from '../lib/search'
 import { useAllCompetitions, useAppStore } from '../store/useAppStore'
@@ -37,8 +38,8 @@ export function TrackerBoard() {
 
   if (tracked === 0) {
     return (
-      <div className="px-6 pb-24 sm:px-10 lg:px-14">
-        <div className="flex flex-col items-start gap-4 px-5 py-16">
+      <div className={cn(pageX, 'pb-24')}>
+        <div className="flex flex-col items-start gap-4 py-16">
           <p className="text-sm text-ink-soft">{m.tracker.empty}</p>
           <Button variant="primary" onClick={() => setView('list')}>
             {m.tracker.browse}
@@ -50,8 +51,8 @@ export function TrackerBoard() {
 
   if (filteredTracked.length === 0) {
     return (
-      <div className="px-6 pb-24 sm:px-10 lg:px-14">
-        <p className="px-5 py-16 text-sm text-ink-soft">
+      <div className={cn(pageX, 'pb-24')}>
+        <p className="py-16 text-sm text-ink-soft">
           {searchQuery.trim() ? m.tracker.noResults : m.tracker.emptyCategory}
         </p>
       </div>
@@ -59,7 +60,7 @@ export function TrackerBoard() {
   }
 
   return (
-    <div className="px-6 pt-2 pb-24 sm:px-10 lg:px-14">
+    <div className={cn(pageX, 'pt-2 pb-24')}>
       <div className="flex gap-5 overflow-x-auto pb-2">
         {STATUS_COLUMNS.map((column) => {
           const items = byStatus(column.id)

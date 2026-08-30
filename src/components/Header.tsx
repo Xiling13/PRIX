@@ -3,11 +3,14 @@ import { format } from 'date-fns'
 import { Plus, Search } from 'lucide-react'
 import { CATEGORY_TABS, GITHUB_REPO_URL } from '../lib/labels'
 import { cn } from '../lib/cn'
+import { pageX } from '../lib/layout'
 import { useMessages } from '../lib/i18n'
 import { useNow } from '../hooks/useNow'
 import { useAppStore } from '../store/useAppStore'
+import type { Category } from '../types/competition'
 import { Button } from './Button'
 import { GitHubIcon } from './GitHubIcon'
+import { Select } from './Select'
 import { TrackerBackupControls } from './TrackerBackupControls'
 
 function isMac() {
@@ -54,7 +57,7 @@ export function Header() {
   }, [])
 
   return (
-    <header className="px-4 pt-6 pb-0 sm:px-10 sm:pt-7 lg:px-14">
+    <header className={cn(pageX, 'pt-6 pb-0 sm:pt-7')}>
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-baseline gap-4">
           <p className="font-mono text-base font-semibold tracking-[0.14em]">
@@ -116,7 +119,7 @@ export function Header() {
           </kbd>
         </label>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex w-full items-center justify-between gap-2 lg:w-auto lg:justify-start">
           <div className="flex rounded-full bg-muted p-0.5">
             {(
               [
@@ -147,7 +150,18 @@ export function Header() {
       </div>
 
       <div className="mt-6 mb-6 flex items-center gap-3">
-        <nav className="flex min-w-0 flex-1 gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <Select
+          className="min-w-0 flex-1 min-[480px]:hidden"
+          triggerClassName="rounded-md border border-ink-line bg-surface py-1.5 pr-9 pl-2.5 text-xs font-medium shadow-none focus:ring-2 focus:ring-primary/40"
+          value={categoryFilter}
+          options={categoryTabs.map((tab) => ({
+            value: tab.id,
+            label: m.categories[tab.id],
+          }))}
+          onChange={(id) => setCategoryFilter(id as 'all' | Category)}
+          aria-label={m.header.categoryFilter}
+        />
+        <nav className="hidden min-w-0 flex-1 gap-0.5 overflow-x-auto min-[480px]:flex [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {categoryTabs.map((tab) => (
             <button
               key={tab.id}
