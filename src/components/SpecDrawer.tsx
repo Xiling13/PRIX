@@ -22,20 +22,32 @@ import {
 } from '../lib/competitionLocale'
 import { downloadDeadlineIcs } from '../lib/ics'
 import { useMessages } from '../lib/i18n'
+import type { Lang } from '../lib/i18n'
 import { downloadSubmissionPack } from '../lib/submissionPack'
 import { normalizeUrl } from '../lib/url'
 import { cn } from '../lib/cn'
 import { pageX } from '../lib/layout'
 import { toTitleCase } from '../lib/titleCase'
 import { RightsBadge } from './RightsBadge'
+import { StackedDateTime } from './StackedDateTime'
 
-type SpecItem = { label?: string; value: string }
+type SpecItem = {
+  label?: string
+  value: string
+  dateTime?: {
+    iso: string
+    timezone: string
+    inTimezone?: boolean
+  }
+}
 
 function SpecCell({
   label,
   value,
+  dateTime,
+  lang,
   className,
-}: SpecItem & { className?: string }) {
+}: SpecItem & { lang: Lang; className?: string }) {
   return (
     <div className={cn('min-w-0 px-4 py-3', className)}>
       {label ? (
@@ -43,7 +55,17 @@ function SpecCell({
           <p className="font-mono text-[10px] leading-snug tracking-[0.10em] text-ink-soft uppercase sm:text-[11px] sm:tracking-[0.14em]">
             {label}
           </p>
-          <p className="text-sm leading-snug text-ink">{value}</p>
+          {dateTime ? (
+            <StackedDateTime
+              isoLocal={dateTime.iso}
+              timezone={dateTime.timezone}
+              inTimezone={dateTime.inTimezone}
+              lang={lang}
+              className="text-sm leading-snug text-ink"
+            />
+          ) : (
+            <p className="text-sm leading-snug text-ink">{value}</p>
+          )}
         </div>
       ) : (
         <p className="text-sm text-ink">{value}</p>
@@ -102,6 +124,11 @@ export function SpecDrawer() {
             competition.deadlines.timezone,
             lang,
           ),
+          dateTime: {
+            iso: competition.deadlines.final,
+            timezone: competition.deadlines.timezone,
+            inTimezone: false,
+          },
         },
         {
           label: m.drawer.organizerTime,
@@ -110,6 +137,11 @@ export function SpecDrawer() {
             competition.deadlines.timezone,
             lang,
           ),
+          dateTime: {
+            iso: competition.deadlines.final,
+            timezone: competition.deadlines.timezone,
+            inTimezone: true,
+          },
         },
         ...(competition.deadlines.earlyBird
           ? [
@@ -120,6 +152,11 @@ export function SpecDrawer() {
                   competition.deadlines.timezone,
                   lang,
                 ),
+                dateTime: {
+                  iso: competition.deadlines.earlyBird,
+                  timezone: competition.deadlines.timezone,
+                  inTimezone: false,
+                },
               },
             ]
           : []),
@@ -316,6 +353,8 @@ export function SpecDrawer() {
                           key={`${rowIndex}-${cellIndex}`}
                           label={cell.label}
                           value={cell.value}
+                          dateTime={cell.dateTime}
+                          lang={lang}
                           className={edge}
                         />
                       )

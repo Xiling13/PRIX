@@ -4,7 +4,6 @@ import { cn } from '../lib/cn'
 import {
   formatCountdown,
   formatFee,
-  formatLocalAbsolute,
   inferNextCycle,
   isOpen,
   isUrgent,
@@ -14,6 +13,7 @@ import { localizeCompetition } from '../lib/competitionLocale'
 import { toTitleCase } from '../lib/titleCase'
 import { MetaDot } from './MetaDot'
 import { RightsBadge } from './RightsBadge'
+import { StackedDateTime } from './StackedDateTime'
 import { useAppStore } from '../store/useAppStore'
 
 export function CompetitionRow({
@@ -73,13 +73,15 @@ export function CompetitionRow({
       </p>
 
       <p className="text-sm text-ink-muted lg:col-start-2 lg:row-start-1 lg:-mt-px lg:self-start lg:whitespace-nowrap lg:tabular-nums">
-        {open
-          ? formatLocalAbsolute(
-              competition.deadlines.final,
-              competition.deadlines.timezone,
-              lang,
-            )
-          : `${meta(m.nextCycle)} ${next.year} ${next.quarter}`}
+        {open ? (
+          <StackedDateTime
+            isoLocal={competition.deadlines.final}
+            timezone={competition.deadlines.timezone}
+            lang={lang}
+          />
+        ) : (
+          `${meta(m.nextCycle)} ${next.year} ${next.quarter}`
+        )}
       </p>
 
       <p className="flex flex-wrap items-center text-sm leading-snug text-ink-muted lg:col-start-2 lg:row-start-2 lg:-translate-y-[1.5px] lg:self-end">

@@ -150,6 +150,30 @@ PRIX 为**非官方社区工具**。截止日期、费用、报名资格、技�
 
 ---
 
+## Fonts / 字体
+
+**EN:** PRIX loads three open-source web fonts via [Google Fonts](https://fonts.google.com/):
+
+| Font | Role | License |
+|------|------|---------|
+| [Geist](https://github.com/vercel/geist-font) | Latin sans-serif | [SIL Open Font License 1.1](https://scripts.sil.org/OFL) |
+| [Noto Sans SC](https://fonts.google.com/noto/specimen/Noto+Sans+SC) | Simplified Chinese sans-serif | SIL Open Font License 1.1 |
+| [JetBrains Mono](https://www.jetbrains.com/lp/mono/) | Monospace (dates, labels) | SIL Open Font License 1.1 |
+
+CSS also lists generic system font families (`system-ui`, `ui-sans-serif`, `ui-monospace`) as **fallbacks** only when web fonts fail to load. PRIX does not bundle or redistribute operating-system fonts; the browser uses whatever is already installed on the user's device. This is standard web practice and is not font redistribution or infringement by this project.
+
+**CN:** PRIX 通过 [Google Fonts](https://fonts.google.com/) 加载以下三款开源 Web 字体：
+
+| 字体 | 用途 | 授权 |
+|------|------|------|
+| [Geist](https://github.com/vercel/geist-font) | 英文无衬线 | [SIL Open Font License 1.1](https://scripts.sil.org/OFL) |
+| [Noto Sans SC](https://fonts.google.com/noto/specimen/Noto+Sans+SC) | 简体中文无衬线 | SIL Open Font License 1.1 |
+| [JetBrains Mono](https://www.jetbrains.com/lp/mono/) | 等宽（日期、标签等） | SIL Open Font License 1.1 |
+
+CSS 中的 `system-ui`、`ui-sans-serif`、`ui-monospace` 等仅为 **备用字体**：仅在 Web 字体加载失败时，由浏览器调用用户操作系统已安装的字体。本项目不打包、不分发任何系统字体，属于常规 Web 做法，不构成字体侵权。
+
+---
+
 ## License
 
 [MIT](./LICENSE) © 2026 Xiling

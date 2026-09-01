@@ -106,7 +106,7 @@ export interface Messages {
 }
 
 const en: Messages = {
-  tagline: 'Open-call workstation for creative competition.',
+  tagline: 'Open-call workstation for global creators.',
   searchPlaceholder: 'Search awards — TDC, Japan, Poster, #Free…',
   views: { list: 'Open Calls', tracker: 'Tracker' },
   addCustom: 'Add award',
@@ -238,10 +238,10 @@ const en: Messages = {
 }
 
 const zh: Messages = {
-  tagline: '创意竞赛查询工具',
+  tagline: '全球创意竞赛工作站',
   searchPlaceholder: '搜索赛事 — TDC、日本、Poster、#Free…',
-  views: { list: '征稿中', tracker: '我的备赛' },
-  addCustom: '添加赛事',
+  views: { list: '赛事', tracker: '看板' },
+  addCustom: '添加比赛',
   track: '加入备赛',
   tracked: '已加入',
   customTag: '自定义',

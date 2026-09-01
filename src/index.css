@@ -11,10 +11,10 @@
   --color-primary: #3d5afe;
   --color-primary-dim: #2f49e0;
   --color-safe: #0e9f6e;
-  --color-warn: #c46d2a;
+  --color-warn: #CB7C29;
   --color-danger: #dc2626;
   --font-sans: "Geist", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", "Noto Sans SC", ui-monospace, monospace;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;

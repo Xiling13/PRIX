@@ -29,7 +29,7 @@ export function RightsBadge({
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-2 text-[13px] font-medium',
+        'inline-flex items-center gap-2 font-sans text-[13px] font-medium',
         TONE[value],
         className,
       )}

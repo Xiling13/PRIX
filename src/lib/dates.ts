@@ -70,17 +70,32 @@ export function formatDisplayDate(
   inTimezone = true,
   lang: Lang = 'en',
 ): string {
+  const { date, time } = formatDisplayDateStacked(
+    isoLocal,
+    timezone,
+    inTimezone,
+    lang,
+  )
+  return lang === 'zh' ? `${date} ${time}` : `${date} ${time}`
+}
+
+export function formatDisplayDateStacked(
+  isoLocal: string,
+  timezone: string,
+  inTimezone = true,
+  lang: Lang = 'en',
+): { date: string; time: string } {
   const utc = deadlineToUtc(isoLocal, timezone)
   if (lang === 'zh') {
-    const base = inTimezone
-      ? formatInTimeZone(utc, timezone, 'yyyy年M月d日 hh:mm', { locale: zhCN })
-      : format(utc, 'yyyy年M月d日 hh:mm', { locale: zhCN })
-    const meridiem = (
+    const date = inTimezone
+      ? formatInTimeZone(utc, timezone, 'yyyy年M月d日，', { locale: zhCN })
+      : format(utc, 'yyyy年M月d日，', { locale: zhCN })
+    const time = (
       inTimezone
-        ? formatInTimeZone(utc, timezone, 'a')
-        : format(utc, 'a')
-    ).toUpperCase()
-    return `${base} ${meridiem}`
+        ? formatInTimeZone(utc, timezone, 'a hh:mm', { locale: zhCN })
+        : format(utc, 'a hh:mm', { locale: zhCN })
+    ).replace(/\s/g, ' ')
+    return { date, time }
   }
   const day = inTimezone
     ? formatInTimeZone(utc, timezone, 'dd')
@@ -90,12 +105,15 @@ export function formatDisplayDate(
       ? formatInTimeZone(utc, timezone, 'MMM')
       : format(utc, 'MMM')
   ).toUpperCase()
-  const rest = (
+  const year = inTimezone
+    ? formatInTimeZone(utc, timezone, 'yyyy')
+    : format(utc, 'yyyy')
+  const time = (
     inTimezone
-      ? formatInTimeZone(utc, timezone, 'yyyy, hh:mm a')
-      : format(utc, 'yyyy, hh:mm a')
+      ? formatInTimeZone(utc, timezone, 'hh:mm a')
+      : format(utc, 'hh:mm a')
   ).replace(/\b(am|pm)\b/g, (m) => m.toUpperCase())
-  return `${day} ${month} ${rest}`
+  return { date: `${day} ${month} ${year},`, time }
 }
 
 export function formatLocalAbsolute(
