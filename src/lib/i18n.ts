@@ -299,7 +299,7 @@ const zh: Messages = {
     openInTracker: '打开备赛看板',
     statusLabel: '当前状态',
     exportIcs: '加入日历',
-    pack: '提报资产包',
+    pack: '提交资料',
     official: '官网',
     localDeadline: '本地截稿时间',
     organizerTime: '主办方截稿时间',
