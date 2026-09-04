@@ -11,12 +11,15 @@ export function StackedDateTime({
   inTimezone = false,
   lang,
   className,
+  stackOnNarrow = true,
 }: {
   isoLocal: string
   timezone: string
   inTimezone?: boolean
   lang: Lang
   className?: string
+  /** When true (default), stack date/time below 480px. When false, always one line. */
+  stackOnNarrow?: boolean
 }) {
   const stacked = formatDisplayDateStacked(
     isoLocal,
@@ -25,6 +28,10 @@ export function StackedDateTime({
     lang,
   )
   const full = formatDisplayDate(isoLocal, timezone, inTimezone, lang)
+
+  if (!stackOnNarrow) {
+    return <span className={className}>{full}</span>
+  }
 
   return (
     <>

@@ -78,6 +78,7 @@ export function CompetitionRow({
             isoLocal={competition.deadlines.final}
             timezone={competition.deadlines.timezone}
             lang={lang}
+            stackOnNarrow={false}
           />
         ) : (
           `${meta(m.nextCycle)} ${next.year} ${next.quarter}`
