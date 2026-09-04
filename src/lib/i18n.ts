@@ -95,6 +95,7 @@ export interface Messages {
     openIssue: string
     urlRequired: string
     urlInvalid: string
+    currencies: Record<'USD' | 'EUR' | 'GBP' | 'JPY', string>
   }
   header: {
     github: string
@@ -227,6 +228,12 @@ const en: Messages = {
     openIssue: 'Open GitHub issue',
     urlRequired: 'Official URL is required.',
     urlInvalid: 'Enter a valid URL (e.g. example.com or https://…).',
+    currencies: {
+      EUR: '€\u2002EUR',
+      GBP: '£\u2002GBP',
+      JPY: '¥\u2002JPY',
+      USD: '$\u2002USD',
+    },
   },
   header: {
     github: 'GitHub repository',
@@ -359,6 +366,12 @@ const zh: Messages = {
     openIssue: '打开 GitHub Issue',
     urlRequired: '请填写官网链接。',
     urlInvalid: '请输入有效链接（如 example.com 或 https://…）。',
+    currencies: {
+      EUR: '€\u2002欧元',
+      GBP: '£\u2002英镑',
+      JPY: '¥\u2002日元',
+      USD: '$\u2002美元',
+    },
   },
   header: {
     github: 'GitHub 仓库',

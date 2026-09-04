@@ -82,11 +82,14 @@ function chunkPairs(items: SpecItem[]): SpecItem[][] {
   return rows
 }
 
-const outlineButton =
-  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-primary bg-transparent px-4 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white'
+const solidButton =
+  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dim'
 
-const outlineSafeButton =
-  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-safe bg-transparent px-4 py-3 text-sm font-semibold text-safe transition-colors hover:bg-safe hover:text-white'
+const solidSafeButton =
+  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-safe px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-safe/90'
+
+const outlineButton =
+  'inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-primary bg-transparent px-4 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white'
 
 const overlayBackdrop =
   'absolute inset-0 cursor-pointer bg-ink/20 backdrop-blur-sm transition-opacity duration-100 ease-out'
@@ -279,7 +282,7 @@ export function SpecDrawer() {
                 <button
                   type="button"
                   onClick={() => addToBoard(competition.id)}
-                  className={cn(outlineButton, 'w-full')}
+                  className={cn(solidButton, 'w-full')}
                 >
                   <Plus className="size-4" aria-hidden />
                   {m.drawer.addToTracker}
@@ -291,7 +294,7 @@ export function SpecDrawer() {
                     setView('tracker')
                     setSelectedId(null)
                   }}
-                  className={cn(outlineSafeButton, 'w-full')}
+                  className={cn(solidSafeButton, 'w-full')}
                 >
                   <Check className="size-4 shrink-0" aria-hidden />
                   {m.drawer.openInTracker}
@@ -426,7 +429,7 @@ export function SpecDrawer() {
               </div>
             </div>
 
-            <div className="mt-auto grid grid-cols-2 gap-2 pt-10">
+            <div className="mt-auto grid grid-cols-1 gap-2 pt-10 sm:grid-cols-2">
               <button
                 type="button"
                 onClick={() => downloadDeadlineIcs(competition)}

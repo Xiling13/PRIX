@@ -7,7 +7,14 @@ import type {
   Eligibility,
   RightsEthics,
 } from '../types/competition'
-import { CATEGORY_TABS, GITHUB_CONTRIBUTE_URL, TIMEZONES } from '../lib/labels'
+import {
+  CATEGORY_TABS,
+  CURRENCIES,
+  GITHUB_CONTRIBUTE_URL,
+  TIMEZONE_OPTIONS,
+  sortOptionsByLabel,
+  timezoneLabel,
+} from '../lib/labels'
 import { cn } from '../lib/cn'
 import { useMessages } from '../lib/i18n'
 import { useAppStore, useCustomCompetition } from '../store/useAppStore'
@@ -186,7 +193,7 @@ function CustomAwardModalShell({
       />
       <div
         className={cn(
-          'absolute inset-x-0 top-[6vh] mx-auto max-h-[88vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-surface px-6 py-6 shadow-2xl shadow-ink/20 transition-[opacity,transform] duration-150 ease-out sm:px-8',
+          'absolute inset-x-0 top-[6vh] mx-auto max-h-[88vh] w-full max-w-xl overflow-y-auto rounded-2xl bg-surface px-6 py-6 shadow-2xl shadow-ink/20 transition-[opacity,transform] duration-150 ease-out sm:px-8',
           open
             ? 'translate-y-0 opacity-100'
             : 'pointer-events-none translate-y-2 opacity-0',
@@ -208,6 +215,7 @@ function CustomAwardForm({
   customEditId: string | null
 }) {
   const m = useMessages()
+  const lang = useAppStore((s) => s.lang)
   const setOpen = useAppStore((s) => s.setAddOpen)
   const setCustomEditId = useAppStore((s) => s.setCustomEditId)
   const addCustom = useAppStore((s) => s.addCustom)
@@ -279,10 +287,52 @@ function CustomAwardForm({
     window.open(url, '_blank', 'noreferrer')
   }
 
-  const timezoneOptions = [
-    form.timezone,
-    ...TIMEZONES.filter((z) => z !== form.timezone),
-  ].map((tz) => ({ value: tz, label: tz }))
+  const timezoneOptions = sortOptionsByLabel(
+    [
+      ...TIMEZONE_OPTIONS.map((z) => ({
+        value: z.value,
+        label: timezoneLabel(z.value, lang),
+      })),
+      ...(TIMEZONE_OPTIONS.some((z) => z.value === form.timezone)
+        ? []
+        : [
+            {
+              value: form.timezone,
+              label: timezoneLabel(form.timezone, lang),
+            },
+          ]),
+    ],
+    lang,
+  )
+
+  const categoryOptions = sortOptionsByLabel(
+    CATEGORY_IDS.map((id) => ({
+      value: id,
+      label: m.categories[id],
+    })),
+    lang,
+  )
+
+  const eligibilityOptions = sortOptionsByLabel(
+    (['all', 'students-only', 'professionals-only'] as const).map((id) => ({
+      value: id,
+      label: m.eligibility[id],
+    })),
+    lang,
+  )
+
+  const currencyOptions = CURRENCIES.map((c) => ({
+    value: c,
+    label: m.custom.currencies[c],
+  }))
+
+  const rightsOptions = sortOptionsByLabel(
+    RIGHTS_IDS.map((id) => ({
+      value: id,
+      label: m.rights[id].title,
+    })),
+    lang,
+  )
 
   return (
     <>
@@ -331,22 +381,14 @@ function CustomAwardForm({
           <div className="grid grid-cols-2 gap-3">
             <Select
               value={form.category}
-              options={CATEGORY_IDS.map((id) => ({
-                value: id,
-                label: m.categories[id],
-              }))}
+              options={categoryOptions}
               onChange={(category) =>
                 setForm({ ...form, category: category as Category })
               }
             />
             <Select
               value={form.eligibility}
-              options={(
-                ['all', 'students-only', 'professionals-only'] as const
-              ).map((id) => ({
-                value: id,
-                label: m.eligibility[id],
-              }))}
+              options={eligibilityOptions}
               onChange={(eligibility) =>
                 setForm({ ...form, eligibility: eligibility as Eligibility })
               }
@@ -379,10 +421,7 @@ function CustomAwardForm({
             <div className="grid grid-cols-2 gap-3">
               <Select
                 value={form.currency}
-                options={['USD', 'EUR', 'GBP', 'JPY'].map((c) => ({
-                  value: c,
-                  label: c,
-                }))}
+                options={currencyOptions}
                 onChange={(currency) =>
                   setForm({ ...form, currency: currency as Currency })
                 }
@@ -428,10 +467,7 @@ function CustomAwardForm({
           />
           <Select
             value={form.rightsEthics}
-            options={RIGHTS_IDS.map((id) => ({
-              value: id,
-              label: m.rights[id].title,
-            }))}
+            options={rightsOptions}
             onChange={(rightsEthics) =>
               setForm({
                 ...form,

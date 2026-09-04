@@ -6,6 +6,7 @@ import type {
   Tier,
   TrackStatus,
 } from '../types/competition'
+import type { Lang } from './i18n'
 
 export const CATEGORY_TABS: { id: 'all' | Category; label: string }[] = [
   { id: 'all', label: 'All' },
@@ -67,20 +68,128 @@ export const STATUS_COLUMNS: { id: TrackStatus; label: string }[] = [
 
 export const QUARTERS: Quarter[] = ['Q1', 'Q2', 'Q3', 'Q4']
 
-export const TIMEZONES = [
-  'UTC',
-  'Europe/London',
-  'Europe/Paris',
-  'Europe/Berlin',
-  'Europe/Amsterdam',
-  'America/New_York',
-  'America/Los_Angeles',
-  'America/Chicago',
-  'Asia/Tokyo',
-  'Asia/Shanghai',
-  'Asia/Singapore',
-  'Australia/Sydney',
+export const CURRENCIES = ['EUR', 'GBP', 'JPY', 'USD'] as const
+
+/** Representative cities for competition-heavy regions (IANA value → display). */
+export const TIMEZONE_OPTIONS: {
+  value: string
+  cityEn: string
+  cityZh: string
+  abbrev: string
+}[] = [
+  { value: 'UTC', cityEn: 'UTC', cityZh: 'UTC', abbrev: '' },
+  {
+    value: 'Asia/Shanghai',
+    cityEn: 'Beijing',
+    cityZh: '北京',
+    abbrev: 'CST',
+  },
+  {
+    value: 'Europe/Berlin',
+    cityEn: 'Berlin',
+    cityZh: '柏林',
+    abbrev: 'CET',
+  },
+  {
+    value: 'America/Chicago',
+    cityEn: 'Chicago',
+    cityZh: '芝加哥',
+    abbrev: 'CT',
+  },
+  {
+    value: 'Europe/London',
+    cityEn: 'London',
+    cityZh: '伦敦',
+    abbrev: 'GMT/BST',
+  },
+  {
+    value: 'America/Los_Angeles',
+    cityEn: 'Los Angeles',
+    cityZh: '洛杉矶',
+    abbrev: 'PT',
+  },
+  {
+    value: 'America/New_York',
+    cityEn: 'New York',
+    cityZh: '纽约',
+    abbrev: 'ET',
+  },
+  {
+    value: 'Asia/Seoul',
+    cityEn: 'Seoul',
+    cityZh: '首尔',
+    abbrev: 'KST',
+  },
+  {
+    value: 'Asia/Singapore',
+    cityEn: 'Singapore',
+    cityZh: '新加坡',
+    abbrev: 'SGT',
+  },
+  {
+    value: 'Australia/Sydney',
+    cityEn: 'Sydney',
+    cityZh: '悉尼',
+    abbrev: 'AEST',
+  },
+  {
+    value: 'Asia/Tokyo',
+    cityEn: 'Tokyo',
+    cityZh: '东京',
+    abbrev: 'JST',
+  },
 ]
+
+export const TIMEZONES = TIMEZONE_OPTIONS.map((z) => z.value)
+
+const TIMEZONE_BY_VALUE = Object.fromEntries(
+  TIMEZONE_OPTIONS.map((z) => [z.value, z]),
+)
+
+/** Aliases that share a listed representative city. */
+const TIMEZONE_ALIASES: Record<string, string> = {
+  'Etc/UTC': 'UTC',
+  'Europe/Paris': 'Europe/Berlin',
+  'Europe/Amsterdam': 'Europe/Berlin',
+  'Europe/Rome': 'Europe/Berlin',
+  'Europe/Vienna': 'Europe/Berlin',
+  'Asia/Chongqing': 'Asia/Shanghai',
+  'Asia/Harbin': 'Asia/Shanghai',
+}
+
+function formatCityAbbrev(city: string, abbrev: string): string {
+  return abbrev ? `${city} (${abbrev})` : city
+}
+
+export function timezoneLabel(timezone: string, lang: Lang = 'en'): string {
+  const canonical = TIMEZONE_ALIASES[timezone] ?? timezone
+  const known = TIMEZONE_BY_VALUE[canonical]
+  if (known) {
+    const city = lang === 'zh' ? known.cityZh : known.cityEn
+    return formatCityAbbrev(city, known.abbrev)
+  }
+  const city = timezone.split('/').pop()?.replace(/_/g, ' ') ?? timezone
+  try {
+    const parts = new Intl.DateTimeFormat(lang === 'zh' ? 'zh-CN' : 'en-US', {
+      timeZone: timezone,
+      timeZoneName: 'short',
+    }).formatToParts(new Date())
+    const abbr = parts.find((p) => p.type === 'timeZoneName')?.value
+    return abbr ? `${city} (${abbr})` : city
+  } catch {
+    return city
+  }
+}
+
+export function sortOptionsByLabel<T extends { label: string }>(
+  options: T[],
+  lang: Lang,
+): T[] {
+  const locale = lang === 'zh' ? 'zh-CN' : 'en'
+  return [...options].sort((a, b) =>
+    a.label.localeCompare(b.label, locale, { sensitivity: 'base' }),
+  )
+}
 
 export const GITHUB_REPO_URL = 'https://github.com/Xiling13/Prix'
 
