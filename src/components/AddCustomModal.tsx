@@ -183,7 +183,10 @@ function CustomAwardModalShell({
 
   return (
     <div
-      className={cn('fixed inset-0 z-40', open ? '' : 'pointer-events-none')}
+      className={cn(
+        'fixed inset-0 z-40 flex items-center justify-center',
+        open ? '' : 'pointer-events-none',
+      )}
     >
       <button
         type="button"
@@ -193,9 +196,9 @@ function CustomAwardModalShell({
       />
       <div
         className={cn(
-          'absolute inset-x-0 top-[6vh] mx-auto max-h-[88vh] w-full max-w-xl overflow-y-auto rounded-2xl bg-surface px-6 py-6 shadow-2xl shadow-ink/20 transition-[opacity,transform] duration-150 ease-out sm:px-8',
+          'relative z-10 mx-auto max-h-[88vh] w-full max-w-xl overflow-y-auto rounded-2xl bg-surface px-6 py-6 shadow-2xl shadow-ink/20 transition-[opacity,transform] duration-150 ease-out sm:px-8',
           open
-            ? 'translate-y-0 opacity-100'
+            ? '-translate-y-[5px] opacity-100'
             : 'pointer-events-none translate-y-2 opacity-0',
         )}
       >
