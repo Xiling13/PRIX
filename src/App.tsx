@@ -9,7 +9,7 @@ export default function App() {
   const view = useAppStore((s) => s.view)
 
   return (
-    <div className="min-h-svh bg-canvas">
+    <div className="flex min-h-svh flex-col bg-canvas">
       <Header />
       {view === 'list' ? <CompetitionList /> : <TrackerBoard />}
       <SpecDrawer />

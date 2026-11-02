@@ -36,43 +36,45 @@ export function CompetitionList() {
   }, [competitions, categoryFilter, searchQuery, now])
 
   return (
-    <div className={cn(pageX, 'pb-8')}>
-      <div className={LIST_GRID}>
-        {open.length === 0 && (
-          <p className="py-16 text-sm text-ink-soft lg:col-span-3">
-            {searchQuery.trim() ? m.noResults : m.emptyCategory}
-          </p>
-        )}
-        {open.map((competition) => (
-          <CompetitionRow
-            key={competition.id}
-            competition={competition}
-            now={now}
-          />
-        ))}
-      </div>
+    <div className={cn(pageX, 'flex flex-1 flex-col pb-8')}>
+      <div className="flex-1">
+        <div className={LIST_GRID}>
+          {open.length === 0 && (
+            <p className="py-16 text-sm text-ink-soft lg:col-span-3">
+              {searchQuery.trim() ? m.noResults : m.emptyCategory}
+            </p>
+          )}
+          {open.map((competition) => (
+            <CompetitionRow
+              key={competition.id}
+              competition={competition}
+              now={now}
+            />
+          ))}
+        </div>
 
-      {archived.length > 0 && (
-        <section className="mt-12 lg:mt-16">
-          <p className="font-mono text-[11px] tracking-[0.20em] text-ink-soft uppercase lg:pl-5">
-            {m.archivedTitle}
-          </p>
-          <div className={`mt-4 ${LIST_GRID}`}>
-            {archived.map((competition) => (
-              <CompetitionRow
-                key={competition.id}
-                competition={competition}
-                now={now}
-                archived
-              />
-            ))}
-          </div>
-        </section>
-      )}
+        {archived.length > 0 && (
+          <section className="mt-12 lg:mt-16">
+            <p className="font-mono text-[11px] tracking-[0.20em] text-ink-soft uppercase lg:pl-5">
+              {m.archivedTitle}
+            </p>
+            <div className={`mt-4 ${LIST_GRID}`}>
+              {archived.map((competition) => (
+                <CompetitionRow
+                  key={competition.id}
+                  competition={competition}
+                  now={now}
+                  archived
+                />
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
 
       <footer className="mt-10 flex items-center justify-between border-t border-ink-line pt-4 text-xs text-ink-soft lg:pl-5 lg:pr-5">
         <span>{m.footer.createdBy}</span>
-        <span>2026</span>
+        <span>© 2026</span>
       </footer>
     </div>
   )

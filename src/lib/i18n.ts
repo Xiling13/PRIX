@@ -240,7 +240,7 @@ const en: Messages = {
     categoryFilter: 'Category',
   },
   footer: {
-    createdBy: 'Created by Xiling',
+    createdBy: 'Built by Xiling',
   },
 }
 
@@ -378,7 +378,7 @@ const zh: Messages = {
     categoryFilter: '分类',
   },
   footer: {
-    createdBy: 'Created by Xiling',
+    createdBy: 'Built by Xiling',
   },
 }
 
